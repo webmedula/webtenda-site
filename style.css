@@ -33,7 +33,8 @@ h3{font-size:1.2rem;font-weight:600;letter-spacing:-.01em}
 .nav.scrolled{border-bottom-color:var(--line)}
 .nav-in{display:flex;align-items:center;justify-content:space-between;height:68px;gap:20px}
 .logo{display:flex;align-items:center;gap:9px;font-family:var(--display);font-weight:800;font-size:1.3rem;letter-spacing:-.02em;color:var(--ink)}
-.logo svg{width:32px;height:32px;color:var(--brand)}
+.logo svg{width:32px;height:32px;flex:none}
+.logo b{color:var(--brand);font-weight:800}
 .nav-links{display:flex;gap:28px;font-size:.93rem;color:var(--ink-2)}
 .nav-links a:hover{color:var(--brand)}
 .nav-cta{display:flex;gap:8px}
