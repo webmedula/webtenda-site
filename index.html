@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WebTenda: cardápio digital e pedidos sem comissão</title>
+<meta name="description" content="Cardápio digital, pedidos por link e painel do lojista para pequenos negócios locais. Mensalidade fixa, sem comissão por pedido. Teste grátis por 14 dias.">
+<meta property="og:title" content="WebTenda: seu delivery próprio, sem comissão">
+<meta property="og:description" content="Cardápio digital, pedidos e painel para lanchonetes, pizzarias, padarias e mercadinhos. Teste grátis por 14 dias.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://webtenda.com.br/">
+<meta property="og:image" content="https://webtenda.com.br/assets/og.png">
+<meta name="theme-color" content="#ea580c">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="nav" id="topo">
+  <div class="wrap nav-in">
+    <a href="#topo" class="logo" aria-label="WebTenda, início">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="currentColor"/><path d="M8 12h16l-1.6 10.2a2 2 0 0 1-2 1.8h-8.8a2 2 0 0 1-2-1.8L8 12Z" fill="#fff"/><path d="M12 12a4 4 0 0 1 8 0" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>
+      <span>WebTenda</span>
+    </a>
+    <nav class="nav-links" aria-label="Seções">
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#recursos">Recursos</a>
+      <a href="#planos">Planos</a>
+      <a href="#duvidas">Dúvidas</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="https://app.webtenda.com.br/entrar" class="btn btn-ghost">Entrar</a>
+      <a href="https://app.webtenda.com.br/cadastro" class="btn">Criar minha loja</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-in">
+    <div class="hero-copy">
+      <p class="eyebrow reveal">Delivery próprio para pequenos negócios</p>
+      <h1 class="reveal">Seus pedidos no seu link. <em>Sem comissão</em> em cada venda.</h1>
+      <p class="lead reveal">Monte seu cardápio digital em minutos, receba pedidos de entrega e retirada e acompanhe tudo num painel simples. Você paga uma mensalidade fixa e o lucro do pedido fica com você.</p>
+      <div class="hero-actions reveal">
+        <a href="https://app.webtenda.com.br/cadastro" class="btn btn-lg">Testar grátis por 14 dias</a>
+        <a href="#como-funciona" class="btn btn-ghost btn-lg">Ver como funciona</a>
+      </div>
+      <ul class="hero-proof reveal">
+        <li>Sem cartão para começar</li>
+        <li>Sem taxa por pedido</li>
+        <li>Cancele quando quiser</li>
+      </ul>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="blob"></div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen"><img src="assets/cardapio.png" alt="" width="390" height="1182"></div>
+      </div>
+      <div class="toast t1">
+        <span class="toast-ico">🛵</span>
+        <div><strong>Novo pedido #128</strong><small>2× X-Bacon, 1× Refri · Pix</small></div>
+        <b>R$ 68,80</b>
+      </div>
+      <div class="toast t2">
+        <span class="toast-ico ok">✓</span>
+        <div><strong>Pedido no seu WhatsApp</strong><small>Resumo enviado pelo cliente</small></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ticker" aria-label="Tipos de negócio atendidos">
+    <div class="ticker-track">
+      <span>Lanchonetes</span><span>Pizzarias</span><span>Hamburguerias</span><span>Padarias</span><span>Mercadinhos</span><span>Açaí e sorvetes</span><span>Marmitarias</span><span>Docerias</span><span>Adegas</span><span>Pastelarias</span><span>Hortifrútis</span><span>Pet shops</span>
+      <span aria-hidden="true">Lanchonetes</span><span aria-hidden="true">Pizzarias</span><span aria-hidden="true">Hamburguerias</span><span aria-hidden="true">Padarias</span><span aria-hidden="true">Mercadinhos</span><span aria-hidden="true">Açaí e sorvetes</span><span aria-hidden="true">Marmitarias</span><span aria-hidden="true">Docerias</span><span aria-hidden="true">Adegas</span><span aria-hidden="true">Pastelarias</span><span aria-hidden="true">Hortifrútis</span><span aria-hidden="true">Pet shops</span>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULADORA -->
+<section class="calc-sec" id="economia">
+  <div class="wrap calc">
+    <div class="calc-copy reveal">
+      <p class="eyebrow">Faça a conta</p>
+      <h2>Quanto a comissão leva do seu mês?</h2>
+      <p>Aplicativos de entrega cobram uma porcentagem de cada pedido. Na WebTenda o valor é fixo, venda você R$ 1 mil ou R$ 50 mil.</p>
+    </div>
+    <div class="calc-box reveal">
+      <label for="fat">Vendas por delivery no mês <output id="fatOut">R$ 8.000</output></label>
+      <input type="range" id="fat" min="1000" max="50000" step="500" value="8000">
+      <label for="com">Comissão do aplicativo <output id="comOut">20%</output></label>
+      <input type="range" id="com" min="5" max="30" step="1" value="20">
+      <div class="calc-res">
+        <div><small>Você paga em comissão</small><strong id="resCom">R$ 1.600</strong></div>
+        <div class="hl"><small>Na WebTenda (Profissional)</small><strong>R$ 89,90</strong></div>
+      </div>
+      <p class="calc-save">Fica no seu bolso: <strong id="resSave">R$ 1.510</strong> por mês</p>
+      <p class="fine">Simulação. Ajuste a comissão para a taxa que você paga hoje.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="sec" id="como-funciona">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Como funciona</p>
+      <h2>Do cadastro ao primeiro pedido no mesmo dia</h2>
+    </div>
+    <ol class="steps">
+      <li class="reveal">
+        <span class="step-n">1</span>
+        <h3>Crie sua loja</h3>
+        <p>Cadastre o nome, o WhatsApp, a taxa de entrega e o pedido mínimo. Leva poucos minutos.</p>
+      </li>
+      <li class="reveal">
+        <span class="step-n">2</span>
+        <h3>Monte o cardápio</h3>
+        <p>Organize seus produtos por categoria, com descrição e preço. Pausou um item? É um clique.</p>
+      </li>
+      <li class="reveal">
+        <span class="step-n">3</span>
+        <h3>Divulgue seu link</h3>
+        <p>Coloque o link na bio do Instagram, no status do WhatsApp e no Google. O cliente pede sem baixar nada.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- RECURSOS -->
+<section class="sec sec-alt" id="recursos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Recursos</p>
+      <h2>Tudo que o seu balcão precisa, sem complicação</h2>
+    </div>
+    <div class="features">
+      <article class="feat reveal">
+        <span class="feat-ico">📱</span>
+        <h3>Cardápio digital</h3>
+        <p>Uma página bonita e rápida no celular, com o seu nome, categorias, preços e status de aberto ou fechado.</p>
+      </article>
+      <article class="feat reveal">
+        <span class="feat-ico">🛒</span>
+        <h3>Pedido em poucos toques</h3>
+        <p>O cliente monta o carrinho, escolhe entrega ou retirada e informa o endereço. Sem cadastro e sem app.</p>
+      </article>
+      <article class="feat reveal">
+        <span class="feat-ico">💬</span>
+        <h3>Aviso no WhatsApp</h3>
+        <p>Cada pedido chega organizado no seu painel, e o cliente pode enviar o resumo para o seu WhatsApp com um toque.</p>
+      </article>
+      <article class="feat reveal">
+        <span class="feat-ico">💳</span>
+        <h3>Pix, dinheiro ou cartão</h3>
+        <p>O cliente escolhe como pagar: Pix, dinheiro com troco ou cartão na entrega.</p>
+      </article>
+      <article class="feat reveal">
+        <span class="feat-ico">📊</span>
+        <h3>Painel do lojista</h3>
+        <p>Pedidos do dia, faturamento e pedidos em aberto numa tela só. Mude o status de recebido até entregue.</p>
+      </article>
+      <article class="feat reveal">
+        <span class="feat-ico">🚚</span>
+        <h3>Entrega e retirada</h3>
+        <p>Defina taxa de entrega e pedido mínimo. Quem preferir busca no balcão.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PAINEL SHOWCASE -->
+<section class="sec showcase">
+  <div class="wrap show-in">
+    <div class="show-copy reveal">
+      <p class="eyebrow">Painel</p>
+      <h2>Você enxerga o movimento do dia num relance</h2>
+      <ul class="checks">
+        <li>Pedidos de hoje e faturamento atualizados</li>
+        <li>Endereço, itens e forma de pagamento em cada pedido</li>
+        <li>Status do pedido em um clique: recebido, em preparo, saiu para entrega</li>
+        <li>Funciona no computador do caixa e no celular</li>
+      </ul>
+      <a href="https://app.webtenda.com.br/cadastro" class="btn">Quero testar o painel</a>
+    </div>
+    <div class="browser reveal">
+      <div class="browser-bar"><i></i><i></i><i></i><span>app.webtenda.com.br/painel</span></div>
+      <img src="assets/painel.png" alt="Painel do lojista com pedidos de hoje, faturamento e pedidos em aberto" width="1280" height="860" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- PLANOS -->
+<section class="sec sec-alt" id="planos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Planos</p>
+      <h2>Mensalidade fixa. Nenhuma comissão por pedido.</h2>
+      <p>Todos os planos começam com 14 dias grátis. Pague por Pix, boleto ou cartão.</p>
+    </div>
+    <div class="plans">
+      <article class="plan reveal">
+        <h3>Básico</h3>
+        <p class="plan-desc">Para quem está começando o delivery.</p>
+        <p class="price"><span>R$</span>49<small>,90</small><em>/mês</em></p>
+        <ul>
+          <li>Até 50 produtos no cardápio</li>
+          <li>Até 300 pedidos por mês</li>
+          <li>Link próprio do cardápio</li>
+          <li>Painel de pedidos</li>
+          <li>Entrega e retirada</li>
+        </ul>
+        <a href="https://app.webtenda.com.br/cadastro" class="btn btn-ghost btn-block">Começar grátis</a>
+      </article>
+      <article class="plan plan-pop reveal">
+        <span class="badge">Mais escolhido</span>
+        <h3>Profissional</h3>
+        <p class="plan-desc">Para o negócio que já tem movimento.</p>
+        <p class="price"><span>R$</span>89<small>,90</small><em>/mês</em></p>
+        <ul>
+          <li>Até 200 produtos no cardápio</li>
+          <li><strong>Pedidos ilimitados</strong></li>
+          <li>Link próprio do cardápio</li>
+          <li>Painel de pedidos</li>
+          <li>Entrega e retirada</li>
+        </ul>
+        <a href="https://app.webtenda.com.br/cadastro" class="btn btn-block">Começar grátis</a>
+      </article>
+      <article class="plan reveal">
+        <h3>Completo</h3>
+        <p class="plan-desc">Para cardápios grandes e mercadinhos.</p>
+        <p class="price"><span>R$</span>149<small>,90</small><em>/mês</em></p>
+        <ul>
+          <li><strong>Produtos ilimitados</strong></li>
+          <li><strong>Pedidos ilimitados</strong></li>
+          <li>Link próprio do cardápio</li>
+          <li>Painel de pedidos</li>
+          <li>Entrega e retirada</li>
+        </ul>
+        <a href="https://app.webtenda.com.br/cadastro" class="btn btn-ghost btn-block">Começar grátis</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="duvidas">
+  <div class="wrap faq-in">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Dúvidas</p>
+      <h2>Perguntas frequentes</h2>
+    </div>
+    <div class="faq">
+      <details class="reveal"><summary>Preciso de cartão de crédito para testar?</summary><p>Não. Você cria a loja e usa por 14 dias sem pagar nada. Só escolhe a forma de pagamento se decidir continuar.</p></details>
+      <details class="reveal"><summary>A WebTenda cobra alguma porcentagem dos pedidos?</summary><p>Não. Você paga apenas a mensalidade do plano escolhido. O valor dos pedidos é todo seu.</p></details>
+      <details class="reveal"><summary>Meu cliente precisa baixar algum aplicativo?</summary><p>Não. O cardápio abre direto no navegador do celular ou do computador, a partir do seu link.</p></details>
+      <details class="reveal"><summary>Como recebo o pagamento dos pedidos?</summary><p>Direto com você, do jeito que já recebe hoje: Pix na sua chave, dinheiro ou maquininha na entrega. A WebTenda não fica com nenhuma parte.</p></details>
+      <details class="reveal"><summary>Posso trocar de plano ou cancelar?</summary><p>Pode. Você muda de plano pelo painel quando quiser, e não existe fidelidade nem multa de cancelamento.</p></details>
+      <details class="reveal"><summary>Quais formas de pagamento da mensalidade são aceitas?</summary><p>Pix, boleto e cartão de crédito com cobrança recorrente.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final">
+  <div class="wrap final-in reveal">
+    <h2>Seu delivery, do seu jeito, a partir de hoje.</h2>
+    <p>Crie sua loja agora e receba o primeiro pedido pelo seu próprio link.</p>
+    <a href="https://app.webtenda.com.br/cadastro" class="btn btn-light btn-lg">Testar grátis por 14 dias</a>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <a href="#topo" class="logo logo-sm"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="currentColor"/><path d="M8 12h16l-1.6 10.2a2 2 0 0 1-2 1.8h-8.8a2 2 0 0 1-2-1.8L8 12Z" fill="#fff"/><path d="M12 12a4 4 0 0 1 8 0" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg><span>WebTenda</span></a>
+    <nav aria-label="Rodapé">
+      <a href="#planos">Planos</a>
+      <a href="#duvidas">Dúvidas</a>
+      <a href="https://app.webtenda.com.br/entrar">Entrar</a>
+      <a href="https://app.webtenda.com.br/cadastro">Criar minha loja</a>
+    </nav>
+    <p>© <span id="ano">2026</span> WebTenda. Cardápio digital e pedidos para pequenos negócios.</p>
+  </div>
+</footer>
+
+<a href="https://app.webtenda.com.br/cadastro" class="sticky-cta">Testar grátis por 14 dias</a>
+
+<script src="main.js" defer></script>
+</body>
+</html>
