@@ -43,6 +43,13 @@ jobs:
           echo "Usuário: $SSH_USER" | sed 's/./& /g'
           ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
 
+      - name: Versionar CSS e JS (evita cache antigo no navegador)
+        if: steps.check.outputs.ok == 'true'
+        run: |
+          V=${GITHUB_SHA::8}
+          sed -i -E "s#href=\"style\.css(\?v=[^\"]*)?\"#href=\"style.css?v=$V\"#; s#src=\"main\.js(\?v=[^\"]*)?\"#src=\"main.js?v=$V\"#" index.html
+          grep -nE "style\.css|main\.js" index.html
+
       - name: Enviar arquivos
         if: steps.check.outputs.ok == 'true'
         run: |
