@@ -206,3 +206,25 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
   *,*::before,*::after{animation:none!important;transition:none!important}
   .js .reveal{opacity:1;transform:none}
 }
+
+/* fidelização */
+.loyal-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.lcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+.lcard:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.lcard h3{margin:18px 0 8px}
+.lcard p{color:var(--ink-2);font-size:.94rem}
+.lvis{background:var(--brand-50);border-radius:14px;min-height:132px;padding:18px;display:flex;flex-direction:column;justify-content:center;gap:10px}
+.lvis small{color:var(--brand-d);font-size:.78rem;font-weight:500}
+.stamps{display:flex;gap:7px}
+.stamps i{font-style:normal;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;border:2px dashed #fdba74;color:#fb923c;font-weight:700;font-size:.85rem}
+.stamps i.on{background:var(--brand);border:2px solid var(--brand);color:#fff}
+.coupon{display:flex;align-items:center;justify-content:space-between;background:#fff;border:2px dashed var(--brand);border-radius:12px;padding:10px 14px}
+.coupon span{font-family:ui-monospace,Menlo,monospace;font-weight:700;letter-spacing:.06em;font-size:.9rem}
+.coupon b{white-space:nowrap;margin-left:8px;font-family:var(--display);color:var(--brand-d)}
+.bubble{background:#dcf8c6;color:#1c1917;border-radius:12px 12px 12px 3px;padding:10px 12px;font-size:.8rem;line-height:1.45;box-shadow:0 1px 1px rgba(0,0,0,.08)}
+.mini-table{display:grid;grid-template-columns:auto auto auto;white-space:nowrap;gap:6px 8px;font-size:.78rem;color:var(--ink-2)}
+.mini-table span:nth-child(3n+1){font-weight:600;color:var(--ink)}
+.mini-table span:nth-child(3n){text-align:right;font-weight:600;color:var(--brand-d)}
+.loyal-note{margin-top:22px;font-size:.88rem;color:var(--mute)}
+@media (max-width:1060px){.loyal-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.loyal-grid{grid-template-columns:1fr}}
