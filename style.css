@@ -228,3 +228,31 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 .loyal-note{margin-top:22px;font-size:.88rem;color:var(--mute)}
 @media (max-width:1060px){.loyal-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:640px){.loyal-grid{grid-template-columns:1fr}}
+
+/* lojas demo */
+.demos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.demo{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:transform .2s,box-shadow .2s}
+.demo:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.demo-top{height:130px;display:grid;place-items:center}
+.demo-top span{font-size:3.4rem;width:92px;height:92px;border-radius:50%;background:rgba(255,255,255,.4);display:grid;place-items:center;transition:transform .3s}
+.demo:hover .demo-top span{transform:scale(1.08) rotate(-6deg)}
+.demo-body{padding:20px;display:flex;flex-direction:column;flex:1}
+.demo-body small{font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.demo-body h3{margin:4px 0 6px}
+.demo-body p{color:var(--ink-2);font-size:.92rem}
+.demo-body ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 18px}
+.demo-body li{font-size:.74rem;background:var(--brand-50);color:var(--brand-d);border-radius:999px;padding:3px 9px;font-weight:500}
+.demo-go{margin-top:auto;font-weight:600;color:var(--brand)}
+.demo-go b{display:inline-block;transition:transform .2s}
+.demo:hover .demo-go b{transform:translateX(4px)}
+.demo-panel{margin-top:24px;display:grid;grid-template-columns:1.3fr 1fr auto;gap:28px;align-items:center;background:var(--ink);color:#fff;border-radius:22px;padding:28px 32px}
+.demo-panel h3{font-size:1.25rem;margin-bottom:6px}
+.demo-panel p{color:#d6d3d1;font-size:.94rem}
+.demo-panel dl{display:grid;gap:10px}
+.demo-panel dl div{display:flex;gap:12px;align-items:baseline}
+.demo-panel dt{width:52px;flex:none;color:#a8a29e;font-size:.82rem}
+.demo-panel dd{display:flex;flex-direction:column}
+.demo-panel code{font-family:ui-monospace,Menlo,monospace;font-size:.9rem;color:#fed7aa;user-select:all}
+.demo-panel dd small{color:#a8a29e;font-size:.76rem}
+@media (max-width:1060px){.demos{grid-template-columns:1fr 1fr}.demo-panel{grid-template-columns:1fr}}
+@media (max-width:640px){.demos{grid-template-columns:1fr}.demo-top{height:110px}.demo-panel{padding:24px 20px}.demo-panel .btn{width:100%}}
