@@ -233,9 +233,9 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 .demos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
 .demo{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:transform .2s,box-shadow .2s}
 .demo:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
-.demo-top{height:130px;display:grid;place-items:center}
-.demo-top span{font-size:3.4rem;width:92px;height:92px;border-radius:50%;background:rgba(255,255,255,.4);display:grid;place-items:center;transition:transform .3s}
-.demo:hover .demo-top span{transform:scale(1.08) rotate(-6deg)}
+.demo-top{height:150px;display:grid;place-items:center;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.45)),var(--img) center/cover,var(--c)}
+.demo-top img{width:84px;height:84px;border-radius:20px;box-shadow:0 8px 24px rgba(0,0,0,.35);transition:transform .3s}
+.demo:hover .demo-top img{transform:scale(1.08) rotate(-4deg)}
 .demo-body{padding:20px;display:flex;flex-direction:column;flex:1}
 .demo-body small{font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
 .demo-body h3{margin:4px 0 6px}
