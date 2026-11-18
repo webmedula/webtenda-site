@@ -2,7 +2,7 @@ document.documentElement.classList.add("js");
 
 // WhatsApp para dúvidas: coloque só os números, com 55 + DDD (ex.: "5511999998888").
 // Vazio = o botão não aparece.
-const WHATSAPP = "";
+const WHATSAPP = "5562982908000";
 
 // Revela seções ao rolar
 const io = new IntersectionObserver((entries) => {
