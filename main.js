@@ -18,8 +18,9 @@ const sticky = document.querySelector(".sticky-cta");
 const final = document.querySelector(".final");
 const onScroll = () => {
   const y = window.scrollY;
-  nav.classList.toggle("scrolled", y > 8);
-  const nearEnd = final.getBoundingClientRect().top < window.innerHeight;
+  if (nav) nav.classList.toggle("scrolled", y > 8);
+  if (!sticky) return;
+  const nearEnd = final ? final.getBoundingClientRect().top < window.innerHeight : false;
   sticky.classList.toggle("show", y > 600 && !nearEnd);
 };
 window.addEventListener("scroll", onScroll, { passive: true });
@@ -31,6 +32,7 @@ const fat = document.getElementById("fat");
 const com = document.getElementById("com");
 const PLANO = 89.9;
 const calc = () => {
+  if (!fat || !com) return;
   const f = +fat.value, c = +com.value;
   const valor = (f * c) / 100;
   document.getElementById("fatOut").textContent = brl(f);
@@ -38,8 +40,11 @@ const calc = () => {
   document.getElementById("resCom").textContent = brl(valor);
   document.getElementById("resSave").textContent = brl(Math.max(0, valor - PLANO));
 };
-fat.addEventListener("input", calc);
-com.addEventListener("input", calc);
+if (fat && com) {
+  fat.addEventListener("input", calc);
+  com.addEventListener("input", calc);
+}
 calc();
 
-document.getElementById("ano").textContent = new Date().getFullYear();
+const ano = document.getElementById("ano");
+if (ano) ano.textContent = new Date().getFullYear();

@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WebTenda para lojas de roupa: catálogo online com pedido no WhatsApp</title>
+<meta name="description" content="Catálogo online para lojas de roupa e moda: fotos, cores, tamanhos e estoque. A cliente monta a sacola e o pedido chega pronto no seu WhatsApp. Mensalidade fixa, sem comissão. Teste grátis por 14 dias.">
+<meta property="og:title" content="Sua loja de roupas vendendo pelo link, com pedido no WhatsApp">
+<meta property="og:description" content="Catálogo com cores, tamanhos e estoque. A cliente escolhe, e o pedido chega pronto no seu WhatsApp. Sem comissão.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://webtenda.com.br/loja/">
+<meta property="og:image" content="https://webtenda.com.br/assets/og.png">
+<meta name="theme-color" content="#9d174d">
+<link rel="canonical" href="https://webtenda.com.br/loja/">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<style>
+  /* Tema da página de moda: mesma base do site, cor vinho. */
+  :root{--brand:#9d174d;--brand-d:#831843;--brand-l:#fce7f3;--brand-50:#fdf2f8;--bg:#fffbfc;--alt:#fbf1f4;--dark:#2a0f1a}
+  .btn:hover{box-shadow:0 8px 20px -8px rgba(157,23,77,.55)}
+  .btn:focus-visible,a:focus-visible,summary:focus-visible{outline-color:#f9a8d4}
+  .phone{box-shadow:0 40px 80px -30px rgba(131,24,67,.5),inset 0 0 0 2px #44403c}
+  .hero h1 em::after{background:#fbcfe8}
+  .blob{background:radial-gradient(closest-side,#fbcfe8,rgba(251,207,232,0))}
+  .plan-pop li::before{color:#f9a8d4}
+  .faq details[open]{border-color:#f9a8d4}
+  .final-in{background:linear-gradient(135deg,#be185d,#831843)}
+  .final-in p{color:#fce7f3}
+
+  /* Celular com o catálogo em HTML (as fotos carregam do Unsplash). */
+  .cat{height:100%;overflow:hidden;background:#fff;font-family:var(--sans);font-size:11px;color:var(--ink)}
+  .cat-head{background:var(--brand);color:#fff;padding:34px 14px 14px;display:flex;align-items:center;gap:10px}
+  .cat-head img{width:38px;height:38px;border-radius:12px;background:#fff}
+  .cat-head strong{display:block;font-size:13px;font-family:var(--display)}
+  .cat-head small{opacity:.85;font-size:10px}
+  .cat-tabs{display:flex;gap:6px;padding:10px 12px;overflow:hidden;white-space:nowrap}
+  .cat-tabs span{padding:4px 10px;border-radius:99px;background:#f5f5f4;font-weight:600;font-size:10px}
+  .cat-tabs span.on{background:var(--ink);color:#fff}
+  .cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 12px;animation:scrollgrid 16s ease-in-out infinite}
+  .pc{display:block}
+  .pc-img{aspect-ratio:3/4;border-radius:10px;background:#f3e8ee center/cover no-repeat;position:relative}
+  .pc-img em{position:absolute;top:6px;left:6px;background:var(--brand);color:#fff;font-style:normal;font-weight:700;font-size:9px;padding:2px 6px;border-radius:6px}
+  .pc b{display:block;margin-top:5px;font-weight:600;line-height:1.25}
+  .pc s{color:var(--mute);font-size:10px;margin-right:4px}
+  .pc i{font-style:normal;font-weight:700;color:var(--brand-d)}
+  .dots{display:flex;gap:3px;margin-top:3px}
+  .dots u{width:9px;height:9px;border-radius:50%;border:1px solid rgba(0,0,0,.15)}
+  @keyframes scrollgrid{0%,18%{transform:translateY(0)}50%,68%{transform:translateY(-38%)}100%{transform:translateY(0)}}
+  @media (prefers-reduced-motion:reduce){.cat-grid{animation:none}}
+
+  /* Bloco "o pedido chega assim" */
+  .wa{display:grid;gap:40px;align-items:center}
+  @media (min-width:900px){.wa{grid-template-columns:1fr 1fr}}
+  .wa-chat{background:#efeae2;border-radius:var(--r);padding:22px;box-shadow:var(--shadow);max-width:440px;justify-self:center;width:100%}
+  .wa-top{display:flex;align-items:center;gap:10px;margin:-22px -22px 18px;padding:14px 18px;background:#075e54;color:#fff;border-radius:var(--r) var(--r) 0 0}
+  .wa-top span{width:34px;height:34px;border-radius:50%;background:#fff;display:grid;place-items:center}
+  .wa-top img{width:34px;height:34px;border-radius:50%}
+  .wa-top small{display:block;opacity:.8;font-size:.75rem}
+  .wa-msg{background:#d9fdd3;border-radius:12px 0 12px 12px;padding:12px 14px;font-size:.88rem;line-height:1.5;margin-left:auto;max-width:92%;white-space:pre-line;box-shadow:0 1px 1px rgba(0,0,0,.08)}
+  .wa-msg time{display:block;text-align:right;font-size:.7rem;color:#667781;margin-top:4px}
+  .wa-reply{background:#fff;border-radius:0 12px 12px 12px;padding:10px 14px;font-size:.88rem;margin-top:10px;max-width:80%;box-shadow:0 1px 1px rgba(0,0,0,.08)}
+
+  /* Grade de cor e tamanho */
+  .grid-demo{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:.85rem}
+  .grid-demo table{width:100%;border-collapse:collapse}
+  .grid-demo th,.grid-demo td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:center}
+  .grid-demo th:first-child,.grid-demo td:first-child{text-align:left}
+  .grid-demo thead th{background:var(--alt);font-weight:600;font-size:.78rem;color:var(--ink-2)}
+  .grid-demo td.zero{color:#b91c1c;font-weight:600}
+  .grid-demo tr:last-child td{border-bottom:0}
+  .sw{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:6px;vertical-align:-1px;border:1px solid rgba(0,0,0,.12)}
+  .sizes{display:flex;gap:6px;flex-wrap:wrap}
+  .sizes span{min-width:38px;text-align:center;padding:6px 8px;border:1.5px solid var(--line);border-radius:10px;font-weight:600;background:#fff;font-size:.85rem}
+  .sizes span.on{border-color:var(--ink);background:var(--ink);color:#fff}
+  .sizes span.off{color:#a8a29e;text-decoration:line-through;background:#fafaf9}
+
+  .cross{margin-top:28px;text-align:center;color:var(--mute);font-size:.95rem}
+  .cross a{color:var(--brand-d);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+</style>
+</head>
+<body>
+
+<header class="nav" id="topo">
+  <div class="wrap nav-in">
+    <a href="#topo" class="logo" aria-label="WebTenda, início">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#ea580c"/><path d="M14 18h36l3 9H11z" fill="#fff"/><path d="M11 27a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0z" fill="#fff"/><path d="M23.25 18 21.5 27M40.75 18l1.75 9M32 18v9" stroke="#ea580c" stroke-width="2"/><path d="M15 34v12a3 3 0 0 0 3 3h28a3 3 0 0 0 3-3V34" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round"/><rect x="27" y="38" width="10" height="11" rx="2" fill="#fff"/></svg>
+      <span>Web<b>Tenda</b></span>
+    </a>
+    <nav class="nav-links" aria-label="Seções">
+      <a href="#whatsapp">Pedido no WhatsApp</a>
+      <a href="#demo">Ver demo</a>
+      <a href="#recursos">Recursos</a>
+      <a href="#planos">Planos</a>
+      <a href="#duvidas">Dúvidas</a>
+      <a href="../">Para delivery</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="https://app.webtenda.com.br/entrar" class="btn btn-ghost">Entrar</a>
+      <a href="https://app.webtenda.com.br/cadastro?tipo=loja" class="btn">Criar minha loja</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-in">
+    <div class="hero-copy">
+      <p class="eyebrow reveal">Para lojas de roupa, moda e acessórios</p>
+      <h1 class="reveal">Sua loja vendendo pelo link. O pedido chega pronto <em>no WhatsApp</em>.</h1>
+      <p class="lead reveal">Monte um catálogo bonito com fotos, cores, tamanhos e estoque. A cliente escolhe as peças, monta a sacola e te manda o pedido completo, com tamanho e cor certinhos. Chega de responder "tem no M?" o dia inteiro.</p>
+      <div class="hero-actions reveal">
+        <a href="https://app.webtenda.com.br/cadastro?tipo=loja" class="btn btn-lg">Testar grátis por 14 dias</a>
+        <a href="#demo" class="btn btn-ghost btn-lg">Ver a loja demo</a>
+      </div>
+      <ul class="hero-proof reveal">
+        <li>Sem cartão para começar</li>
+        <li>Sem comissão por venda</li>
+        <li>Cancele quando quiser</li>
+      </ul>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="blob"></div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="cat">
+            <div class="cat-head"><img src="../assets/demo/flor-de-lis-moda.svg" alt=""><div><strong>Flor de Lis Moda</strong><small>Aberto · Retirada e WhatsApp</small></div></div>
+            <div class="cat-tabs"><span class="on">Novidades</span><span>Vestidos</span><span>Blusas</span><span>Calças e saias</span></div>
+            <div class="cat-grid">
+              <div class="pc"><div class="pc-img" style="background-image:url('https://images.unsplash.com/photo-1762154057377-cc9d3dd6900c?auto=format&fit=crop&w=300&h=400&q=60')"><em>-17%</em></div><b>Vestido Midi Floral</b><s>R$ 229,90</s><i>R$ 189,90</i><div class="dots"><u style="background:#2563eb"></u><u style="background:#f472b6"></u></div></div>
+              <div class="pc"><div class="pc-img" style="background-image:url('https://images.unsplash.com/photo-1561052623-76bca41705fe?auto=format&fit=crop&w=300&h=400&q=60')"></div><b>Blusa Floral Manga Longa</b><i>R$ 119,90</i><div class="dots"><u style="background:#f5f0e6"></u></div></div>
+              <div class="pc"><div class="pc-img" style="background-image:url('https://images.unsplash.com/photo-1714143136372-ddaf8b606da7?auto=format&fit=crop&w=300&h=400&q=60')"></div><b>Calça Jeans Reta</b><i>R$ 199,90</i><div class="dots"><u style="background:#7d9cc4"></u><u style="background:#24375a"></u></div></div>
+              <div class="pc"><div class="pc-img" style="background-image:url('https://images.unsplash.com/photo-1610288311735-39b7facbd095?auto=format&fit=crop&w=300&h=400&q=60')"><em>-18%</em></div><b>Cardigan de Tricô</b><s>R$ 219,90</s><i>R$ 179,90</i><div class="dots"><u style="background:#ca8a04"></u><u style="background:#b45309"></u></div></div>
+              <div class="pc"><div class="pc-img" style="background-image:url('https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&w=300&h=400&q=60')"></div><b>Camiseta Básica</b><i>R$ 59,90</i><div class="dots"><u style="background:#fff"></u><u style="background:#1c1917"></u><u style="background:#a8a29e"></u></div></div>
+              <div class="pc"><div class="pc-img" style="background-image:url('https://images.unsplash.com/photo-1598532163257-ae3c6b2524b6?auto=format&fit=crop&w=300&h=400&q=60')"></div><b>Bolsa de Couro Caramelo</b><i>R$ 229,90</i></div>
+              <div class="pc"><div class="pc-img" style="background-image:url('https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?auto=format&fit=crop&w=300&h=400&q=60')"></div><b>Jaqueta Jeans Clássica</b><i>R$ 249,90</i></div>
+              <div class="pc"><div class="pc-img" style="background-image:url('https://images.unsplash.com/photo-1577900232427-18219b9166a0?auto=format&fit=crop&w=300&h=400&q=60')"></div><b>Saia Midi Branca</b><i>R$ 129,90</i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="toast t1">
+        <span class="toast-ico">🛍️</span>
+        <div><strong>Novo pedido #52</strong><small>Vestido Midi (Azul · M), Bolsa Caramelo</small></div>
+        <b>R$ 419,80</b>
+      </div>
+      <div class="toast t2">
+        <span class="toast-ico ok">✓</span>
+        <div><strong>Estoque atualizado</strong><small>Vestido Midi Azul M: restam 2</small></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ticker" aria-label="Tipos de loja atendidos">
+    <div class="ticker-track">
+      <span>Moda feminina</span><span>Moda masculina</span><span>Moda infantil</span><span>Moda praia</span><span>Fitness</span><span>Lingerie</span><span>Plus size</span><span>Calçados</span><span>Bolsas</span><span>Acessórios</span><span>Bijuterias</span><span>Brechós</span>
+      <span aria-hidden="true">Moda feminina</span><span aria-hidden="true">Moda masculina</span><span aria-hidden="true">Moda infantil</span><span aria-hidden="true">Moda praia</span><span aria-hidden="true">Fitness</span><span aria-hidden="true">Lingerie</span><span aria-hidden="true">Plus size</span><span aria-hidden="true">Calçados</span><span aria-hidden="true">Bolsas</span><span aria-hidden="true">Acessórios</span><span aria-hidden="true">Bijuterias</span><span aria-hidden="true">Brechós</span>
+    </div>
+  </div>
+</section>
+
+<!-- PEDIDO NO WHATSAPP -->
+<section class="sec" id="whatsapp">
+  <div class="wrap wa">
+    <div class="reveal">
+      <p class="eyebrow">Como o pedido chega</p>
+      <h2>A cliente escolhe sozinha. Você só confirma e combina o pagamento.</h2>
+      <p class="lead" style="margin-top:16px">No Instagram, cada venda começa com dez perguntas: tem no M? Qual o preço? Tem em outra cor? No catálogo da WebTenda ela já vê tudo isso, monta a sacola e toca em <strong>Enviar pedido pelo WhatsApp</strong>. A mensagem chega pronta, com peças, cores, tamanhos, total e o link do pedido.</p>
+      <ul class="checks" style="margin-top:22px">
+        <li>O pedido também fica registrado no seu painel, com nome e telefone da cliente</li>
+        <li>A peça sai do estoque na hora, para duas clientes não levarem a última</li>
+        <li>Prefere receber antes? Ative o Pix e o cartão online, direto na sua conta</li>
+      </ul>
+    </div>
+    <div class="wa-chat reveal" aria-label="Exemplo de mensagem de pedido no WhatsApp">
+      <div class="wa-top"><img src="../assets/demo/flor-de-lis-moda.svg" alt=""><div><strong>Flor de Lis Moda</strong><small>online</small></div></div>
+      <div class="wa-msg">Olá! Sou Ana Paula e quero fechar o pedido <b>#52</b> que montei no catálogo:
+
+1× Vestido Midi Floral (Azul · M): R$ 189,90
+1× Bolsa de Couro Caramelo: R$ 229,90
+
+<b>Total: R$ 419,80</b>
+Retirada na loja
+
+Como faço o pagamento?<time>14:32 ✓✓</time></div>
+      <div class="wa-reply">Oi, Ana! Separei suas peças 💕 Te mando a chave Pix agora.</div>
+    </div>
+  </div>
+</section>
+
+<!-- LOJA DEMO -->
+<section class="sec sec-alt" id="demo">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Veja funcionando</p>
+      <h2>Monte uma sacola na nossa loja de demonstração</h2>
+      <p>A Flor de Lis Moda tem vestidos, blusas, jeans e acessórios com cores, tamanhos e estoque. Abra no celular e faça um pedido de teste. Nada é cobrado e nenhuma mensagem é enviada.</p>
+    </div>
+    <div class="demos" style="grid-template-columns:minmax(0,520px);justify-content:center">
+      <a class="demo reveal" href="https://app.webtenda.com.br/loja/flor-de-lis-moda" target="_blank" rel="noopener">
+        <div class="demo-top" style="--c:#9d174d;--img:url('https://images.unsplash.com/photo-1592924514972-71c5938462d1?auto=format&fit=crop&w=1000&h=400&q=70')"><img src="../assets/demo/flor-de-lis-moda.svg" alt="" width="84" height="84"></div>
+        <div class="demo-body">
+          <small>Loja de roupas</small>
+          <h3>Flor de Lis Moda</h3>
+          <p>Moda feminina com peças por cor e tamanho, preço de/por e pedido pelo WhatsApp.</p>
+          <ul><li>Cupom BEMVINDA10</li><li>Liquida: 20% off acima de R$ 250 com LIQUIDA20</li></ul>
+          <span class="demo-go">Abrir catálogo <b>→</b></span>
+        </div>
+      </a>
+    </div>
+    <div class="demo-panel reveal">
+      <div>
+        <h3>Agora veja o painel da lojista</h3>
+        <p>Pedidos chegando, a grade de cada peça, o estoque que baixa sozinho, clientes, cupons e campanhas.</p>
+      </div>
+      <dl>
+        <div><dt>E-mail</dt><dd><code>moda@demo.webtenda.com.br</code></dd></div>
+        <div><dt>Senha</dt><dd><code>demo1234</code></dd></div>
+      </dl>
+      <a href="https://app.webtenda.com.br/entrar" target="_blank" rel="noopener" class="btn">Entrar no painel demo</a>
+    </div>
+  </div>
+</section>
+
+<!-- GRADE E ESTOQUE -->
+<section class="sec showcase" id="grade">
+  <div class="wrap show-in">
+    <div class="show-copy reveal">
+      <p class="eyebrow">Cores, tamanhos e estoque</p>
+      <h2>Cadastre a peça uma vez, com toda a grade</h2>
+      <ul class="checks">
+        <li>Digite as cores e escolha os tamanhos: a grade se monta sozinha</li>
+        <li>Estoque por cor e tamanho, ou deixe sem controle se preferir</li>
+        <li>Preço diferente para um tamanho? Também dá (o GG pode custar mais)</li>
+        <li>Tela de estoque com filtro de esgotados e acabando, para repor a tempo</li>
+        <li>Na vitrine, o tamanho esgotado aparece riscado e a cliente vê "Últimas 2 peças"</li>
+      </ul>
+      <a href="https://app.webtenda.com.br/cadastro?tipo=loja" class="btn">Quero cadastrar minhas peças</a>
+    </div>
+    <div class="reveal" style="display:grid;gap:16px">
+      <div class="grid-demo">
+        <table>
+          <thead><tr><th>Vestido Midi Floral</th><th>P</th><th>M</th><th>G</th><th>GG</th></tr></thead>
+          <tbody>
+            <tr><td><span class="sw" style="background:#2563eb"></span>Azul</td><td>3</td><td>2</td><td>4</td><td class="zero">0</td></tr>
+            <tr><td><span class="sw" style="background:#f472b6"></span>Rosa</td><td>1</td><td>5</td><td>2</td><td>1</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="grid-demo" style="padding:16px">
+        <p style="font-size:.8rem;color:var(--mute);margin-bottom:8px">O que a cliente vê ao escolher o Azul:</p>
+        <div class="sizes"><span>P</span><span class="on">M</span><span>G</span><span class="off">GG</span></div>
+        <p style="font-size:.82rem;color:#b45309;margin-top:10px;font-weight:600">Últimas 2 peças neste tamanho</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECURSOS -->
+<section class="sec sec-alt" id="recursos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Recursos</p>
+      <h2>Tudo para vender roupa pela internet sem virar refém do direct</h2>
+    </div>
+    <div class="features">
+      <article class="feat reveal">
+        <span class="feat-ico">🖼️</span>
+        <h3>Vitrine com fotos grandes</h3>
+        <p>Catálogo em grade, várias fotos por peça, preço "de/por" com selo de desconto e categorias como Novidades, Vestidos e Acessórios.</p>
+      </article>
+      <article class="feat reveal">
+        <span class="feat-ico">🔗</span>
+        <h3>Um link para cada peça</h3>
+        <p>Compartilhe a peça no story, no status ou no direct. O link abre direto nela, com foto e preço na prévia.</p>
+      </article>
+      <article class="feat reveal">
+        <span class="feat-ico">💬</span>
+        <h3>Pedido pelo WhatsApp</h3>
+        <p>A cliente envia a sacola pronta para o seu número. Você combina o pagamento e a entrega do seu jeito.</p>
+      </article>
+      <article class="feat reveal">
+        <span class="feat-ico">💠</span>
+        <h3>Pix e cartão online</h3>
+        <p>Se quiser, a cliente paga no próprio catálogo e o dinheiro cai na sua conta Asaas, sem comissão da WebTenda.</p>
+      </article>
+      <article class="feat reveal">
+        <span class="feat-ico">🛍️</span>
+        <h3>Retirada ou entrega</h3>
+        <p>Retirada na loja já vem ligada. Faz entrega no bairro? Defina a taxa por bairro e acompanhe as entregas no painel.</p>
+      </article>
+      <article class="feat reveal">
+        <span class="feat-ico">🎟️</span>
+        <h3>Cupons, fidelidade e campanhas</h3>
+        <p>Cupom de primeira compra, cartão fidelidade e aviso de liquida pelo WhatsApp para quem já comprou com você.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="sec" id="como-funciona">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Como começar</p>
+      <h2>Sua vitrine no ar hoje mesmo</h2>
+    </div>
+    <ol class="steps">
+      <li class="reveal">
+        <span class="step-n">1</span>
+        <h3>Crie a loja</h3>
+        <p>Escolha "Loja de roupas" no cadastro. Já começamos com as categorias, a retirada e o pedido pelo WhatsApp ligados.</p>
+      </li>
+      <li class="reveal">
+        <span class="step-n">2</span>
+        <h3>Cadastre as peças</h3>
+        <p>Fotos, preço, cores e tamanhos. Comece pelas novidades e vá completando aos poucos.</p>
+      </li>
+      <li class="reveal">
+        <span class="step-n">3</span>
+        <h3>Divulgue o link</h3>
+        <p>Na bio do Instagram, no status e nos grupos. Cada peça nova vira um link para o story.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- PLANOS -->
+<section class="sec sec-alt" id="planos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Planos</p>
+      <h2>Mensalidade fixa. Nenhuma comissão por venda.</h2>
+      <p>Todos os recursos em todos os planos: o que muda é o tamanho do catálogo e o volume de pedidos. Todos começam com 14 dias grátis.</p>
+    </div>
+    <div class="plans">
+      <article class="plan reveal">
+        <h3>Básico</h3>
+        <p class="plan-desc">Para quem está começando a vender online.</p>
+        <p class="price"><span>R$</span>49<small>,90</small><em>/mês</em></p>
+        <ul>
+          <li>Até 50 peças no catálogo</li>
+          <li>Até 300 pedidos por mês</li>
+          <li>Cores, tamanhos e estoque</li>
+          <li>Pedido pelo WhatsApp</li>
+          <li>Pix e cartão online</li>
+          <li>Cupons, fidelidade e campanhas</li>
+        </ul>
+        <a href="https://app.webtenda.com.br/cadastro?tipo=loja" class="btn btn-ghost btn-block">Começar grátis</a>
+      </article>
+      <article class="plan plan-pop reveal">
+        <span class="badge">Mais escolhido</span>
+        <h3>Profissional</h3>
+        <p class="plan-desc">Para a loja com coleção completa.</p>
+        <p class="price"><span>R$</span>89<small>,90</small><em>/mês</em></p>
+        <ul>
+          <li>Até 200 peças no catálogo</li>
+          <li><strong>Pedidos ilimitados</strong></li>
+          <li>Cores, tamanhos e estoque</li>
+          <li>Pedido pelo WhatsApp</li>
+          <li>Pix e cartão online</li>
+          <li>Cupons, fidelidade e campanhas</li>
+        </ul>
+        <a href="https://app.webtenda.com.br/cadastro?tipo=loja" class="btn btn-block">Começar grátis</a>
+      </article>
+      <article class="plan reveal">
+        <h3>Completo</h3>
+        <p class="plan-desc">Para lojas grandes e multimarcas.</p>
+        <p class="price"><span>R$</span>149<small>,90</small><em>/mês</em></p>
+        <ul>
+          <li><strong>Peças ilimitadas</strong></li>
+          <li><strong>Pedidos ilimitados</strong></li>
+          <li>Cores, tamanhos e estoque</li>
+          <li>Pedido pelo WhatsApp</li>
+          <li>Pix e cartão online</li>
+          <li>Cupons, fidelidade e campanhas</li>
+        </ul>
+        <a href="https://app.webtenda.com.br/cadastro?tipo=loja" class="btn btn-ghost btn-block">Começar grátis</a>
+      </article>
+    </div>
+    <p class="fine reveal" style="text-align:center;margin-top:18px">Cada peça conta uma vez no limite do plano, com todas as suas cores e tamanhos.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="duvidas">
+  <div class="wrap faq-in">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Dúvidas</p>
+      <h2>Perguntas frequentes</h2>
+    </div>
+    <div class="faq">
+      <details class="reveal"><summary>Preciso de cartão de crédito para testar?</summary><p>Não. Você cria a loja e usa por 14 dias sem pagar nada. Só escolhe a forma de pagamento se decidir continuar.</p></details>
+      <details class="reveal"><summary>A WebTenda cobra porcentagem das vendas?</summary><p>Não. Você paga só a mensalidade do plano. O valor das vendas é todo seu.</p></details>
+      <details class="reveal"><summary>Como funciona o pedido pelo WhatsApp?</summary><p>A cliente monta a sacola no catálogo, informa nome e telefone e toca em "Enviar pedido pelo WhatsApp". O WhatsApp dela abre com a mensagem pronta para o seu número, com as peças, cores, tamanhos e total. O pedido também aparece no seu painel, e a peça já sai do estoque.</p></details>
+      <details class="reveal"><summary>E se a cliente desistir?</summary><p>Você cancela o pedido no painel e as peças voltam sozinhas para o estoque.</p></details>
+      <details class="reveal"><summary>Preciso controlar estoque?</summary><p>Não é obrigatório. Deixe o estoque em branco e a peça fica sempre disponível. Se preencher, o sistema desconta a cada pedido e mostra como esgotado quando acabar.</p></details>
+      <details class="reveal"><summary>Posso receber por Pix ou cartão no próprio catálogo?</summary><p>Pode. Ative o pagamento online pelo painel e o dinheiro cai na sua conta Asaas. Você paga apenas as tarifas do Asaas por transação, como em qualquer meio de pagamento.</p></details>
+      <details class="reveal"><summary>Faço entrega pelos Correios. Funciona?</summary><p>Hoje a WebTenda tem retirada na loja e entrega local com taxa por bairro. Para envio pelos Correios, combine o frete com a cliente pelo WhatsApp. O cálculo automático de frete está nos nossos próximos passos.</p></details>
+      <details class="reveal"><summary>Minha cliente precisa baixar aplicativo?</summary><p>Não. O catálogo abre no navegador, a partir do seu link. Quem quiser pode instalar o atalho da sua loja na tela do celular.</p></details>
+      <details class="reveal"><summary>Também vendo comida. Posso usar?</summary><p>Pode. A WebTenda nasceu para delivery de restaurantes, lanchonetes e mercadinhos. <a href="../" style="text-decoration:underline">Veja a página para delivery</a>.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final">
+  <div class="wrap final-in reveal">
+    <h2>Sua coleção no link da bio, a partir de hoje.</h2>
+    <p>Crie sua loja agora e receba o primeiro pedido pronto no WhatsApp.</p>
+    <a href="https://app.webtenda.com.br/cadastro?tipo=loja" class="btn btn-light btn-lg">Testar grátis por 14 dias</a>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <a href="#topo" class="logo logo-sm"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#ea580c"/><path d="M14 18h36l3 9H11z" fill="#fff"/><path d="M11 27a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0z" fill="#fff"/><path d="M23.25 18 21.5 27M40.75 18l1.75 9M32 18v9" stroke="#ea580c" stroke-width="2"/><path d="M15 34v12a3 3 0 0 0 3 3h28a3 3 0 0 0 3-3V34" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round"/><rect x="27" y="38" width="10" height="11" rx="2" fill="#fff"/></svg><span>Web<b>Tenda</b></span></a>
+    <nav aria-label="Rodapé">
+      <a href="#planos">Planos</a>
+      <a href="#duvidas">Dúvidas</a>
+      <a href="../">Para delivery</a>
+      <a href="https://app.webtenda.com.br/entrar">Entrar</a>
+      <a href="https://app.webtenda.com.br/cadastro?tipo=loja">Criar minha loja</a>
+    </nav>
+    <p>© <span id="ano">2026</span> WebTenda. Catálogo online e pedidos para lojas de roupa.</p>
+  </div>
+</footer>
+
+<a href="https://app.webtenda.com.br/cadastro?tipo=loja" class="sticky-cta">Testar grátis por 14 dias</a>
+
+<script src="../main.js" defer></script>
+</body>
+</html>
