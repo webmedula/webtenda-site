@@ -25,4 +25,6 @@ O rsync não apaga arquivos no servidor (o `.well-known` do SSL fica intacto); p
 
 - Preços e limites dos planos: seção "PLANOS" no `index.html` (iguais aos planos do sistema).
 - Valor da calculadora de comissão: `PLANO` em `main.js`.
+- Páginas por nicho: `loja/` (lojas de roupa, `?tipo=loja`) e `delivery/` (pedido direto para delivery e retirada, `?tipo=delivery`). Os subdomínios loja. e delivery.webtenda.com.br redirecionam (301) para elas no CyberPanel.
+- Página nova em subpasta: inclua o caminho na etapa "Versionar CSS e JS" do `deploy.yml`.
 - Botões apontam para https://app.webtenda.com.br/cadastro e /entrar.

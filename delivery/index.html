@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WebTenda para delivery: pedido direto no seu link, sem comissão</title>
+<meta name="description" content="Cardápio digital com pedido direto para lanchonetes, pizzarias, açaí, marmitas e mercadinhos. Retirada no balcão e entrega com o seu motoboy, sem comissão por pedido. Continue no iFood para ser encontrado e traga o cliente fiel para o seu link. Teste grátis por 14 dias.">
+<meta property="og:title" content="O cliente que já é seu pede direto, sem comissão">
+<meta property="og:description" content="Retirada no balcão e entrega com o seu motoboy, pelo seu próprio link. Mensalidade fixa, sem porcentagem por pedido.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://webtenda.com.br/delivery/">
+<meta property="og:image" content="https://webtenda.com.br/assets/og.png">
+<meta name="theme-color" content="#ea580c">
+<link rel="canonical" href="https://webtenda.com.br/delivery/">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<style>
+  /* Página de delivery: mesma base laranja do site, com blocos próprios. */
+
+  /* Aplicativo x seu link */
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:8px}
+  .vs-card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:28px;box-shadow:var(--shadow)}
+  .vs-card h3{display:flex;align-items:center;gap:10px;font-size:1.25rem}
+  .vs-card h3 span{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;font-size:1.05rem;background:#f5f5f4}
+  .vs-card p.sub{color:var(--mute);font-size:.92rem;margin:6px 0 18px}
+  .vs-card ul{list-style:none;display:grid;gap:10px}
+  .vs-card li{position:relative;padding-left:26px;font-size:.96rem;color:var(--ink-2)}
+  .vs-card li::before{content:"•";position:absolute;left:8px;color:var(--mute);font-weight:700}
+  .vs-card.mine{border:2px solid var(--brand);background:linear-gradient(180deg,var(--brand-50),#fff 60%)}
+  .vs-card.mine h3 span{background:var(--brand);color:#fff}
+  .vs-card.mine li::before{content:"✓";left:4px;color:var(--brand)}
+  .vs-note{margin-top:22px;text-align:center;color:var(--ink-2);font-size:1.02rem}
+  .vs-note strong{color:var(--brand-d)}
+  @media (max-width:760px){.vs{grid-template-columns:1fr}}
+
+  /* Retirada */
+  .pick{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .pick-cards{display:grid;gap:14px;max-width:420px;justify-self:center;width:100%}
+  .ocard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 20px;box-shadow:var(--shadow);font-size:.9rem}
+  .ocard-top{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+  .ocard-top b{font-family:var(--display);font-size:1.15rem}
+  .tag{font-size:.72rem;font-weight:600;padding:2px 8px;border-radius:7px;background:#ede9fe;color:#6d28d9}
+  .tag.ent{background:#e0f2fe;color:#0369a1}
+  .ocard-top small{margin-left:auto;color:var(--mute);font-size:.78rem}
+  .ocard p{color:var(--ink-2)}
+  .ocard .row{display:flex;justify-content:space-between;margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
+  .ocard .row strong{font-family:var(--display)}
+  .ocard .go{display:block;text-align:center;margin-top:12px;background:var(--brand);color:#fff;font-weight:600;border-radius:10px;padding:9px}
+  .ocard .wa{display:block;margin-top:8px;border:1px solid #bbf7d0;background:#f0fdf4;color:#15803d;border-radius:10px;padding:8px 12px;font-size:.84rem}
+  @media (max-width:900px){.pick{grid-template-columns:1fr;gap:36px}}
+
+  /* Motoboy: dois celulares */
+  .moto{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center}
+  .duo{display:flex;justify-content:center;gap:22px;align-items:flex-start}
+  .duo figure{display:grid;gap:12px;justify-items:center}
+  .duo figcaption{font-size:.82rem;color:var(--mute);font-weight:600;text-align:center}
+  .mini-phone{width:230px;height:470px;border-radius:36px;background:#1c1917;padding:9px;box-shadow:0 30px 60px -28px rgba(124,45,18,.55),inset 0 0 0 2px #44403c}
+  .mini-phone div{height:100%;border-radius:28px;overflow:hidden;background:#fafaf9}
+  .mini-phone img{width:100%}
+  .duo figure:last-child{margin-top:48px}
+  .duo figure:first-child .mini-phone img{animation:scrollmenu 16s ease-in-out infinite}
+  @media (max-width:960px){.moto{grid-template-columns:1fr;gap:40px}}
+  @media (max-width:560px){.mini-phone{width:46vw;height:94vw;border-radius:28px;padding:7px}.mini-phone div{border-radius:22px}.duo{gap:12px}.duo figure:last-child{margin-top:32px}}
+  @media (prefers-reduced-motion:reduce){.duo figure:first-child .mini-phone img{animation:none}}
+
+  .quadro img{aspect-ratio:1280/820}
+
+  /* Como trazer o cliente */
+  .moves{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .move{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:24px;box-shadow:var(--shadow)}
+  .move b{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--brand-l);font-size:1.2rem;margin-bottom:14px}
+  .move h3{font-size:1.08rem;margin-bottom:6px}
+  .move p{color:var(--ink-2);font-size:.93rem}
+  @media (max-width:1060px){.moves{grid-template-columns:1fr 1fr}}
+  @media (max-width:560px){.moves{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="nav" id="topo">
+  <div class="wrap nav-in">
+    <a href="#topo" class="logo" aria-label="WebTenda, início">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#ea580c"/><path d="M14 18h36l3 9H11z" fill="#fff"/><path d="M11 27a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0z" fill="#fff"/><path d="M23.25 18 21.5 27M40.75 18l1.75 9M32 18v9" stroke="#ea580c" stroke-width="2"/><path d="M15 34v12a3 3 0 0 0 3 3h28a3 3 0 0 0 3-3V34" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round"/><rect x="27" y="38" width="10" height="11" rx="2" fill="#fff"/></svg>
+      <span>Web<b>Tenda</b></span>
+    </a>
+    <nav class="nav-links" aria-label="Seções">
+      <a href="#app-ou-link">iFood e seu link</a>
+      <a href="#retirada">Retirada</a>
+      <a href="#motoboy">Seu motoboy</a>
+      <a href="#demo">Ver demo</a>
+      <a href="#planos">Planos</a>
+      <a href="#duvidas">Dúvidas</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="https://app.webtenda.com.br/entrar" class="btn btn-ghost">Entrar</a>
+      <a href="https://app.webtenda.com.br/cadastro?tipo=delivery" class="btn">Criar meu cardápio</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-in">
+    <div class="hero-copy">
+      <p class="eyebrow reveal">Para lanchonetes, pizzarias, açaí, marmitas e mercadinhos</p>
+      <h1 class="reveal">O cliente que já é seu pede direto. <em>Sem comissão.</em></h1>
+      <p class="lead reveal">Continue no aplicativo para ser encontrado por gente nova. Quem já pede com você toda semana pode pedir pelo seu link: retira no balcão ou recebe com o seu motoboy, paga por Pix ou cartão direto na sua conta, e a comissão fica no seu caixa.</p>
+      <div class="hero-actions reveal">
+        <a href="https://app.webtenda.com.br/cadastro?tipo=delivery" class="btn btn-lg">Testar grátis por 14 dias</a>
+        <a href="#demo" class="btn btn-ghost btn-lg">Fazer um pedido de teste</a>
+      </div>
+      <ul class="hero-proof reveal">
+        <li>Sem cartão para começar</li>
+        <li>Sem comissão por pedido</li>
+        <li>Cancele quando quiser</li>
+      </ul>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="blob"></div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen"><img src="../assets/cardapio.png" alt="" width="390" height="1182"></div>
+      </div>
+      <div class="toast t1">
+        <span class="toast-ico">🥡</span>
+        <div><strong>Retirada #91 pronta</strong><small>Cliente avisado no WhatsApp</small></div>
+        <b>R$ 42,90</b>
+      </div>
+      <div class="toast t2">
+        <span class="toast-ico ok">🛵</span>
+        <div><strong>Leo saiu com o #76</strong><small>Centro · Pix já pago</small></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ticker" aria-label="Tipos de negócio atendidos">
+    <div class="ticker-track">
+      <span>Lanchonetes</span><span>Pizzarias</span><span>Hamburguerias</span><span>Açaí e sorvetes</span><span>Marmitarias</span><span>Pastelarias</span><span>Padarias</span><span>Docerias</span><span>Comida japonesa</span><span>Espetinhos</span><span>Adegas</span><span>Mercadinhos</span>
+      <span aria-hidden="true">Lanchonetes</span><span aria-hidden="true">Pizzarias</span><span aria-hidden="true">Hamburguerias</span><span aria-hidden="true">Açaí e sorvetes</span><span aria-hidden="true">Marmitarias</span><span aria-hidden="true">Pastelarias</span><span aria-hidden="true">Padarias</span><span aria-hidden="true">Docerias</span><span aria-hidden="true">Comida japonesa</span><span aria-hidden="true">Espetinhos</span><span aria-hidden="true">Adegas</span><span aria-hidden="true">Mercadinhos</span>
+    </div>
+  </div>
+</section>
+
+<!-- APLICATIVO X SEU LINK -->
+<section class="sec" id="app-ou-link">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Você não precisa sair do iFood</p>
+      <h2>Use cada canal para o que ele faz de melhor</h2>
+      <p>O aplicativo é bom para ser descoberto. Mas pagar comissão toda semana pelo mesmo cliente, que já conhece a sua comida, não faz sentido.</p>
+    </div>
+    <div class="vs">
+      <article class="vs-card reveal">
+        <h3><span>📲</span>No aplicativo de entrega</h3>
+        <p class="sub">Para quem ainda não te conhece</p>
+        <ul>
+          <li>Cliente novo te encontra na busca</li>
+          <li>Comissão sobre cada pedido, mesmo de quem já é cliente antigo</li>
+          <li>O contato do cliente fica com a plataforma</li>
+          <li>Promoção e destaque disputados com a loja vizinha</li>
+        </ul>
+      </article>
+      <article class="vs-card mine reveal">
+        <h3><span>🔗</span>No seu link da WebTenda</h3>
+        <p class="sub">Para quem já pede com você</p>
+        <ul>
+          <li>Mensalidade fixa, sem porcentagem por pedido</li>
+          <li>Nome e WhatsApp do cliente ficam na sua lista</li>
+          <li>Retirada no balcão e entrega com o seu motoboy</li>
+          <li>Cupom, cartão fidelidade e promoção pelo WhatsApp para ele voltar</li>
+        </ul>
+      </article>
+    </div>
+    <p class="vs-note reveal">Cada pedido que passa do aplicativo para o seu link é <strong>comissão que volta para o seu caixa</strong>.</p>
+  </div>
+</section>
+
+<!-- CALCULADORA -->
+<section class="calc-sec" id="economia">
+  <div class="wrap calc">
+    <div class="calc-copy reveal">
+      <p class="eyebrow">Faça a conta</p>
+      <h2>Quanto custa o seu cliente fiel no aplicativo?</h2>
+      <p>Coloque só o que os clientes que já voltam sempre gastam por mês. É essa parte que pode vir para o seu link, sem comissão.</p>
+    </div>
+    <div class="calc-box reveal">
+      <label for="fat">Pedidos de clientes fiéis no mês <output id="fatOut">R$ 8.000</output></label>
+      <input type="range" id="fat" min="1000" max="50000" step="500" value="8000">
+      <label for="com">Comissão que você paga hoje <output id="comOut">20%</output></label>
+      <input type="range" id="com" min="5" max="30" step="1" value="20">
+      <div class="calc-res">
+        <div><small>Vai em comissão</small><strong id="resCom">R$ 1.600</strong></div>
+        <div class="hl"><small>Na WebTenda (Profissional)</small><strong>R$ 89,90</strong></div>
+      </div>
+      <p class="calc-save">Fica no seu bolso: <strong id="resSave">R$ 1.510</strong> por mês</p>
+      <p class="fine">Simulação. No pagamento online, você paga só a tarifa do Asaas por transação, como em qualquer maquininha.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RETIRADA -->
+<section class="sec" id="retirada">
+  <div class="wrap pick">
+    <div class="reveal">
+      <p class="eyebrow">Retirada no balcão</p>
+      <h2>Pediu, pagou, buscou. Sem fila e sem telefone tocando.</h2>
+      <p class="lead" style="margin-top:16px">O cliente escolhe "Retirar no local", paga por Pix ou cartão no próprio cardápio e chega na hora certa. O pedido entra no seu painel com o tempo estimado, e um toque avisa no WhatsApp que está pronto.</p>
+      <ul class="checks" style="margin-top:22px">
+        <li>Ideal para hora do almoço, marmitas e encomendas de pizza</li>
+        <li>Sem taxa de entrega e sem motoboy: a margem é maior</li>
+        <li>Pedido pago antes: o cliente não desiste no caminho</li>
+        <li>Pedido atrasado fica marcado em vermelho no quadro</li>
+      </ul>
+    </div>
+    <div class="pick-cards reveal" aria-label="Exemplo de pedidos no painel">
+      <div class="ocard">
+        <div class="ocard-top"><b>#91</b><span class="tag">Retirada</span><small>há 12 min</small></div>
+        <p><strong>Beatriz Nunes</strong> · 6º pedido na loja</p>
+        <p>1× Marmita de frango grelhado<br>1× Suco de laranja 500 ml</p>
+        <div class="row"><span>Pix · pago</span><strong>R$ 42,90</strong></div>
+        <span class="go">Cliente retirou →</span>
+        <span class="wa">Avisar cliente no WhatsApp: "Pronto para retirar"</span>
+      </div>
+      <div class="ocard">
+        <div class="ocard-top"><b>#92</b><span class="tag ent">Entrega</span><small>há 3 min</small></div>
+        <p><strong>Rafael Lima</strong> · Boa Vista · prometido entre 12:20 e 12:35</p>
+        <div class="row"><span>Cartão na entrega</span><strong>R$ 61,80</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOTOBOY -->
+<section class="sec sec-alt" id="motoboy">
+  <div class="wrap moto">
+    <div class="duo reveal" aria-hidden="true">
+      <figure>
+        <div class="mini-phone"><div><img src="../assets/delivery/entregador.webp" alt="" width="390" height="1200" loading="lazy"></div></div>
+        <figcaption>O que o motoboy vê</figcaption>
+      </figure>
+      <figure>
+        <div class="mini-phone"><div><img src="../assets/delivery/acompanhar.webp" alt="" width="390" height="907" loading="lazy"></div></div>
+        <figcaption>O que o cliente vê</figcaption>
+      </figure>
+    </div>
+    <div class="reveal">
+      <p class="eyebrow">Entrega com o seu motoboy</p>
+      <h2>Já tem entregador? Ele ganha um link só dele.</h2>
+      <p class="lead" style="margin-top:16px">Cadastre seus motoboys, fixos ou freelancers, e escolha quem leva cada pedido. Ele abre o link no celular, sem baixar aplicativo, e vê endereço, valor a cobrar e o caminho no Maps ou no Waze.</p>
+      <ul class="checks" style="margin-top:22px">
+        <li>"Peguei, saí para entrega" e "Entreguei" com um toque</li>
+        <li>Mostra quanto cobrar e quanto levar de troco</li>
+        <li>O cliente acompanha o pedido: recebido, em preparo, saiu, entregue</li>
+        <li>Taxa de entrega e tempo estimado diferentes para cada bairro</li>
+        <li>Fechamento do dia por entregador, com corridas e dinheiro a acertar</li>
+      </ul>
+      <a href="https://app.webtenda.com.br/cadastro?tipo=delivery" class="btn" style="margin-top:26px">Quero cadastrar meus entregadores</a>
+    </div>
+  </div>
+</section>
+
+<!-- PAINEL -->
+<section class="sec showcase">
+  <div class="wrap show-in">
+    <div class="show-copy reveal">
+      <p class="eyebrow">Painel</p>
+      <h2>Todos os pedidos num quadro, do novo ao entregue</h2>
+      <ul class="checks">
+        <li>Colunas de novos, em preparo e saiu ou pronto para retirar</li>
+        <li>Som de aviso quando chega pedido</li>
+        <li>Mostra se é o 1º ou o 11º pedido do cliente</li>
+        <li>Mensagem pronta no WhatsApp a cada mudança de etapa</li>
+        <li>Funciona no computador do caixa, no tablet e no celular</li>
+      </ul>
+      <a href="https://app.webtenda.com.br/cadastro?tipo=delivery" class="btn">Quero testar o painel</a>
+    </div>
+    <div class="browser quadro reveal">
+      <div class="browser-bar"><i></i><i></i><i></i><span>app.webtenda.com.br/painel</span></div>
+      <img src="../assets/delivery/quadro.webp" alt="Quadro de pedidos com as colunas Novos, Em preparo e Saiu ou pronto para retirar" width="1280" height="960" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- COMO TRAZER O CLIENTE -->
+<section class="sec sec-alt" id="como-trazer">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Como começar</p>
+      <h2>Quatro jeitos simples de levar o cliente para o seu link</h2>
+      <p>Você não precisa de agência nem de anúncio. O cliente fiel já está no seu balcão e no seu WhatsApp.</p>
+    </div>
+    <div class="moves">
+      <article class="move reveal"><b>🧾</b><h3>No balcão</h3><p>Um cartaz com QR Code no caixa e na mesa: "Peça por aqui da próxima vez e retire sem fila".</p></article>
+      <article class="move reveal"><b>💬</b><h3>No WhatsApp</h3><p>Responda "quero pedir" com o link do cardápio. Coloque o link no status e na mensagem automática.</p></article>
+      <article class="move reveal"><b>🎟️</b><h3>Cupom de 1º pedido</h3><p>Um desconto que só vale no seu link, como BEMVINDO10. Sai mais barato que a comissão.</p></article>
+      <article class="move reveal"><b>⭐</b><h3>Cartão fidelidade</h3><p>A cada tantos pedidos, um prêmio. O cliente vê os selos na conta e tem motivo para voltar.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- LOJAS DEMO -->
+<section class="sec" id="demo">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Veja funcionando</p>
+      <h2>Faça um pedido de teste agora</h2>
+      <p>Escolha uma loja demo, peça para retirar ou para entregar e acompanhe o pedido. Nada é cobrado.</p>
+    </div>
+    <div class="demos">
+      <a class="demo reveal" href="https://app.webtenda.com.br/loja/brasa-burger" target="_blank" rel="noopener">
+        <div class="demo-top" style="--c:#1c1917;--img:url('https://images.unsplash.com/photo-1757834787931-ddd70f3379a5?auto=format&fit=crop&w=800&h=400&q=70')"><img src="../assets/demo/brasa-burger.svg" alt="" width="84" height="84"></div>
+        <div class="demo-body">
+          <small>Hamburgueria</small>
+          <h3>Brasa Burger</h3>
+          <p>Hambúrguer artesanal na brasa, combos e milkshake.</p>
+          <ul><li>Cupom PRIMEIRA10</li><li>Fidelidade: R$ 20 off no 8º pedido</li></ul>
+          <span class="demo-go">Abrir cardápio <b>→</b></span>
+        </div>
+      </a>
+      <a class="demo reveal" href="https://app.webtenda.com.br/loja/forno-da-vila" target="_blank" rel="noopener">
+        <div class="demo-top" style="--c:#9f1239;--img:url('https://images.unsplash.com/photo-1772494047915-79042d21eb09?auto=format&fit=crop&w=800&h=400&q=70')"><img src="../assets/demo/forno-da-vila.svg" alt="" width="84" height="84"></div>
+        <div class="demo-body">
+          <small>Pizzaria</small>
+          <h3>Forno da Vila</h3>
+          <p>Pizza de fermentação natural no forno a lenha.</p>
+          <ul><li>Cupom BEMVINDO15</li><li>Fidelidade: 50% off no 10º pedido</li></ul>
+          <span class="demo-go">Abrir cardápio <b>→</b></span>
+        </div>
+      </a>
+      <a class="demo reveal" href="https://app.webtenda.com.br/loja/acai-da-praia" target="_blank" rel="noopener">
+        <div class="demo-top" style="--c:#4c1d95;--img:url('https://images.unsplash.com/photo-1787406988073-c6ed034788ad?auto=format&fit=crop&w=800&h=400&q=70')"><img src="../assets/demo/acai-da-praia.svg" alt="" width="84" height="84"></div>
+        <div class="demo-body">
+          <small>Açaí</small>
+          <h3>Açaí da Praia</h3>
+          <p>Açaí batido na hora, com frutas e complementos.</p>
+          <ul><li>Cupom VERAO20</li><li>Fidelidade: 6º açaí grátis</li></ul>
+          <span class="demo-go">Abrir cardápio <b>→</b></span>
+        </div>
+      </a>
+      <a class="demo reveal" href="https://app.webtenda.com.br/loja/mercadinho-bom-preco" target="_blank" rel="noopener">
+        <div class="demo-top" style="--c:#166534;--img:url('https://images.unsplash.com/photo-1582284540020-8acbe03f4924?auto=format&fit=crop&w=800&h=400&q=70')"><img src="../assets/demo/mercadinho-bom-preco.svg" alt="" width="84" height="84"></div>
+        <div class="demo-body">
+          <small>Mercadinho</small>
+          <h3>Mercadinho Bom Preço</h3>
+          <p>Hortifruti, padaria e mercearia do bairro.</p>
+          <ul><li>Cupom FRETEGRATIS</li><li>Fidelidade: R$ 15 off no 10º pedido</li></ul>
+          <span class="demo-go">Abrir cardápio <b>→</b></span>
+        </div>
+      </a>
+    </div>
+    <div class="demo-panel reveal">
+      <div>
+        <h3>Depois, veja o pedido chegar no painel</h3>
+        <p>Entre no painel da loja demo para ver o quadro de pedidos, os entregadores, os bairros e o fechamento do dia.</p>
+      </div>
+      <dl>
+        <div><dt>E-mail</dt><dd><code>burger@demo.webtenda.com.br</code><small>ou pizza@, acai@, mercado@</small></dd></div>
+        <div><dt>Senha</dt><dd><code>demo1234</code></dd></div>
+      </dl>
+      <a href="https://app.webtenda.com.br/entrar" target="_blank" rel="noopener" class="btn">Entrar no painel demo</a>
+    </div>
+  </div>
+</section>
+
+<!-- PLANOS -->
+<section class="sec sec-alt" id="planos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Planos</p>
+      <h2>Mensalidade fixa. Nenhuma comissão por pedido.</h2>
+      <p>Todos os recursos em todos os planos: o que muda é o tamanho do cardápio e o volume de pedidos. Todos começam com 14 dias grátis.</p>
+    </div>
+    <div class="plans">
+      <article class="plan reveal">
+        <h3>Básico</h3>
+        <p class="plan-desc">Para quem está começando o pedido direto.</p>
+        <p class="price"><span>R$</span>49<small>,90</small><em>/mês</em></p>
+        <ul>
+          <li>Até 50 produtos no cardápio</li>
+          <li>Até 300 pedidos por mês</li>
+          <li>Retirada e entrega por bairro</li>
+          <li>Entregadores com link próprio</li>
+          <li>Pix e cartão online</li>
+          <li>Cupons, fidelidade e promoções</li>
+        </ul>
+        <a href="https://app.webtenda.com.br/cadastro?tipo=delivery" class="btn btn-ghost btn-block">Começar grátis</a>
+      </article>
+      <article class="plan plan-pop reveal">
+        <span class="badge">Mais escolhido</span>
+        <h3>Profissional</h3>
+        <p class="plan-desc">Para o negócio que já tem movimento.</p>
+        <p class="price"><span>R$</span>89<small>,90</small><em>/mês</em></p>
+        <ul>
+          <li>Até 200 produtos no cardápio</li>
+          <li><strong>Pedidos ilimitados</strong></li>
+          <li>Retirada e entrega por bairro</li>
+          <li>Entregadores com link próprio</li>
+          <li>Pix e cartão online</li>
+          <li>Cupons, fidelidade e promoções</li>
+        </ul>
+        <a href="https://app.webtenda.com.br/cadastro?tipo=delivery" class="btn btn-block">Começar grátis</a>
+      </article>
+      <article class="plan reveal">
+        <h3>Completo</h3>
+        <p class="plan-desc">Para cardápios grandes e mercadinhos.</p>
+        <p class="price"><span>R$</span>149<small>,90</small><em>/mês</em></p>
+        <ul>
+          <li><strong>Produtos ilimitados</strong></li>
+          <li><strong>Pedidos ilimitados</strong></li>
+          <li>Retirada e entrega por bairro</li>
+          <li>Entregadores com link próprio</li>
+          <li>Pix e cartão online</li>
+          <li>Cupons, fidelidade e promoções</li>
+        </ul>
+        <a href="https://app.webtenda.com.br/cadastro?tipo=delivery" class="btn btn-ghost btn-block">Começar grátis</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="duvidas">
+  <div class="wrap faq-in">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Dúvidas</p>
+      <h2>Perguntas frequentes</h2>
+    </div>
+    <div class="faq">
+      <details class="reveal"><summary>Preciso sair do iFood ou de outro aplicativo?</summary><p>Não. A ideia é usar os dois: o aplicativo para ser encontrado por clientes novos, e o seu link para quem já pede com você. Cada pedido que vem pelo link é um pedido sem comissão.</p></details>
+      <details class="reveal"><summary>Não tenho motoboy. Serve para mim?</summary><p>Serve. Você pode trabalhar só com retirada no balcão, que já vem ligada. Quando tiver entregador, é só cadastrar a entrega por bairro e o motoboy no painel.</p></details>
+      <details class="reveal"><summary>Meu motoboy precisa baixar aplicativo?</summary><p>Não. Cada entregador recebe um link só dele, que abre no navegador do celular. Ali ele vê os pedidos que você mandou para ele, o endereço, o valor a cobrar e marca quando saiu e quando entregou.</p></details>
+      <details class="reveal"><summary>Vocês fornecem entregadores?</summary><p>Não. A WebTenda organiza a entrega com os seus próprios entregadores, fixos ou freelancers. Você combina o pagamento deles do seu jeito, e o fechamento do dia mostra quantas entregas cada um fez.</p></details>
+      <details class="reveal"><summary>A WebTenda cobra porcentagem dos pedidos?</summary><p>Não. Você paga apenas a mensalidade do plano. O valor dos pedidos é todo seu.</p></details>
+      <details class="reveal"><summary>Como recebo o pagamento?</summary><p>Com o pagamento online ativado, o cliente paga por Pix ou cartão no cardápio e o dinheiro cai na sua própria conta Asaas, com a tarifa do Asaas por transação. Também dá para receber na entrega ou no balcão, em dinheiro ou na maquininha.</p></details>
+      <details class="reveal"><summary>Meu cliente precisa baixar aplicativo ou criar senha?</summary><p>Não. O cardápio abre no navegador, a conta nasce no primeiro pedido pelo WhatsApp e quem quiser pode instalar o atalho da sua loja na tela do celular.</p></details>
+      <details class="reveal"><summary>Posso trocar de plano ou cancelar?</summary><p>Pode. Você muda de plano pelo painel quando quiser, e não existe fidelidade nem multa de cancelamento.</p></details>
+      <details class="reveal"><summary>Tenho uma loja de roupas. Também posso usar?</summary><p>Pode. A WebTenda tem um modo para lojas de roupa, com cores, tamanhos, estoque e pedido pelo WhatsApp. <a href="../loja/" style="text-decoration:underline">Conheça a WebTenda para lojas de roupa</a>.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final">
+  <div class="wrap final-in reveal">
+    <h2>O próximo pedido do seu cliente fiel pode vir sem comissão.</h2>
+    <p>Crie seu cardápio hoje, coloque o link no balcão e no WhatsApp e receba o primeiro pedido direto.</p>
+    <a href="https://app.webtenda.com.br/cadastro?tipo=delivery" class="btn btn-light btn-lg">Testar grátis por 14 dias</a>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <a href="#topo" class="logo logo-sm"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#ea580c"/><path d="M14 18h36l3 9H11z" fill="#fff"/><path d="M11 27a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0z" fill="#fff"/><path d="M23.25 18 21.5 27M40.75 18l1.75 9M32 18v9" stroke="#ea580c" stroke-width="2"/><path d="M15 34v12a3 3 0 0 0 3 3h28a3 3 0 0 0 3-3V34" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round"/><rect x="27" y="38" width="10" height="11" rx="2" fill="#fff"/></svg><span>Web<b>Tenda</b></span></a>
+    <nav aria-label="Rodapé">
+      <a href="#planos">Planos</a>
+      <a href="#duvidas">Dúvidas</a>
+      <a href="../">Início</a>
+      <a href="../loja/">Para lojas de roupa</a>
+      <a href="https://app.webtenda.com.br/entrar">Entrar</a>
+      <a href="https://app.webtenda.com.br/cadastro?tipo=delivery">Criar meu cardápio</a>
+    </nav>
+    <p>© <span id="ano">2026</span> WebTenda. Pedido direto para delivery e retirada, sem comissão.</p>
+  </div>
+</footer>
+
+<a href="https://app.webtenda.com.br/cadastro?tipo=delivery" class="sticky-cta">Testar grátis por 14 dias</a>
+
+<script src="../main.js" defer></script>
+</body>
+</html>
