@@ -47,8 +47,8 @@ jobs:
         if: steps.check.outputs.ok == 'true'
         run: |
           V=${GITHUB_SHA::8}
-          sed -i -E "s#href=\"((\.\./)?style\.css)(\?v=[^\"]*)?\"#href=\"\1?v=$V\"#; s#src=\"((\.\./)?main\.js)(\?v=[^\"]*)?\"#src=\"\1?v=$V\"#" index.html loja/index.html delivery/index.html
-          grep -nE "style\.css|main\.js" index.html loja/index.html delivery/index.html
+          sed -i -E "s#href=\"((\.\./)?style\.css)(\?v=[^\"]*)?\"#href=\"\1?v=$V\"#; s#src=\"((\.\./)?main\.js)(\?v=[^\"]*)?\"#src=\"\1?v=$V\"#" index.html loja/index.html delivery/index.html encomendas/index.html
+          grep -nE "style\.css|main\.js" index.html loja/index.html delivery/index.html encomendas/index.html
 
       - name: Enviar arquivos
         if: steps.check.outputs.ok == 'true'

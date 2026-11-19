@@ -48,10 +48,12 @@
   @keyframes scrollgrid{0%,18%{transform:translateY(0)}50%,68%{transform:translateY(-38%)}100%{transform:translateY(0)}}
 
   /* Escolha do nicho */
-  .niches{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .niches{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
   .niche{--c:#ea580c;--cd:#c2410c;--cl:#fff1e6;display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:26px;overflow:hidden;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s}
   .niche:hover{transform:translateY(-4px);box-shadow:0 2px 4px rgba(28,25,23,.06),0 26px 50px -20px rgba(28,25,23,.3)}
   .niche.moda{--c:#9d174d;--cd:#831843;--cl:#fce7f3}
+  .niche.doce{--c:#92400e;--cd:#78350f;--cl:#fef3c7}
+  @media (max-width:1100px){.niches{grid-template-columns:1fr 1fr}.niches .niche.doce{grid-column:1/-1}}
   .niche-top{position:relative;height:210px;background:linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,.6)),var(--img) center/cover,var(--c);display:flex;align-items:flex-end;padding:22px 26px;color:#fff}
   .niche-top span{font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--c);padding:5px 11px;border-radius:999px}
   .niche-body{padding:26px 28px 28px;display:flex;flex-direction:column;flex:1}
@@ -73,13 +75,14 @@
   .soon li small{color:var(--mute);font-weight:400}
   @media (max-width:900px){.niches{grid-template-columns:1fr;max-width:600px;margin:0 auto}.soon{grid-template-columns:1fr}.soon ul{justify-content:flex-start}}
 
-  .demos-5{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .demos-5{grid-template-columns:repeat(3,minmax(0,1fr))}
   .demos-5 .demo-top{height:120px}
   .demos-5 .demo-top img{width:72px;height:72px}
   .demos-5 .demo-body{padding:18px}
   .demo.is-moda .demo-go{color:#9d174d}
   .demo.is-moda .demo-body li{background:#fdf2f8;color:#831843}
-  @media (max-width:1060px){.demos-5{grid-template-columns:repeat(3,minmax(0,1fr))}}
+  .demo.is-doce .demo-go{color:#92400e}
+  .demo.is-doce .demo-body li{background:#fffbeb;color:#78350f}
   @media (max-width:760px){.demos-5{grid-template-columns:1fr 1fr}}
   @media (max-width:520px){.demos-5{grid-template-columns:1fr}}
 
@@ -110,6 +113,7 @@
       <a href="#nichos">Para quem é</a>
       <a href="delivery/">Delivery</a>
       <a href="loja/">Lojas de roupa</a>
+      <a href="encomendas/">Encomendas</a>
       <a href="#demo">Ver demo</a>
       <a href="#planos">Planos</a>
       <a href="#duvidas">Dúvidas</a>
@@ -128,7 +132,7 @@
     <div class="hero-copy">
       <p class="eyebrow reveal">Vendas online para pequenos negócios locais</p>
       <h1 class="reveal">Seu negócio vendendo no seu próprio link. <em>Sem comissão.</em></h1>
-      <p class="lead reveal">Lanchonete, pizzaria, mercadinho ou loja de roupas: a WebTenda coloca seu cardápio ou catálogo no ar, recebe os pedidos, aceita Pix e cartão direto na sua conta e ajuda o cliente a comprar de novo. É um sistema só, que se ajusta ao seu tipo de negócio, por uma mensalidade fixa.</p>
+      <p class="lead reveal">Lanchonete, pizzaria, mercadinho, confeitaria ou loja de roupas: a WebTenda coloca seu cardápio ou catálogo no ar, recebe os pedidos, aceita Pix e cartão direto na sua conta e ajuda o cliente a comprar de novo. É um sistema só, que se ajusta ao seu tipo de negócio, por uma mensalidade fixa.</p>
       <div class="hero-actions reveal">
         <a href="https://app.webtenda.com.br/cadastro" class="btn btn-lg">Testar grátis por 14 dias</a>
         <a href="#nichos" class="btn btn-ghost btn-lg">Ver o que serve para mim</a>
@@ -178,8 +182,8 @@
 
   <div class="ticker" aria-label="Tipos de negócio atendidos">
     <div class="ticker-track">
-      <span>Lanchonetes</span><span>Pizzarias</span><span>Lojas de roupa</span><span>Hamburguerias</span><span>Açaí e sorvetes</span><span>Moda infantil</span><span>Mercadinhos</span><span>Marmitarias</span><span>Calçados e bolsas</span><span>Padarias</span><span>Acessórios</span><span>Adegas</span>
-      <span aria-hidden="true">Lanchonetes</span><span aria-hidden="true">Pizzarias</span><span aria-hidden="true">Lojas de roupa</span><span aria-hidden="true">Hamburguerias</span><span aria-hidden="true">Açaí e sorvetes</span><span aria-hidden="true">Moda infantil</span><span aria-hidden="true">Mercadinhos</span><span aria-hidden="true">Marmitarias</span><span aria-hidden="true">Calçados e bolsas</span><span aria-hidden="true">Padarias</span><span aria-hidden="true">Acessórios</span><span aria-hidden="true">Adegas</span>
+      <span>Lanchonetes</span><span>Pizzarias</span><span>Lojas de roupa</span><span>Hamburguerias</span><span>Açaí e sorvetes</span><span>Moda infantil</span><span>Mercadinhos</span><span>Marmitarias</span><span>Calçados e bolsas</span><span>Padarias</span><span>Acessórios</span><span>Confeitarias</span>
+      <span aria-hidden="true">Lanchonetes</span><span aria-hidden="true">Pizzarias</span><span aria-hidden="true">Lojas de roupa</span><span aria-hidden="true">Hamburguerias</span><span aria-hidden="true">Açaí e sorvetes</span><span aria-hidden="true">Moda infantil</span><span aria-hidden="true">Mercadinhos</span><span aria-hidden="true">Marmitarias</span><span aria-hidden="true">Calçados e bolsas</span><span aria-hidden="true">Padarias</span><span aria-hidden="true">Acessórios</span><span aria-hidden="true">Confeitarias</span>
     </div>
   </div>
 </section>
@@ -205,7 +209,7 @@
             <li>Use junto com o iFood: o cliente fiel pede direto, sem comissão</li>
           </ul>
           <div class="niche-act">
-            <a href="delivery/" class="btn">Conhecer a WebTenda para delivery</a>
+            <a href="delivery/" class="btn">Ver como funciona</a>
             <a href="https://app.webtenda.com.br/cadastro?tipo=delivery" class="btn btn-ghost">Criar cardápio</a>
           </div>
         </div>
@@ -222,8 +226,25 @@
             <li>Retirada na loja, entrega no bairro ou envio com tabela de frete própria</li>
           </ul>
           <div class="niche-act">
-            <a href="loja/" class="btn">Conhecer a WebTenda para lojas de roupa</a>
+            <a href="loja/" class="btn">Ver como funciona</a>
             <a href="https://app.webtenda.com.br/cadastro?tipo=loja" class="btn btn-ghost">Criar loja</a>
+          </div>
+        </div>
+      </article>
+      <article class="niche doce reveal">
+        <div class="niche-top" style="--img:url('https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?auto=format&fit=crop&w=1000&h=440&q=70')"><span>Encomendas</span></div>
+        <div class="niche-body">
+          <h3>Encomendas com data marcada</h3>
+          <p class="niche-for">Confeitarias, bolos caseiros, docerias, salgados para festa e marmitas da semana.</p>
+          <ul>
+            <li>O cliente escolhe dia e horário de retirada, dentro da sua antecedência</li>
+            <li>Sinal de 30%, 50% ou tudo antecipado, pago no Pix direto na sua conta</li>
+            <li>Limite de encomendas por dia e dias fechados para feriados e folgas</li>
+            <li>Agenda com a lista do que produzir em cada dia</li>
+          </ul>
+          <div class="niche-act">
+            <a href="encomendas/" class="btn">Ver como funciona</a>
+            <a href="https://app.webtenda.com.br/cadastro?tipo=encomendas" class="btn btn-ghost">Criar cardápio</a>
           </div>
         </div>
       </article>
@@ -235,7 +256,6 @@
       </div>
       <ul>
         <li>Barbearias e salões <small>· agendamento</small></li>
-        <li>Encomendas <small>· bolos, doces e festas</small></li>
         <li>Prestadores de serviço <small>· catálogo</small></li>
       </ul>
     </div>
@@ -389,6 +409,16 @@
           <span class="demo-go">Abrir catálogo <b>→</b></span>
         </div>
       </a>
+      <a class="demo is-doce reveal" href="https://app.webtenda.com.br/loja/doce-encanto" target="_blank" rel="noopener">
+        <div class="demo-top" style="--c:#92400e;--img:url('https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?auto=format&fit=crop&w=800&h=400&q=70')"><img src="assets/demo/doce-encanto.svg" alt="" width="84" height="84"></div>
+        <div class="demo-body">
+          <small>Encomendas</small>
+          <h3>Doce Encanto Confeitaria</h3>
+          <p>Bolos, doces, salgados e marmitas com dia marcado.</p>
+          <ul><li>Sinal de 50% no Pix</li><li>48h de antecedência</li></ul>
+          <span class="demo-go">Abrir cardápio <b>→</b></span>
+        </div>
+      </a>
     </div>
 
     <div class="demo-panel reveal">
@@ -397,7 +427,7 @@
         <p>Entre no painel de qualquer loja demo para ver pedidos chegando, clientes, cupons, fidelidade, estoque e campanhas.</p>
       </div>
       <dl>
-        <div><dt>E-mail</dt><dd><code>burger@demo.webtenda.com.br</code><small>ou pizza@, acai@, mercado@, moda@</small></dd></div>
+        <div><dt>E-mail</dt><dd><code>burger@demo.webtenda.com.br</code><small>ou pizza@, acai@, mercado@, moda@, doces@</small></dd></div>
         <div><dt>Senha</dt><dd><code>demo1234</code></dd></div>
       </dl>
       <a href="https://app.webtenda.com.br/entrar" target="_blank" rel="noopener" class="btn">Entrar no painel demo</a>
@@ -416,7 +446,7 @@
       <li class="reveal">
         <span class="step-n">1</span>
         <h3>Diga o que você vende</h3>
-        <p>No cadastro, escolha entre delivery e loja de roupas. A loja já nasce com as categorias e as formas de pedido do seu ramo.</p>
+        <p>No cadastro, escolha entre delivery, loja de roupas ou encomendas. A loja já nasce com as categorias e as formas de pedido do seu ramo.</p>
       </li>
       <li class="reveal">
         <span class="step-n">2</span>

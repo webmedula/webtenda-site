@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WebTenda para encomendas: bolos, doces e salgados com data marcada e sinal no Pix</title>
+<meta name="description" content="Cardápio de encomendas para confeitarias, docerias, salgaderias e marmitas: o cliente escolhe o dia e o horário de retirada, paga o sinal no Pix e você vê a agenda com tudo o que precisa produzir. Mensalidade fixa, sem comissão. Teste grátis por 14 dias.">
+<meta property="og:title" content="Encomendas com data marcada e sinal no Pix, sem conversa interminável no WhatsApp">
+<meta property="og:description" content="O cliente escolhe o dia e o horário, paga o sinal e você vê a agenda de produção. Sem comissão.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://webtenda.com.br/encomendas/">
+<meta property="og:image" content="https://webtenda.com.br/assets/og.png">
+<meta name="theme-color" content="#92400e">
+<link rel="canonical" href="https://webtenda.com.br/encomendas/">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<style>
+  /* Tema da página de encomendas: mesma base do site, cor chocolate. */
+  :root{--brand:#92400e;--brand-d:#78350f;--brand-l:#fef3c7;--brand-50:#fffbeb;--bg:#fffcf7;--alt:#fbf4ea;--dark:#2b1608}
+  .btn:hover{box-shadow:0 8px 20px -8px rgba(146,64,14,.55)}
+  .btn:focus-visible,a:focus-visible,summary:focus-visible{outline-color:#fbbf24}
+  .phone{box-shadow:0 40px 80px -30px rgba(120,53,15,.5),inset 0 0 0 2px #44403c}
+  .hero h1 em::after{background:#fde68a}
+  .blob{background:radial-gradient(closest-side,#fde68a,rgba(253,230,138,0))}
+  .plan-pop li::before{color:#fbbf24}
+  .faq details[open]{border-color:#fbbf24}
+  .final-in{background:linear-gradient(135deg,#b45309,#78350f)}
+  .final-in p{color:#fef3c7}
+
+  /* Celular com a sacola de encomenda em HTML */
+  .bag{height:100%;overflow:hidden;background:#fff;font-family:var(--sans);font-size:11px;color:var(--ink)}
+  .bag-head{background:var(--brand);color:#fff;padding:34px 14px 14px;display:flex;align-items:center;gap:10px}
+  .bag-head img{width:38px;height:38px;border-radius:12px;background:#fff}
+  .bag-head strong{display:block;font-size:13px;font-family:var(--display)}
+  .bag-head small{opacity:.85;font-size:10px}
+  .bag-in{padding:12px;display:grid;gap:10px}
+  .bag-item{display:flex;align-items:center;gap:8px}
+  .bag-item i{width:40px;height:40px;border-radius:9px;background:#f5ede4 center/cover no-repeat;flex:none}
+  .bag-item b{flex:1;font-weight:600;line-height:1.25}
+  .bag-item span{font-weight:700}
+  .when{background:var(--brand-50);border:1px solid #fde68a;border-radius:12px;padding:10px}
+  .when p{font-weight:700;font-size:11.5px;margin-bottom:8px}
+  .days{display:flex;gap:6px}
+  .days span{flex:none;width:40px;padding:5px 0;border-radius:9px;background:#fff;border:1px solid var(--line);text-align:center;line-height:1.2}
+  .days span small{display:block;font-size:8px;font-weight:700;color:var(--mute);text-transform:uppercase}
+  .days span b{font-size:11px}
+  .days span.on{background:var(--brand);border-color:var(--brand);color:#fff}
+  .days span.on small{color:#fde68a}
+  .times{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+  .times span{padding:4px 9px;border-radius:99px;background:#fff;border:1px solid var(--line);font-weight:600}
+  .times span.on{background:var(--brand);border-color:var(--brand);color:#fff}
+  .sig{background:#fdf6ec;border-radius:10px;padding:9px 10px;display:grid;gap:3px}
+  .sig div{display:flex;justify-content:space-between}
+  .sig div:first-child{font-weight:700;color:var(--brand-d)}
+  .bag-btn{background:var(--brand);color:#fff;text-align:center;font-weight:700;border-radius:10px;padding:10px}
+
+  /* Bloco "o pedido chega assim" (mesmo da página de roupas) */
+  .wa{display:grid;gap:40px;align-items:center}
+  @media (min-width:900px){.wa{grid-template-columns:1fr 1fr}}
+  .wa-chat{background:#efeae2;border-radius:var(--r);padding:22px;box-shadow:var(--shadow);max-width:440px;justify-self:center;width:100%}
+  .wa-top{display:flex;align-items:center;gap:10px;margin:-22px -22px 18px;padding:14px 18px;background:#075e54;color:#fff;border-radius:var(--r) var(--r) 0 0}
+  .wa-top img{width:34px;height:34px;border-radius:50%}
+  .wa-top small{display:block;opacity:.8;font-size:.75rem}
+  .wa-msg{background:#d9fdd3;border-radius:12px 0 12px 12px;padding:12px 14px;font-size:.88rem;line-height:1.5;margin-left:auto;max-width:92%;white-space:pre-line;box-shadow:0 1px 1px rgba(0,0,0,.08)}
+  .wa-msg time{display:block;text-align:right;font-size:.7rem;color:#667781;margin-top:4px}
+  .wa-reply{background:#fff;border-radius:0 12px 12px 12px;padding:10px 14px;font-size:.88rem;margin-top:10px;max-width:80%;box-shadow:0 1px 1px rgba(0,0,0,.08)}
+
+  /* Agenda de produção */
+  .agenda{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+  .agenda h3{font-family:var(--display);font-size:1.15rem;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+  .agenda h3 small{font-family:var(--sans);font-weight:500;font-size:.8rem;color:var(--mute)}
+  .prod{background:#fffbeb;border-radius:12px;padding:12px 14px;margin:12px 0}
+  .prod p{font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#92400e;margin-bottom:4px}
+  .prod ul{display:grid;grid-template-columns:1fr 1fr;gap:2px 14px;font-size:.88rem;list-style:none;padding:0}
+  .ag-row{display:flex;gap:12px;padding:9px 0;border-top:1px solid var(--line);font-size:.88rem}
+  .ag-row b{width:44px;flex:none}
+  .ag-row span{flex:1}
+  .ag-row small{display:block;color:var(--mute)}
+  .ag-row em{font-style:normal;font-weight:600;text-align:right}
+  .ag-row em small{font-weight:400}
+
+  .cross{margin-top:28px;text-align:center;color:var(--mute);font-size:.95rem}
+  .cross a{color:var(--brand-d);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+</style>
+</head>
+<body>
+<header class="nav" id="topo">
+  <div class="wrap nav-in">
+    <a href="#topo" class="logo" aria-label="WebTenda, início">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#ea580c"/><path d="M14 18h36l3 9H11z" fill="#fff"/><path d="M11 27a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0z" fill="#fff"/><path d="M23.25 18 21.5 27M40.75 18l1.75 9M32 18v9" stroke="#ea580c" stroke-width="2"/><path d="M15 34v12a3 3 0 0 0 3 3h28a3 3 0 0 0 3-3V34" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round"/><rect x="27" y="38" width="10" height="11" rx="2" fill="#fff"/></svg>
+      <span>Web<b>Tenda</b></span>
+    </a>
+    <nav class="nav-links" aria-label="Seções">
+      <a href="#como-chega">Como funciona</a>
+      <a href="#demo">Ver demo</a>
+      <a href="#planos">Planos</a>
+      <a href="#duvidas">Dúvidas</a>
+      <a href="../">Outros ramos</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="https://app.webtenda.com.br/entrar" class="btn btn-ghost">Entrar</a>
+      <a href="https://app.webtenda.com.br/cadastro?tipo=encomendas" class="btn">Criar meu cardápio</a>
+    </div>
+  </div>
+</header>
+<main>
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-in">
+    <div class="hero-copy">
+      <p class="eyebrow reveal">Para confeitarias, docerias, salgaderias e marmitas</p>
+      <h1 class="reveal">Encomendas com dia marcado e <em>sinal no Pix</em>.</h1>
+      <p class="lead reveal">Sem vai e vem no WhatsApp: o cliente escolhe o bolo, os doces e os salgados, marca o dia e o horário de retirada dentro da sua antecedência e já paga o sinal. Você abre a agenda e vê tudo o que precisa produzir em cada dia.</p>
+      <div class="hero-actions reveal">
+        <a href="https://app.webtenda.com.br/cadastro?tipo=encomendas" class="btn btn-lg">Testar grátis por 14 dias</a>
+        <a href="#demo" class="btn btn-ghost btn-lg">Ver a confeitaria demo</a>
+      </div>
+      <ul class="hero-proof reveal">
+        <li>Sem cartão para começar</li>
+        <li>Sem comissão por encomenda</li>
+        <li>Cancele quando quiser</li>
+      </ul>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="blob"></div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="bag">
+            <div class="bag-head"><img src="../assets/demo/doce-encanto.svg" alt=""><div><strong>Doce Encanto</strong><small>Encomendas com 2 dias de antecedência</small></div></div>
+            <div class="bag-in">
+              <div class="bag-item"><i style="background-image:url('https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?auto=format&fit=crop&w=300&h=300&q=60')"></i><b>Bolo de Chocolate com Brigadeiro</b><span>R$ 129,90</span></div>
+              <div class="bag-item"><i style="background-image:url('https://images.unsplash.com/photo-1783286943732-3aad8d4d273c?auto=format&fit=crop&w=300&h=300&q=60')"></i><b>Cento de Brigadeiro Gourmet</b><span>R$ 159,90</span></div>
+              <div class="when">
+                <p>Quando você vem buscar?</p>
+                <div class="days"><span><small>sex</small><b>20/11</b></span><span class="on"><small>sáb</small><b>21/11</b></span><span><small>ter</small><b>24/11</b></span><span><small>qua</small><b>25/11</b></span><span><small>qui</small><b>26/11</b></span></div>
+                <div class="times"><span>09:00</span><span>11:00</span><span class="on">14:00</span><span>16:00</span><span>18:00</span></div>
+              </div>
+              <div class="sig"><div><span>Sinal para confirmar (50%)</span><span>R$ 144,90</span></div><div><span>Restante na retirada</span><span>R$ 144,90</span></div></div>
+              <div class="bag-btn">Encomendar e pagar o sinal</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="toast t1">
+        <span class="toast-ico">🎂</span>
+        <div><strong>Nova encomenda #46</strong><small>Sábado, 21/11 às 14:00 · retirada</small></div>
+        <b>R$ 289,80</b>
+      </div>
+      <div class="toast t2">
+        <span class="toast-ico ok">✓</span>
+        <div><strong>Sinal pago no Pix</strong><small>R$ 144,90 já na sua conta</small></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ticker" aria-label="Tipos de negócio atendidos">
+    <div class="ticker-track">
+      <span>Confeitarias</span><span>Bolos caseiros</span><span>Docerias</span><span>Doces finos</span><span>Salgados para festa</span><span>Marmitas fit</span><span>Kits festa</span><span>Bem-casados</span><span>Tortas</span><span>Cestas de café</span><span>Pães artesanais</span><span>Ovos de Páscoa</span>
+      <span aria-hidden="true">Confeitarias</span><span aria-hidden="true">Bolos caseiros</span><span aria-hidden="true">Docerias</span><span aria-hidden="true">Doces finos</span><span aria-hidden="true">Salgados para festa</span><span aria-hidden="true">Marmitas fit</span><span aria-hidden="true">Kits festa</span><span aria-hidden="true">Bem-casados</span><span aria-hidden="true">Tortas</span><span aria-hidden="true">Cestas de café</span><span aria-hidden="true">Pães artesanais</span><span aria-hidden="true">Ovos de Páscoa</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMO A ENCOMENDA CHEGA -->
+<section class="sec" id="como-chega">
+  <div class="wrap wa">
+    <div class="reveal">
+      <p class="eyebrow">Como a encomenda chega</p>
+      <h2>O cliente marca o dia sozinho. Você só confirma.</h2>
+      <p class="lead" style="margin-top:16px">Chega de perguntar "para quando é?", "retira ou entrega?" e "já mandou o sinal?". No seu cardápio de encomendas o cliente só consegue escolher os dias e horários que você atende, respeitando o seu prazo de produção.</p>
+      <ul class="checks" style="margin-top:22px">
+        <li>Antecedência mínima do seu jeito: 12 horas, 2 dias, 1 semana</li>
+        <li>Escolha os dias da semana, os horários de retirada e feche feriados e folgas</li>
+        <li>Limite de encomendas por dia: quando a agenda lota, o dia some para o cliente</li>
+        <li>Sinal de 30%, 50% ou tudo antecipado, pago no Pix direto na sua conta</li>
+      </ul>
+    </div>
+    <div class="wa-chat reveal" aria-label="Exemplo de mensagem de encomenda no WhatsApp">
+      <div class="wa-top"><img src="../assets/demo/doce-encanto.svg" alt=""><div><strong>Doce Encanto Confeitaria</strong><small>online</small></div></div>
+      <div class="wa-msg">Olá! Acabei de fazer a encomenda <b>#46</b> pelo cardápio.
+<b>Para: sábado, 21/11 às 14:00</b>
+
+1x Bolo de Chocolate com Brigadeiro · R$ 129,90
+1x Cento de Brigadeiro Gourmet · R$ 159,90
+Total: R$ 289,80 (Pix online, sinal pago)
+Sinal: R$ 144,90 (restante R$ 144,90 na retirada)
+Vou retirar na loja.
+Obs.: Escrever "Feliz aniversário, Ana" no bolo<time>10:12 ✓✓</time></div>
+      <div class="wa-reply">Oi! Encomenda confirmada para sábado às 14h 🎂</div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENDA -->
+<section class="sec sec-alt showcase" id="agenda">
+  <div class="wrap show-in">
+    <div class="show-copy reveal">
+      <p class="eyebrow">Agenda de produção</p>
+      <h2>Abra o painel e saiba o que produzir em cada dia</h2>
+      <ul class="checks">
+        <li>Encomendas dos próximos 14 dias, separadas por dia e horário</li>
+        <li>Lista "Para produzir" que soma tudo: 3 bolos, 200 brigadeiros, 1 torta</li>
+        <li>Quem já pagou o sinal e quanto falta receber na retirada</li>
+        <li>Botões Confirmar, Começar produção e Pronta, com aviso pronto para o cliente no WhatsApp</li>
+        <li>Recebeu o sinal pela chave Pix? Marque "Sinal recebido" com um toque</li>
+      </ul>
+      <a href="https://app.webtenda.com.br/cadastro?tipo=encomendas" class="btn">Quero minha agenda organizada</a>
+    </div>
+    <div class="agenda reveal" aria-label="Exemplo da agenda de encomendas">
+      <h3>Sábado, 21/11 <small>4 encomendas · R$ 1.184,30</small></h3>
+      <div class="prod">
+        <p>Para produzir</p>
+        <ul><li><b>2×</b> Bolo de Chocolate com Brigadeiro</li><li><b>3×</b> Cento de Brigadeiro Gourmet</li><li><b>1×</b> Torta de Limão</li><li><b>2×</b> Kit 5 Marmitas Fit</li></ul>
+      </div>
+      <div class="ag-row"><b>09:00</b><span>#41 · Patrícia<small>Retirada · Confirmada · sinal pago</small></span><em>R$ 228,90<small><br>falta R$ 114,45</small></em></div>
+      <div class="ag-row"><b>14:00</b><span>#46 · Ana Lima<small>Retirada · Confirmada · sinal pago</small></span><em>R$ 289,80<small><br>falta R$ 144,90</small></em></div>
+      <div class="ag-row"><b>16:00</b><span>#47 · Bruno<small>Entrega · Em produção · sinal pago</small></span><em>R$ 445,80<small><br>falta R$ 222,90</small></em></div>
+      <div class="ag-row"><b>18:00</b><span>#49 · Camila<small>Retirada · Recebida · sinal pendente</small></span><em>R$ 219,80</em></div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO -->
+<section class="sec" id="demo">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Veja funcionando</p>
+      <h2>Faça uma encomenda de teste na nossa confeitaria demo</h2>
+      <p>A Doce Encanto tem bolos, doces, salgados e marmitas da semana, com 48 horas de antecedência e sinal de 50%. Abra no celular, escolha o dia e o horário e finalize. Nada é cobrado.</p>
+    </div>
+    <div class="demos" style="grid-template-columns:minmax(0,520px);justify-content:center">
+      <a class="demo reveal" href="https://app.webtenda.com.br/loja/doce-encanto" target="_blank" rel="noopener">
+        <div class="demo-top" style="--c:#92400e;--img:url('https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?auto=format&fit=crop&w=1000&h=400&q=60')"><img src="../assets/demo/doce-encanto.svg" alt="" width="84" height="84"></div>
+        <div class="demo-body">
+          <small>Encomendas</small>
+          <h3>Doce Encanto Confeitaria</h3>
+          <p>Bolos, doces e salgados para festa com dia marcado e sinal no Pix.</p>
+          <ul><li>Cupom PRIMEIRAFESTA</li><li>R$ 15 off acima de R$ 250 com KITFESTA15</li></ul>
+          <span class="demo-go">Abrir cardápio <b>→</b></span>
+        </div>
+      </a>
+    </div>
+    <div class="demo-panel reveal">
+      <div>
+        <h3>Agora veja o painel da confeitaria</h3>
+        <p>Encomendas chegando, a agenda com a produção de cada dia, sinais pagos e pendentes, clientes e cupons.</p>
+      </div>
+      <dl>
+        <div><dt>E-mail</dt><dd><code>doces@demo.webtenda.com.br</code></dd></div>
+        <div><dt>Senha</dt><dd><code>demo1234</code></dd></div>
+      </dl>
+      <a href="https://app.webtenda.com.br/entrar" target="_blank" rel="noopener" class="btn">Entrar no painel demo</a>
+    </div>
+  </div>
+</section>
+
+<!-- RECURSOS -->
+<section class="sec sec-alt" id="recursos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Recursos</p>
+      <h2>Tudo para vender por encomenda sem perder a mão da agenda</h2>
+    </div>
+    <div class="features">
+      <article class="feat reveal">
+        <span class="feat-ico">🗓️</span>
+        <h3>Dia e horário marcados</h3>
+        <p>O cliente escolhe entre os dias e horários que você atende. Nada de encomenda para amanhã quando você precisa de três dias.</p>
+      </article>
+      <article class="feat reveal">
+        <span class="feat-ico">💠</span>
+        <h3>Sinal no Pix</h3>
+        <p>Com o Pix online ligado, o sinal cai na sua conta Asaas e a encomenda só entra na agenda depois de paga. Sem comissão da WebTenda.</p>
+      </article>
+      <article class="feat reveal">
+        <span class="feat-ico">🧁</span>
+        <h3>Lista de produção</h3>
+        <p>A agenda soma as quantidades de cada produto por dia, para você comprar os ingredientes e organizar a cozinha.</p>
+      </article>
+      <article class="feat reveal">
+        <span class="feat-ico">🛵</span>
+        <h3>Retirada ou entrega</h3>
+        <p>Retirada já vem ligada. Entrega também? Defina a taxa por bairro e mande o pedido para o seu entregador com o valor que falta cobrar.</p>
+      </article>
+      <article class="feat reveal">
+        <span class="feat-ico">💬</span>
+        <h3>Avisos prontos no WhatsApp</h3>
+        <p>"Sua encomenda está confirmada para sábado às 14h", "está pronta para retirar": um toque e a mensagem vai para o cliente.</p>
+      </article>
+      <article class="feat reveal">
+        <span class="feat-ico">🎟️</span>
+        <h3>Cupons, fidelidade e campanhas</h3>
+        <p>Cupom de primeira festa, cartão fidelidade e aviso de datas especiais (Páscoa, Dia das Mães, Natal) para quem já encomendou.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="sec" id="como-funciona">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Como começar</p>
+      <h2>Seu cardápio de encomendas no ar hoje mesmo</h2>
+    </div>
+    <ol class="steps">
+      <li class="reveal">
+        <span class="step-n">1</span>
+        <h3>Crie a conta</h3>
+        <p>Escolha "Encomendas" no cadastro. Já começamos com as categorias Bolos, Doces, Salgados e Kits festa, retirada, 48 horas de antecedência e sinal de 50%.</p>
+      </li>
+      <li class="reveal">
+        <span class="step-n">2</span>
+        <h3>Ajuste a sua agenda</h3>
+        <p>Dias da semana, horários de retirada, limite por dia e o sinal. Depois cadastre os produtos com foto e preço.</p>
+      </li>
+      <li class="reveal">
+        <span class="step-n">3</span>
+        <h3>Divulgue o link</h3>
+        <p>Na bio do Instagram, no status e nos grupos de festa. Cada encomenda já chega com data, sinal e observações.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+<!-- PLANOS -->
+<section class="sec sec-alt" id="planos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Planos</p>
+      <h2>Mensalidade fixa. Nenhuma comissão por encomenda.</h2>
+      <p>Todos os recursos em todos os planos: o que muda é o tamanho do cardápio e o volume de pedidos. Todos começam com 14 dias grátis.</p>
+    </div>
+    <div class="plans">
+      <article class="plan reveal">
+        <h3>Básico</h3>
+        <p class="plan-desc">Para quem faz encomendas em casa.</p>
+        <p class="price"><span>R$</span>49<small>,90</small><em>/mês</em></p>
+        <ul>
+          <li>Até 50 produtos no cardápio</li>
+          <li>Até 300 pedidos por mês</li>
+          <li>Agenda com dia, horário e limite</li>
+          <li>Sinal no Pix</li>
+          <li>Pix e cartão online</li>
+          <li>Cupons, fidelidade e campanhas</li>
+        </ul>
+        <a href="https://app.webtenda.com.br/cadastro?tipo=encomendas" class="btn btn-ghost btn-block">Começar grátis</a>
+      </article>
+      <article class="plan plan-pop reveal">
+        <span class="badge">Mais escolhido</span>
+        <h3>Profissional</h3>
+        <p class="plan-desc">Para a confeitaria com agenda cheia.</p>
+        <p class="price"><span>R$</span>89<small>,90</small><em>/mês</em></p>
+        <ul>
+          <li>Até 200 produtos no cardápio</li>
+          <li><strong>Pedidos ilimitados</strong></li>
+          <li>Agenda com dia, horário e limite</li>
+          <li>Sinal no Pix</li>
+          <li>Pix e cartão online</li>
+          <li>Cupons, fidelidade e campanhas</li>
+        </ul>
+        <a href="https://app.webtenda.com.br/cadastro?tipo=encomendas" class="btn btn-block">Começar grátis</a>
+      </article>
+      <article class="plan reveal">
+        <h3>Completo</h3>
+        <p class="plan-desc">Para quem também vende pronta entrega.</p>
+        <p class="price"><span>R$</span>149<small>,90</small><em>/mês</em></p>
+        <ul>
+          <li><strong>Produtos ilimitados</strong></li>
+          <li><strong>Pedidos ilimitados</strong></li>
+          <li>Agenda com dia, horário e limite</li>
+          <li>Sinal no Pix</li>
+          <li>Pix e cartão online</li>
+          <li>Cupons, fidelidade e campanhas</li>
+        </ul>
+        <a href="https://app.webtenda.com.br/cadastro?tipo=encomendas" class="btn btn-ghost btn-block">Começar grátis</a>
+      </article>
+    </div>
+    
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="duvidas">
+  <div class="wrap faq-in">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Dúvidas</p>
+      <h2>Perguntas frequentes</h2>
+    </div>
+    <div class="faq">
+      <details class="reveal"><summary>Preciso de cartão de crédito para testar?</summary><p>Não. Você cria a conta e usa por 14 dias sem pagar nada. Só escolhe a forma de pagamento se decidir continuar.</p></details>
+      <details class="reveal"><summary>A WebTenda cobra porcentagem das encomendas?</summary><p>Não. Você paga só a mensalidade do plano. O valor das encomendas é todo seu.</p></details>
+      <details class="reveal"><summary>Como o cliente paga o sinal?</summary><p>Com o Pix online ligado (conta Asaas, aberta pelo próprio painel), o QR Code do sinal aparece na hora e a encomenda só entra na sua agenda depois do pagamento. Sem o Pix online, o cliente vê a sua chave Pix com o valor do sinal e você marca "Sinal recebido" no pedido.</p></details>
+      <details class="reveal"><summary>Posso não cobrar sinal?</summary><p>Pode. Escolha "Sem sinal" e o cliente paga tudo na retirada, ou "100%" para receber tudo antes. Também dá para combinar o pagamento pelo WhatsApp.</p></details>
+      <details class="reveal"><summary>E se eu não der conta de tantas encomendas no mesmo dia?</summary><p>Defina o máximo de encomendas por dia. Quando o dia lota, ele some da agenda do cliente e ele escolhe outro.</p></details>
+      <details class="reveal"><summary>Faço marmitas da semana. Serve?</summary><p>Serve. Cadastre os kits (5 ou 10 marmitas, por exemplo) e defina os dias de retirada ou entrega. A agenda mostra quantos kits montar em cada dia.</p></details>
+      <details class="reveal"><summary>Meu cliente precisa baixar aplicativo?</summary><p>Não. O cardápio abre no navegador, a partir do seu link. Quem quiser pode instalar o atalho da sua loja na tela do celular.</p></details>
+      <details class="reveal"><summary>Também vendo pronta entrega ou tenho outro ramo. Posso usar?</summary><p>Pode. A WebTenda também atende delivery e lojas de roupa. <a href="../" style="text-decoration:underline">Veja todos os ramos</a>.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final">
+  <div class="wrap final-in reveal">
+    <h2>Sua agenda de encomendas organizada a partir de hoje.</h2>
+    <p>Crie seu cardápio agora e receba a primeira encomenda com dia marcado e sinal pago.</p>
+    <a href="https://app.webtenda.com.br/cadastro?tipo=encomendas" class="btn btn-light btn-lg">Testar grátis por 14 dias</a>
+  </div>
+</section>
+</main>
+<footer class="foot">
+  <div class="wrap foot-in">
+    <a href="#topo" class="logo logo-sm"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#ea580c"/><path d="M14 18h36l3 9H11z" fill="#fff"/><path d="M11 27a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0z" fill="#fff"/><path d="M23.25 18 21.5 27M40.75 18l1.75 9M32 18v9" stroke="#ea580c" stroke-width="2"/><path d="M15 34v12a3 3 0 0 0 3 3h28a3 3 0 0 0 3-3V34" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round"/><rect x="27" y="38" width="10" height="11" rx="2" fill="#fff"/></svg><span>Web<b>Tenda</b></span></a>
+    <nav aria-label="Rodapé">
+      <a href="#planos">Planos</a>
+      <a href="#duvidas">Dúvidas</a>
+      <a href="../">Outros ramos</a>
+      <a href="https://app.webtenda.com.br/entrar">Entrar</a>
+      <a href="https://app.webtenda.com.br/cadastro?tipo=encomendas">Criar meu cardápio</a>
+    </nav>
+    <p>© <span id="ano">2026</span> WebTenda. Encomendas online com data marcada e sinal no Pix.</p>
+  </div>
+</footer>
+
+<a href="https://app.webtenda.com.br/cadastro?tipo=encomendas" class="sticky-cta">Testar grátis por 14 dias</a>
+
+<script src="../main.js" defer></script>
+</body>
+</html>
