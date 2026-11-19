@@ -48,12 +48,12 @@
   @keyframes scrollgrid{0%,18%{transform:translateY(0)}50%,68%{transform:translateY(-38%)}100%{transform:translateY(0)}}
 
   /* Escolha do nicho */
-  .niches{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+  .niches{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
   .niche{--c:#ea580c;--cd:#c2410c;--cl:#fff1e6;display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:26px;overflow:hidden;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s}
   .niche:hover{transform:translateY(-4px);box-shadow:0 2px 4px rgba(28,25,23,.06),0 26px 50px -20px rgba(28,25,23,.3)}
   .niche.moda{--c:#9d174d;--cd:#831843;--cl:#fce7f3}
+  .niche.mesa{--c:#047857;--cd:#065f46;--cl:#d1fae5}
   .niche.doce{--c:#92400e;--cd:#78350f;--cl:#fef3c7}
-  @media (max-width:1100px){.niches{grid-template-columns:1fr 1fr}.niches .niche.doce{grid-column:1/-1}}
   .niche-top{position:relative;height:210px;background:linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,.6)),var(--img) center/cover,var(--c);display:flex;align-items:flex-end;padding:22px 26px;color:#fff}
   .niche-top span{font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--c);padding:5px 11px;border-radius:999px}
   .niche-body{padding:26px 28px 28px;display:flex;flex-direction:column;flex:1}
@@ -73,6 +73,7 @@
   .soon ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
   .soon li{font-size:.86rem;background:#f5f5f4;color:var(--ink-2);border-radius:999px;padding:6px 13px;font-weight:500}
   .soon li small{color:var(--mute);font-weight:400}
+  @media (max-width:1060px){.niches{grid-template-columns:1fr 1fr}}
   @media (max-width:900px){.niches{grid-template-columns:1fr;max-width:600px;margin:0 auto}.soon{grid-template-columns:1fr}.soon ul{justify-content:flex-start}}
 
   .demos-5{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -81,6 +82,8 @@
   .demos-5 .demo-body{padding:18px}
   .demo.is-moda .demo-go{color:#9d174d}
   .demo.is-moda .demo-body li{background:#fdf2f8;color:#831843}
+  .demo.is-mesa .demo-go{color:#047857}
+  .demo.is-mesa .demo-body li{background:#ecfdf5;color:#065f46}
   .demo.is-doce .demo-go{color:#92400e}
   .demo.is-doce .demo-body li{background:#fffbeb;color:#78350f}
   @media (max-width:760px){.demos-5{grid-template-columns:1fr 1fr}}
@@ -209,7 +212,7 @@
             <li>Use junto com o iFood: o cliente fiel pede direto, sem comissão</li>
           </ul>
           <div class="niche-act">
-            <a href="delivery/" class="btn">Ver como funciona</a>
+            <a href="delivery/" class="btn">Conhecer para delivery</a>
             <a href="https://app.webtenda.com.br/cadastro?tipo=delivery" class="btn btn-ghost">Criar cardápio</a>
           </div>
         </div>
@@ -226,8 +229,25 @@
             <li>Retirada na loja, entrega no bairro ou envio com tabela de frete própria</li>
           </ul>
           <div class="niche-act">
-            <a href="loja/" class="btn">Ver como funciona</a>
+            <a href="loja/" class="btn">Conhecer para lojas de roupa</a>
             <a href="https://app.webtenda.com.br/cadastro?tipo=loja" class="btn btn-ghost">Criar loja</a>
+          </div>
+        </div>
+      </article>
+      <article class="niche mesa reveal">
+        <div class="niche-top" style="--img:url('https://images.unsplash.com/photo-1765662120818-26dd0d6e6230?auto=format&fit=crop&w=1000&h=440&q=70')"><span>Pedido na mesa</span></div>
+        <div class="niche-body">
+          <h3>Bar e restaurante com mesas</h3>
+          <p class="niche-for">Bares, botecos, pizzarias, lanchonetes e restaurantes que atendem no salão.</p>
+          <ul>
+            <li>QR code em cada mesa, prontos para imprimir com a sua marca</li>
+            <li>O cliente pede pelo celular e o pedido chega na cozinha com o número da mesa</li>
+            <li>Chamar garçom e pedir a conta pelo celular, com aviso no painel</li>
+            <li>Conta da mesa somada sozinha, com divisão por pessoa</li>
+          </ul>
+          <div class="niche-act">
+            <a href="mesa/" class="btn">Conhecer o pedido na mesa</a>
+            <a href="https://app.webtenda.com.br/cadastro?tipo=mesa" class="btn btn-ghost">Criar mesas</a>
           </div>
         </div>
       </article>
@@ -243,7 +263,7 @@
             <li>Agenda com a lista do que produzir em cada dia</li>
           </ul>
           <div class="niche-act">
-            <a href="encomendas/" class="btn">Ver como funciona</a>
+            <a href="encomendas/" class="btn">Conhecer para encomendas</a>
             <a href="https://app.webtenda.com.br/cadastro?tipo=encomendas" class="btn btn-ghost">Criar cardápio</a>
           </div>
         </div>
@@ -409,6 +429,16 @@
           <span class="demo-go">Abrir catálogo <b>→</b></span>
         </div>
       </a>
+      <a class="demo is-mesa reveal" href="https://app.webtenda.com.br/loja/boteco-da-esquina/mesa/bar-5" target="_blank" rel="noopener">
+        <div class="demo-top" style="--c:#92400e;--img:url('https://images.unsplash.com/photo-1765662120818-26dd0d6e6230?auto=format&fit=crop&w=800&h=400&q=70')"><img src="assets/demo/boteco-da-esquina.svg" alt="" width="84" height="84"></div>
+        <div class="demo-body">
+          <small>Bar com pedido na mesa</small>
+          <h3>Boteco da Esquina</h3>
+          <p>Abra como se estivesse na Mesa 5: peça, chame o garçom e peça a conta.</p>
+          <ul><li>QR da mesa</li><li>Conta da mesa</li></ul>
+          <span class="demo-go">Sentar na Mesa 5 <b>→</b></span>
+        </div>
+      </a>
       <a class="demo is-doce reveal" href="https://app.webtenda.com.br/loja/doce-encanto" target="_blank" rel="noopener">
         <div class="demo-top" style="--c:#92400e;--img:url('https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?auto=format&fit=crop&w=800&h=400&q=70')"><img src="assets/demo/doce-encanto.svg" alt="" width="84" height="84"></div>
         <div class="demo-body">
@@ -427,7 +457,7 @@
         <p>Entre no painel de qualquer loja demo para ver pedidos chegando, clientes, cupons, fidelidade, estoque e campanhas.</p>
       </div>
       <dl>
-        <div><dt>E-mail</dt><dd><code>burger@demo.webtenda.com.br</code><small>ou pizza@, acai@, mercado@, moda@, doces@</small></dd></div>
+        <div><dt>E-mail</dt><dd><code>burger@demo.webtenda.com.br</code><small>ou pizza@, acai@, mercado@, moda@, bar@, doces@</small></dd></div>
         <div><dt>Senha</dt><dd><code>demo1234</code></dd></div>
       </dl>
       <a href="https://app.webtenda.com.br/entrar" target="_blank" rel="noopener" class="btn">Entrar no painel demo</a>
@@ -446,7 +476,7 @@
       <li class="reveal">
         <span class="step-n">1</span>
         <h3>Diga o que você vende</h3>
-        <p>No cadastro, escolha entre delivery, loja de roupas ou encomendas. A loja já nasce com as categorias e as formas de pedido do seu ramo.</p>
+        <p>No cadastro, escolha o seu ramo: delivery, pedido na mesa, loja de roupas ou encomendas. A loja já nasce com as categorias e as formas de pedido do seu ramo.</p>
       </li>
       <li class="reveal">
         <span class="step-n">2</span>
@@ -551,7 +581,7 @@
       <h2>Perguntas frequentes</h2>
     </div>
     <div class="faq">
-      <details class="reveal"><summary>Para que tipos de negócio a WebTenda serve hoje?</summary><p>Para delivery e retirada (lanchonetes, pizzarias, açaí, marmitas, padarias, mercadinhos e parecidos) e para lojas de roupa, calçados e acessórios. Veja os detalhes de cada um em <a href="delivery/" style="text-decoration:underline">WebTenda para delivery</a> e <a href="loja/" style="text-decoration:underline">WebTenda para lojas de roupa</a>.</p></details>
+      <details class="reveal"><summary>Para que tipos de negócio a WebTenda serve hoje?</summary><p>Para delivery e retirada (lanchonetes, pizzarias, açaí, marmitas, padarias, mercadinhos e parecidos), para bares e restaurantes que recebem pedido na mesa pelo QR code para lojas de roupa, calçados e acessórios e para encomendas com data marcada (confeitarias, doces, salgados e marmitas). Veja os detalhes de cada um em <a href="delivery/" style="text-decoration:underline">WebTenda para delivery</a>, <a href="mesa/" style="text-decoration:underline">pedido na mesa</a>, <a href="loja/" style="text-decoration:underline">WebTenda para lojas de roupa</a> e <a href="encomendas/" style="text-decoration:underline">encomendas</a>.</p></details>
       <details class="reveal"><summary>Meu negócio não é nenhum desses. Posso usar?</summary><p>Se você vende produtos com preço e o cliente busca ou recebe em casa, como adega, pet shop ou hortifrúti, o modo delivery costuma servir bem. Agendamento para barbearias e salões, encomendas com data marcada e catálogo para prestadores de serviço ainda estão em preparação.</p></details>
       <details class="reveal"><summary>Preciso de cartão de crédito para testar?</summary><p>Não. Você cria a loja e usa por 14 dias sem pagar nada. Só escolhe a forma de pagamento se decidir continuar.</p></details>
       <details class="reveal"><summary>A WebTenda cobra alguma porcentagem das vendas?</summary><p>Não. Você paga apenas a mensalidade do plano escolhido. O valor dos pedidos é todo seu.</p></details>
@@ -579,7 +609,9 @@
     <a href="#topo" class="logo logo-sm"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#ea580c"/><path d="M14 18h36l3 9H11z" fill="#fff"/><path d="M11 27a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0z" fill="#fff"/><path d="M23.25 18 21.5 27M40.75 18l1.75 9M32 18v9" stroke="#ea580c" stroke-width="2"/><path d="M15 34v12a3 3 0 0 0 3 3h28a3 3 0 0 0 3-3V34" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round"/><rect x="27" y="38" width="10" height="11" rx="2" fill="#fff"/></svg><span>Web<b>Tenda</b></span></a>
     <nav aria-label="Rodapé">
       <a href="delivery/">Para delivery</a>
+      <a href="mesa/">Pedido na mesa</a>
       <a href="loja/">Para lojas de roupa</a>
+      <a href="encomendas/">Encomendas</a>
       <a href="#planos">Planos</a>
       <a href="#duvidas">Dúvidas</a>
       <a href="https://app.webtenda.com.br/entrar">Entrar</a>
