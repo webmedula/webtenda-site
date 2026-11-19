@@ -54,6 +54,8 @@
   .niche.moda{--c:#9d174d;--cd:#831843;--cl:#fce7f3}
   .niche.mesa{--c:#047857;--cd:#065f46;--cl:#d1fae5}
   .niche.doce{--c:#92400e;--cd:#78350f;--cl:#fef3c7}
+  .niche.barber{--c:#1e3a8a;--cd:#172554;--cl:#dbeafe}
+  @media (min-width:901px){.niche.barber{grid-column:1/-1;flex-direction:row}.niche.barber .niche-top{width:42%;height:auto;min-height:260px;flex:none}}
   .niche-top{position:relative;height:210px;background:linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,.6)),var(--img) center/cover,var(--c);display:flex;align-items:flex-end;padding:22px 26px;color:#fff}
   .niche-top span{font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--c);padding:5px 11px;border-radius:999px}
   .niche-body{padding:26px 28px 28px;display:flex;flex-direction:column;flex:1}
@@ -76,7 +78,8 @@
   @media (max-width:1060px){.niches{grid-template-columns:1fr 1fr}}
   @media (max-width:900px){.niches{grid-template-columns:1fr;max-width:600px;margin:0 auto}.soon{grid-template-columns:1fr}.soon ul{justify-content:flex-start}}
 
-  .demos-5{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .demos-5{grid-template-columns:repeat(4,minmax(0,1fr))}
+  @media (max-width:1060px){.demos-5{grid-template-columns:repeat(3,minmax(0,1fr))}}
   .demos-5 .demo-top{height:120px}
   .demos-5 .demo-top img{width:72px;height:72px}
   .demos-5 .demo-body{padding:18px}
@@ -86,6 +89,8 @@
   .demo.is-mesa .demo-body li{background:#ecfdf5;color:#065f46}
   .demo.is-doce .demo-go{color:#92400e}
   .demo.is-doce .demo-body li{background:#fffbeb;color:#78350f}
+  .demo.is-barber .demo-go{color:#1e3a8a}
+  .demo.is-barber .demo-body li{background:#eff6ff;color:#1e3a8a}
   @media (max-width:760px){.demos-5{grid-template-columns:1fr 1fr}}
   @media (max-width:520px){.demos-5{grid-template-columns:1fr}}
 
@@ -117,6 +122,7 @@
       <a href="delivery/">Delivery</a>
       <a href="loja/">Lojas de roupa</a>
       <a href="encomendas/">Encomendas</a>
+      <a href="barbearia/">Barbearias</a>
       <a href="#demo">Ver demo</a>
       <a href="#planos">Planos</a>
       <a href="#duvidas">Dúvidas</a>
@@ -268,14 +274,30 @@
           </div>
         </div>
       </article>
+      <article class="niche barber reveal">
+        <div class="niche-top" style="--img:url('https://images.unsplash.com/photo-1759134198561-e2041049419c?auto=format&fit=crop&w=1000&h=600&q=70')"><span>Agenda online</span></div>
+        <div class="niche-body">
+          <h3>Barbearias e salões</h3>
+          <p class="niche-for">Barbearias, salões de beleza, esmalterias, sobrancelha, estética e todo serviço com hora marcada.</p>
+          <ul>
+            <li>O cliente escolhe o serviço, o profissional e o horário livre pelo seu link</li>
+            <li>Lembrete pronto no WhatsApp e confirmação de presença com um toque</li>
+            <li>Agenda do dia por profissional, faltas registradas e sinal no Pix opcional</li>
+            <li>Expediente de cada barbeiro e fechamento da comissão do mês</li>
+          </ul>
+          <div class="niche-act">
+            <a href="barbearia/" class="btn">Conhecer para barbearias</a>
+            <a href="https://app.webtenda.com.br/cadastro?tipo=barbearia" class="btn btn-ghost">Criar agenda</a>
+          </div>
+        </div>
+      </article>
     </div>
     <div class="soon reveal">
       <div>
         <h3>Em preparação</h3>
-        <p>Ainda não estão disponíveis. Estamos construindo estes modos a seguir.</p>
+        <p>Ainda não está disponível. Estamos construindo este modo.</p>
       </div>
       <ul>
-        <li>Barbearias e salões <small>· agendamento</small></li>
         <li>Prestadores de serviço <small>· catálogo</small></li>
       </ul>
     </div>
@@ -449,6 +471,16 @@
           <span class="demo-go">Abrir cardápio <b>→</b></span>
         </div>
       </a>
+      <a class="demo is-barber reveal" href="https://app.webtenda.com.br/loja/barbearia-navalha" target="_blank" rel="noopener">
+        <div class="demo-top" style="--c:#1e3a8a;--img:url('https://images.unsplash.com/photo-1759134198561-e2041049419c?auto=format&fit=crop&w=800&h=400&q=70')"><img src="assets/demo/barbearia-navalha.svg" alt="" width="84" height="84"></div>
+        <div class="demo-body">
+          <small>Barbearia</small>
+          <h3>Barbearia Navalha</h3>
+          <p>Corte, barba e degradê com o barbeiro e o horário que você escolher.</p>
+          <ul><li>3 barbeiros</li><li>Fidelidade a cada 10 cortes</li></ul>
+          <span class="demo-go">Marcar horário <b>→</b></span>
+        </div>
+      </a>
     </div>
 
     <div class="demo-panel reveal">
@@ -457,7 +489,7 @@
         <p>Entre no painel de qualquer loja demo para ver pedidos chegando, clientes, cupons, fidelidade, estoque e campanhas.</p>
       </div>
       <dl>
-        <div><dt>E-mail</dt><dd><code>burger@demo.webtenda.com.br</code><small>ou pizza@, acai@, mercado@, moda@, bar@, doces@</small></dd></div>
+        <div><dt>E-mail</dt><dd><code>burger@demo.webtenda.com.br</code><small>ou pizza@, acai@, mercado@, moda@, bar@, doces@, barbearia@</small></dd></div>
         <div><dt>Senha</dt><dd><code>demo1234</code></dd></div>
       </dl>
       <a href="https://app.webtenda.com.br/entrar" target="_blank" rel="noopener" class="btn">Entrar no painel demo</a>
@@ -476,7 +508,7 @@
       <li class="reveal">
         <span class="step-n">1</span>
         <h3>Diga o que você vende</h3>
-        <p>No cadastro, escolha o seu ramo: delivery, pedido na mesa, loja de roupas ou encomendas. A loja já nasce com as categorias e as formas de pedido do seu ramo.</p>
+        <p>No cadastro, escolha o seu ramo: delivery, pedido na mesa, loja de roupas, encomendas ou barbearia e salão. A loja já nasce com as categorias e as formas de pedido do seu ramo.</p>
       </li>
       <li class="reveal">
         <span class="step-n">2</span>
@@ -581,8 +613,8 @@
       <h2>Perguntas frequentes</h2>
     </div>
     <div class="faq">
-      <details class="reveal"><summary>Para que tipos de negócio a WebTenda serve hoje?</summary><p>Para delivery e retirada (lanchonetes, pizzarias, açaí, marmitas, padarias, mercadinhos e parecidos), para bares e restaurantes que recebem pedido na mesa pelo QR code para lojas de roupa, calçados e acessórios e para encomendas com data marcada (confeitarias, doces, salgados e marmitas). Veja os detalhes de cada um em <a href="delivery/" style="text-decoration:underline">WebTenda para delivery</a>, <a href="mesa/" style="text-decoration:underline">pedido na mesa</a>, <a href="loja/" style="text-decoration:underline">WebTenda para lojas de roupa</a> e <a href="encomendas/" style="text-decoration:underline">encomendas</a>.</p></details>
-      <details class="reveal"><summary>Meu negócio não é nenhum desses. Posso usar?</summary><p>Se você vende produtos com preço e o cliente busca ou recebe em casa, como adega, pet shop ou hortifrúti, o modo delivery costuma servir bem. Agendamento para barbearias e salões, encomendas com data marcada e catálogo para prestadores de serviço ainda estão em preparação.</p></details>
+      <details class="reveal"><summary>Para que tipos de negócio a WebTenda serve hoje?</summary><p>Para delivery e retirada (lanchonetes, pizzarias, açaí, marmitas, padarias, mercadinhos e parecidos), para bares e restaurantes que recebem pedido na mesa pelo QR code, para lojas de roupa, calçados e acessórios, para encomendas com data marcada (confeitarias, doces, salgados e marmitas) e para barbearias e salões com agenda online. Veja os detalhes de cada um em <a href="delivery/" style="text-decoration:underline">WebTenda para delivery</a>, <a href="mesa/" style="text-decoration:underline">pedido na mesa</a>, <a href="loja/" style="text-decoration:underline">WebTenda para lojas de roupa</a>, <a href="encomendas/" style="text-decoration:underline">encomendas</a> e <a href="barbearia/" style="text-decoration:underline">barbearias</a>.</p></details>
+      <details class="reveal"><summary>Meu negócio não é nenhum desses. Posso usar?</summary><p>Se você vende produtos com preço e o cliente busca ou recebe em casa, como adega, pet shop ou hortifrúti, o modo delivery costuma servir bem. Se você atende com hora marcada, como manicure, estética ou tatuagem, o modo barbearia e salão serve. O catálogo para prestadores de serviço ainda está em preparação.</p></details>
       <details class="reveal"><summary>Preciso de cartão de crédito para testar?</summary><p>Não. Você cria a loja e usa por 14 dias sem pagar nada. Só escolhe a forma de pagamento se decidir continuar.</p></details>
       <details class="reveal"><summary>A WebTenda cobra alguma porcentagem das vendas?</summary><p>Não. Você paga apenas a mensalidade do plano escolhido. O valor dos pedidos é todo seu.</p></details>
       <details class="reveal"><summary>Como recebo o pagamento dos pedidos?</summary><p>Do jeito que preferir. Com o pagamento online ativado, o cliente paga por Pix ou cartão e o dinheiro cai na sua própria conta no Asaas, que você abre pelo painel, com a tarifa do Asaas por transação. Também dá para receber na entrega ou no balcão, ou combinar pelo WhatsApp.</p></details>
@@ -612,6 +644,7 @@
       <a href="mesa/">Pedido na mesa</a>
       <a href="loja/">Para lojas de roupa</a>
       <a href="encomendas/">Encomendas</a>
+      <a href="barbearia/">Barbearias</a>
       <a href="#planos">Planos</a>
       <a href="#duvidas">Dúvidas</a>
       <a href="https://app.webtenda.com.br/entrar">Entrar</a>

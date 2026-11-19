@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WebTenda para barbearias e salões: agenda online, lembrete no WhatsApp e fim dos furos</title>
+<meta name="description" content="Agenda online para barbearias e salões: o cliente escolhe o serviço, o barbeiro e o horário pelo link, recebe lembrete no WhatsApp e confirma presença. Comissão de cada profissional, sinal no Pix, fidelidade e app no celular. Mensalidade fixa, sem comissão. Teste grátis por 14 dias.">
+<meta property="og:title" content="Agenda online para barbearia, com lembrete no WhatsApp e sem comissão">
+<meta property="og:description" content="O cliente marca sozinho com o barbeiro que quiser, recebe lembrete e confirma presença. Você vê a agenda de cada um e fecha a comissão do mês.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://webtenda.com.br/barbearia/">
+<meta property="og:image" content="https://webtenda.com.br/assets/og.png">
+<meta name="theme-color" content="#1e3a8a">
+<link rel="canonical" href="https://webtenda.com.br/barbearia/">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<style>
+  /* Tema da página de barbearias: mesma base do site, azul marinho. */
+  :root{--brand:#1e3a8a;--brand-d:#172554;--brand-l:#dbeafe;--brand-50:#eff6ff;--bg:#fafbff;--alt:#eef2fb;--dark:#0b1229}
+  .btn:hover{box-shadow:0 8px 20px -8px rgba(30,58,138,.55)}
+  .btn:focus-visible,a:focus-visible,summary:focus-visible{outline-color:#60a5fa}
+  .phone{box-shadow:0 40px 80px -30px rgba(23,37,84,.55),inset 0 0 0 2px #334155}
+  .hero h1 em::after{background:#bfdbfe}
+  .blob{background:radial-gradient(closest-side,#bfdbfe,rgba(191,219,254,0))}
+  .plan-pop li::before{color:#93c5fd}
+  .faq details[open]{border-color:#60a5fa}
+  .final-in{background:linear-gradient(135deg,#1d4ed8,#172554)}
+  .final-in p{color:#dbeafe}
+
+  /* Celular com a agenda online em HTML */
+  .bk{height:100%;overflow:hidden;background:#fff;font-family:var(--sans);font-size:11px;color:var(--ink)}
+  .bk-head{background:var(--brand);color:#fff;padding:34px 14px 14px;display:flex;align-items:center;gap:10px}
+  .bk-head img{width:38px;height:38px;border-radius:12px;background:#fff}
+  .bk-head strong{display:block;font-size:13px;font-family:var(--display)}
+  .bk-head small{opacity:.85;font-size:10px}
+  .bk-in{padding:12px;display:grid;gap:10px}
+  .bk-in > p{font-weight:700;font-size:11.5px}
+  .svc{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:10px;padding:6px}
+  .svc.on{border-color:var(--brand);background:var(--brand-50)}
+  .svc i{width:34px;height:34px;border-radius:8px;background:#e2e8f0 center/cover no-repeat;flex:none}
+  .svc b{flex:1;font-weight:600;line-height:1.25}
+  .svc b small{display:block;font-weight:400;color:var(--mute);font-size:9.5px}
+  .svc span{font-weight:700}
+  .pros{display:flex;gap:6px}
+  .pros span{flex:1;text-align:center;border:1px solid var(--line);border-radius:10px;padding:6px 2px;font-weight:600;font-size:10px}
+  .pros span i{display:grid;place-items:center;width:26px;height:26px;margin:0 auto 3px;border-radius:50%;background:#e2e8f0;font-style:normal;font-size:9px;font-weight:700;color:#334155}
+  .pros span.on{border-color:var(--brand);background:var(--brand-50)}
+  .pros span.on i{background:var(--brand);color:#fff}
+  .days{display:flex;gap:6px}
+  .days span{flex:none;width:40px;padding:5px 0;border-radius:9px;background:#fff;border:1px solid var(--line);text-align:center;line-height:1.2}
+  .days span small{display:block;font-size:8px;font-weight:700;color:var(--mute);text-transform:uppercase}
+  .days span b{font-size:11px}
+  .days span.on{background:var(--brand);border-color:var(--brand);color:#fff}
+  .days span.on small{color:#bfdbfe}
+  .times{display:flex;gap:5px;flex-wrap:wrap}
+  .times span{padding:4px 9px;border-radius:99px;background:#fff;border:1px solid var(--line);font-weight:600}
+  .times span.on{background:var(--brand);border-color:var(--brand);color:#fff}
+  .bk-btn{background:var(--brand);color:#fff;font-weight:700;border-radius:10px;padding:10px;display:flex;justify-content:space-between}
+
+  /* Lembrete no WhatsApp */
+  .wa{display:grid;gap:40px;align-items:center}
+  @media (min-width:900px){.wa{grid-template-columns:1fr 1fr}}
+  .wa-chat{background:#efeae2;border-radius:var(--r);padding:22px;box-shadow:var(--shadow);max-width:440px;justify-self:center;width:100%}
+  .wa-top{display:flex;align-items:center;gap:10px;margin:-22px -22px 18px;padding:14px 18px;background:#075e54;color:#fff;border-radius:var(--r) var(--r) 0 0}
+  .wa-top img{width:34px;height:34px;border-radius:50%;background:#fff}
+  .wa-top small{display:block;opacity:.8;font-size:.75rem}
+  .wa-msg{background:#d9fdd3;border-radius:12px 0 12px 12px;padding:12px 14px;font-size:.88rem;line-height:1.5;margin-left:auto;max-width:92%;white-space:pre-line;box-shadow:0 1px 1px rgba(0,0,0,.08)}
+  .wa-msg time{display:block;text-align:right;font-size:.7rem;color:#667781;margin-top:4px}
+  .wa-reply{background:#fff;border-radius:0 12px 12px 12px;padding:10px 14px;font-size:.88rem;margin-top:10px;max-width:80%;box-shadow:0 1px 1px rgba(0,0,0,.08)}
+
+  /* Agenda do dia por profissional */
+  .grid-ag{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
+  .grid-ag h3{font-family:var(--display);font-size:1.15rem;display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:10px}
+  .grid-ag h3 small{font-family:var(--sans);font-weight:500;font-size:.8rem;color:var(--mute)}
+  .cols{display:grid;grid-template-columns:38px repeat(3,1fr);gap:6px;font-size:.75rem}
+  .cols .hd{font-weight:700;text-align:center;padding-bottom:4px;border-bottom:1px solid var(--line)}
+  .cols .hrs{display:grid;grid-template-rows:repeat(6,66px);color:var(--mute)}
+  .col{position:relative;display:grid;grid-template-rows:repeat(12,32px);gap:2px;background:repeating-linear-gradient(to bottom,transparent 0 65px,var(--line) 65px 66px)}
+  .ap{border-radius:7px;padding:3px 6px;line-height:1.15;font-size:.7rem;overflow:hidden;border-left:3px solid}
+  .ap b{display:block;font-weight:600}
+  .ap.c{background:#dbeafe;border-color:#1d4ed8}
+  .ap.d{background:#dcfce7;border-color:#16a34a}
+  .ap.w{background:#fef3c7;border-color:#d97706}
+  .ap.x{background:#fee2e2;border-color:#dc2626;text-decoration:line-through;color:#991b1b}
+  .ap.br{background:repeating-linear-gradient(45deg,#f1f5f9 0 6px,#e2e8f0 6px 12px);border-color:#94a3b8;color:#64748b}
+  .legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;font-size:.75rem;color:var(--mute)}
+  .legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:-1px}
+
+  /* Fechamento do mês */
+  .close{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow);font-size:.9rem}
+  .close h3{font-family:var(--display);font-size:1.15rem;margin-bottom:10px}
+  .close table{width:100%;border-collapse:collapse}
+  .close th{text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--mute);font-weight:600;padding:6px 0}
+  .close td{padding:9px 0;border-top:1px solid var(--line)}
+  .close td:not(:first-child),.close th:not(:first-child){text-align:right}
+  .close td small{color:#dc2626}
+</style>
+</head>
+<body>
+<header class="nav" id="topo">
+  <div class="wrap nav-in">
+    <a href="#topo" class="logo" aria-label="WebTenda, início">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#ea580c"/><path d="M14 18h36l3 9H11z" fill="#fff"/><path d="M11 27a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0z" fill="#fff"/><path d="M23.25 18 21.5 27M40.75 18l1.75 9M32 18v9" stroke="#ea580c" stroke-width="2"/><path d="M15 34v12a3 3 0 0 0 3 3h28a3 3 0 0 0 3-3V34" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round"/><rect x="27" y="38" width="10" height="11" rx="2" fill="#fff"/></svg>
+      <span>Web<b>Tenda</b></span>
+    </a>
+    <nav class="nav-links" aria-label="Seções">
+      <a href="#lembrete">Como funciona</a>
+      <a href="#demo">Ver demo</a>
+      <a href="#planos">Planos</a>
+      <a href="#duvidas">Dúvidas</a>
+      <a href="../">Outros ramos</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="https://app.webtenda.com.br/entrar" class="btn btn-ghost">Entrar</a>
+      <a href="https://app.webtenda.com.br/cadastro?tipo=barbearia" class="btn">Criar minha agenda</a>
+    </div>
+  </div>
+</header>
+<main>
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-in">
+    <div class="hero-copy">
+      <p class="eyebrow reveal">Para barbearias, salões e esmalterias</p>
+      <h1 class="reveal">Sua agenda cheia, <em>sem furo</em> e sem ficar no WhatsApp.</h1>
+      <p class="lead reveal">O cliente abre o seu link, escolhe o serviço, o barbeiro e o horário livre e pronto. Na véspera você manda o lembrete com um toque, ele confirma presença e você sabe quem vem. Mensalidade fixa, sem comissão por atendimento.</p>
+      <div class="hero-actions reveal">
+        <a href="https://app.webtenda.com.br/cadastro?tipo=barbearia" class="btn btn-lg">Testar grátis por 14 dias</a>
+        <a href="#demo" class="btn btn-ghost btn-lg">Ver a barbearia demo</a>
+      </div>
+      <ul class="hero-proof reveal">
+        <li>Sem cartão para começar</li>
+        <li>Sem comissão por agendamento</li>
+        <li>Cancele quando quiser</li>
+      </ul>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="blob"></div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="bk">
+            <div class="bk-head"><img src="../assets/demo/barbearia-navalha.svg" alt=""><div><strong>Barbearia Navalha</strong><small>Agende com o seu barbeiro</small></div></div>
+            <div class="bk-in">
+              <div class="svc on"><i style="background-image:url('https://images.unsplash.com/photo-1783908688260-0c47404926f3?auto=format&fit=crop&w=300&h=300&q=60')"></i><b>Corte + barba<small>1h</small></b><span>R$ 70,00</span></div>
+              <div class="svc"><i style="background-image:url('https://images.unsplash.com/photo-1788328155052-e02abe9ba983?auto=format&fit=crop&w=300&h=300&q=60')"></i><b>Degradê (fade)<small>40 min</small></b><span>R$ 45,00</span></div>
+              <p>Com quem?</p>
+              <div class="pros"><span><i>✱</i>Qualquer um</span><span><i>RN</i>Rafael</span><span class="on"><i>DS</i>Diego</span><span><i>LC</i>Léo</span></div>
+              <p>Quando?</p>
+              <div class="days"><span><small>qui</small><b>19</b></span><span class="on"><small>sex</small><b>20</b></span><span><small>sáb</small><b>21</b></span><span><small>ter</small><b>24</b></span><span><small>qua</small><b>25</b></span></div>
+              <div class="times"><span>10:00</span><span>11:30</span><span class="on">14:00</span><span>15:00</span><span>17:30</span><span>19:00</span></div>
+              <div class="bk-btn"><span>Agendar sex, 14:00</span><span>R$ 70,00</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="toast t1">
+        <span class="toast-ico">💈</span>
+        <div><strong>Novo agendamento</strong><small>Sexta, 20/11 às 14:00 · Diego</small></div>
+        <b>R$ 70,00</b>
+      </div>
+      <div class="toast t2">
+        <span class="toast-ico ok">✓</span>
+        <div><strong>Lucas confirmou presença</strong><small>Amanhã às 9:30 com Rafael</small></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ticker" aria-label="Tipos de negócio atendidos">
+    <div class="ticker-track">
+      <span>Barbearias</span><span>Salões de beleza</span><span>Esmalterias</span><span>Design de sobrancelha</span><span>Estética</span><span>Barbearia clássica</span><span>Tranças</span><span>Massagem</span><span>Studio de tatuagem</span><span>Cílios</span><span>Depilação</span><span>Podologia</span><span aria-hidden="true">Barbearias</span><span aria-hidden="true">Salões de beleza</span><span aria-hidden="true">Esmalterias</span><span aria-hidden="true">Design de sobrancelha</span><span aria-hidden="true">Estética</span><span aria-hidden="true">Barbearia clássica</span><span aria-hidden="true">Tranças</span><span aria-hidden="true">Massagem</span><span aria-hidden="true">Studio de tatuagem</span><span aria-hidden="true">Cílios</span><span aria-hidden="true">Depilação</span><span aria-hidden="true">Podologia</span>
+    </div>
+  </div>
+</section>
+
+<!-- LEMBRETE -->
+<section class="sec" id="lembrete">
+  <div class="wrap wa">
+    <div class="reveal">
+      <p class="eyebrow">Fim dos furos</p>
+      <h2>Lembrete na véspera e o cliente confirma com um toque.</h2>
+      <p class="lead" style="margin-top:16px">Todo dia a agenda separa quem tem horário hoje e amanhã. Um toque abre o WhatsApp do cliente com a mensagem pronta e o link do agendamento, onde ele confirma presença, coloca na agenda do celular ou cancela dentro do seu prazo.</p>
+      <ul class="checks" style="margin-top:22px">
+        <li>Quem confirmou aparece marcado na sua agenda</li>
+        <li>Cancelou pelo link? O horário volta a ficar livre para outro cliente</li>
+        <li>Cada falta fica registrada: você vê "faltou 2x" antes de marcar de novo</li>
+        <li>Sinal no Pix opcional para garantir o horário de quem costuma furar</li>
+      </ul>
+    </div>
+    <div class="wa-chat reveal" aria-label="Exemplo de lembrete no WhatsApp">
+      <div class="wa-top"><img src="../assets/demo/barbearia-navalha.svg" alt=""><div><strong>Barbearia Navalha</strong><small>online</small></div></div>
+      <div class="wa-msg">Oi, Lucas! Passando para lembrar do seu horário na <b>Barbearia Navalha</b>:
+<b>amanhã, sexta 20/11, às 14:00</b>
+Corte + barba com Diego
+
+Confirma que vem? Toque aqui para confirmar ou desmarcar:
+app.webtenda.com.br/loja/barbearia-navalha/agendamento/…<time>18:05 ✓✓</time></div>
+      <div class="wa-reply">Confirmado! Até amanhã 👊</div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENDA -->
+<section class="sec sec-alt showcase" id="agenda">
+  <div class="wrap show-in">
+    <div class="show-copy reveal">
+      <p class="eyebrow">Agenda por profissional</p>
+      <h2>Veja o dia de cada barbeiro numa tela só</h2>
+      <ul class="checks">
+        <li>Uma coluna por profissional, com expediente, intervalo e folgas de cada um</li>
+        <li>Serviços com duração: corte 30 min, platinado 2h. A agenda só oferece horário que cabe</li>
+        <li>Marque Atendido, Faltou ou Cancelar com um toque</li>
+        <li>Cliente ligou ou chegou no balcão? Agende pelo painel, até como encaixe</li>
+        <li>Bloqueie folga, médico ou feriado e o horário some para o cliente</li>
+      </ul>
+      <a href="https://app.webtenda.com.br/cadastro?tipo=barbearia" class="btn">Quero minha agenda organizada</a>
+    </div>
+    <div class="grid-ag reveal" aria-label="Exemplo da agenda do dia">
+      <h3>Sexta, 20/11 <small>14 horários · R$ 785,00</small></h3>
+      <div class="cols">
+        <div></div><div class="hd">Rafael</div><div class="hd">Diego</div><div class="hd">Léo</div>
+        <div class="hrs"><span>09h</span><span>10h</span><span>11h</span><span>12h</span><span>13h</span><span>14h</span></div>
+        <div class="col">
+          <div class="ap d" style="grid-row:1/3"><b>Lucas</b>Corte + barba</div>
+          <div class="ap c" style="grid-row:3/4"><b>Paulo</b>Corte</div>
+          <div class="ap w" style="grid-row:5/7"><b>Marcos ✓</b>Degradê</div>
+          <div class="ap br" style="grid-row:7/9">Intervalo</div>
+          <div class="ap c" style="grid-row:9/11"><b>Thiago</b>Corte + barba</div>
+        </div>
+        <div class="col">
+          <div class="ap br" style="grid-row:1/3">Fora do expediente</div>
+          <div class="ap c" style="grid-row:3/5"><b>André ✓</b>Barba toalha quente</div>
+          <div class="ap x" style="grid-row:5/6"><b>Felipe</b>faltou</div>
+          <div class="ap c" style="grid-row:6/8"><b>Bruno</b>Corte + barba</div>
+          <div class="ap br" style="grid-row:9/11">Intervalo</div>
+          <div class="ap c" style="grid-row:11/13"><b>Lucas</b>Corte + barba</div>
+        </div>
+        <div class="col">
+          <div class="ap d" style="grid-row:1/2"><b>Enzo</b>Infantil</div>
+          <div class="ap c" style="grid-row:2/6"><b>Rodrigo ✓</b>Platinado</div>
+          <div class="ap br" style="grid-row:7/9">Intervalo</div>
+          <div class="ap c" style="grid-row:9/10"><b>Caio</b>Pezinho</div>
+          <div class="ap c" style="grid-row:10/12"><b>Gustavo</b>Degradê</div>
+        </div>
+      </div>
+      <div class="legend"><span><i style="background:#dbeafe"></i>Agendado</span><span><i style="background:#fef3c7"></i>Em atendimento</span><span><i style="background:#dcfce7"></i>Atendido</span><span><i style="background:#fee2e2"></i>Faltou</span><span>✓ confirmou presença</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMISSÃO -->
+<section class="sec showcase" id="comissao">
+  <div class="wrap show-in">
+    <div class="close reveal" aria-label="Exemplo do fechamento do mês">
+      <h3>Fechamento de outubro</h3>
+      <table>
+        <thead><tr><th>Profissional</th><th>Atend.</th><th>Faturou</th><th>Comissão</th></tr></thead>
+        <tbody>
+          <tr><td>Rafael Navalha</td><td>142</td><td>R$ 7.640</td><td>dono</td></tr>
+          <tr><td>Diego Santos<br><small>2 faltas</small></td><td>128</td><td>R$ 6.910</td><td>R$ 3.455 (50%)</td></tr>
+          <tr><td>Léo Carvalho<br><small>1 falta</small></td><td>97</td><td>R$ 4.120</td><td>R$ 1.648 (40%)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="show-copy reveal">
+      <p class="eyebrow">Equipe e comissão</p>
+      <h2>A comissão do mês sai sozinha</h2>
+      <ul class="checks">
+        <li>Cadastre cada profissional com foto, expediente, intervalo e os serviços que faz</li>
+        <li>Defina a porcentagem de comissão de cada um</li>
+        <li>No fim do mês, veja atendimentos, faturamento, comissão e faltas por profissional</li>
+        <li>O cliente pode escolher o barbeiro ou deixar "qualquer um", e a agenda distribui</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO -->
+<section class="sec sec-alt" id="demo">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Veja funcionando</p>
+      <h2>Marque um horário de teste na nossa barbearia demo</h2>
+      <p>A Barbearia Navalha tem 3 barbeiros, 12 serviços e a agenda já movimentada. Abra no celular, escolha o serviço, o barbeiro e o horário e confirme. Nada é cobrado.</p>
+    </div>
+    <div class="demos" style="grid-template-columns:minmax(0,520px);justify-content:center">
+      <a class="demo reveal" href="https://app.webtenda.com.br/loja/barbearia-navalha" target="_blank" rel="noopener">
+        <div class="demo-top" style="--c:#1e3a8a;--img:url('https://images.unsplash.com/photo-1759134198561-e2041049419c?auto=format&fit=crop&w=1000&h=400&q=60')"><img src="../assets/demo/barbearia-navalha.svg" alt="" width="84" height="84"></div>
+        <div class="demo-body">
+          <small>Barbearia</small>
+          <h3>Barbearia Navalha</h3>
+          <p>Corte, barba e degradê com hora marcada. Escolha o barbeiro e o horário.</p>
+          <ul><li>Cupom PRIMEIROCORTE</li><li>A cada 10 cortes, R$ 40 de desconto</li></ul>
+          <span class="demo-go">Abrir agenda <b>→</b></span>
+        </div>
+      </a>
+    </div>
+    <div class="demo-panel reveal">
+      <div>
+        <h3>Agora veja o painel da barbearia</h3>
+        <p>A agenda do dia por barbeiro, lembretes para enviar, faltas, clientes fiéis e o fechamento da comissão.</p>
+      </div>
+      <dl>
+        <div><dt>E-mail</dt><dd><code>barbearia@demo.webtenda.com.br</code></dd></div>
+        <div><dt>Senha</dt><dd><code>demo1234</code></dd></div>
+      </dl>
+      <a href="https://app.webtenda.com.br/entrar" target="_blank" rel="noopener" class="btn">Entrar no painel demo</a>
+    </div>
+  </div>
+</section>
+
+<!-- RECURSOS -->
+<section class="sec" id="recursos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Recursos</p>
+      <h2>Tudo o que a barbearia precisa, sem pagar por agendamento</h2>
+    </div>
+    <div class="features">
+      <article class="feat reveal">
+        <span class="feat-ico">📅</span>
+        <h3>Agenda online 24 horas</h3>
+        <p>O cliente marca de madrugada, no domingo, quando quiser. Só aparecem horários livres, dentro da antecedência e do prazo que você define.</p>
+      </article>
+      <article class="feat reveal">
+        <span class="feat-ico">💬</span>
+        <h3>Lembrete e confirmação</h3>
+        <p>Lembrete pronto no WhatsApp, link para confirmar presença, botão para salvar na agenda do celular e cancelamento dentro do seu prazo.</p>
+      </article>
+      <article class="feat reveal">
+        <span class="feat-ico">💠</span>
+        <h3>Sinal ou pagamento no Pix</h3>
+        <p>Peça 30%, 50% ou tudo antecipado. Com o Pix online, o dinheiro cai na sua conta e o horário só é garantido depois do pagamento. Sem comissão da WebTenda.</p>
+      </article>
+      <article class="feat reveal">
+        <span class="feat-ico">⭐</span>
+        <h3>Fidelidade de verdade</h3>
+        <p>"A cada 10 cortes, ganhe R$ 40." O cartão fidelidade conta sozinho e o cliente vê quanto falta no próprio celular.</p>
+      </article>
+      <article class="feat reveal">
+        <span class="feat-ico">📣</span>
+        <h3>Traga o cliente de volta</h3>
+        <p>Veja quem sumiu há mais de 30 dias e mande uma campanha com cupom pelo WhatsApp. Cada cliente tem histórico de cortes e faltas.</p>
+      </article>
+      <article class="feat reveal">
+        <span class="feat-ico">📱</span>
+        <h3>App da barbearia no celular</h3>
+        <p>O cliente instala o atalho com o seu logo na tela do celular e marca o próximo corte em segundos, sem baixar nada na loja de apps.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="sec sec-alt" id="como-funciona">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Como começar</p>
+      <h2>Sua agenda online no ar hoje mesmo</h2>
+    </div>
+    <ol class="steps">
+      <li class="reveal">
+        <span class="step-n">1</span>
+        <h3>Crie a conta</h3>
+        <p>Escolha "Barbearia e salão" no cadastro. Já começamos com você como profissional e os serviços Corte, Barba e Corte + barba.</p>
+      </li>
+      <li class="reveal">
+        <span class="step-n">2</span>
+        <h3>Monte a equipe e os serviços</h3>
+        <p>Cadastre os barbeiros com o expediente de cada um, ajuste preços e durações e as regras da agenda.</p>
+      </li>
+      <li class="reveal">
+        <span class="step-n">3</span>
+        <h3>Divulgue o link</h3>
+        <p>Na bio do Instagram, no status e na resposta automática do WhatsApp. O cliente marca sozinho e você só atende.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+<!-- PLANOS -->
+<section class="sec sec-alt" id="planos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Planos</p>
+      <h2>Mensalidade fixa. Nenhuma comissão por agendamento.</h2>
+      <p>Todos os recursos em todos os planos: com quantos profissionais você tiver. O que muda é o número de serviços e o volume de agendamentos. Todos começam com 14 dias grátis.</p>
+    </div>
+    <div class="plans">
+      <article class="plan reveal">
+        <h3>Básico</h3>
+        <p class="plan-desc">Para o barbeiro que atende sozinho.</p>
+        <p class="price"><span>R$</span>49<small>,90</small><em>/mês</em></p>
+        <ul>
+          <li>Até 50 serviços e produtos</li>
+          <li>Até 300 agendamentos por mês</li>
+          <li>Agenda por profissional e comissão</li>
+          <li>Lembrete e confirmação no WhatsApp</li>
+          <li>Sinal no Pix e cartão online</li>
+          <li>Cupons, fidelidade e campanhas</li>
+        </ul>
+        <a href="https://app.webtenda.com.br/cadastro?tipo=barbearia" class="btn btn-ghost btn-block">Começar grátis</a>
+      </article>
+      <article class="plan plan-pop reveal">
+        <span class="badge">Mais escolhido</span>
+        <h3>Profissional</h3>
+        <p class="plan-desc">Para a barbearia com equipe e agenda cheia.</p>
+        <p class="price"><span>R$</span>89<small>,90</small><em>/mês</em></p>
+        <ul>
+          <li>Até 200 serviços e produtos</li>
+          <li><strong>Agendamentos ilimitados</strong></li>
+          <li>Agenda por profissional e comissão</li>
+          <li>Lembrete e confirmação no WhatsApp</li>
+          <li>Sinal no Pix e cartão online</li>
+          <li>Cupons, fidelidade e campanhas</li>
+        </ul>
+        <a href="https://app.webtenda.com.br/cadastro?tipo=barbearia" class="btn btn-block">Começar grátis</a>
+      </article>
+      <article class="plan reveal">
+        <h3>Completo</h3>
+        <p class="plan-desc">Para quem também vende produtos.</p>
+        <p class="price"><span>R$</span>149<small>,90</small><em>/mês</em></p>
+        <ul>
+          <li><strong>Serviços e produtos ilimitados</strong></li>
+          <li><strong>Agendamentos ilimitados</strong></li>
+          <li>Agenda por profissional e comissão</li>
+          <li>Lembrete e confirmação no WhatsApp</li>
+          <li>Sinal no Pix e cartão online</li>
+          <li>Cupons, fidelidade e campanhas</li>
+        </ul>
+        <a href="https://app.webtenda.com.br/cadastro?tipo=barbearia" class="btn btn-ghost btn-block">Começar grátis</a>
+      </article>
+    </div>
+    
+  </div>
+</section>
+
+
+<!-- FAQ -->
+<section class="sec" id="duvidas">
+  <div class="wrap faq-in">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Dúvidas</p>
+      <h2>Perguntas frequentes</h2>
+    </div>
+    <div class="faq">
+      <details class="reveal"><summary>Preciso de cartão de crédito para testar?</summary><p>Não. Você cria a conta e usa por 14 dias sem pagar nada. Só escolhe a forma de pagamento se decidir continuar.</p></details>
+      <details class="reveal"><summary>A WebTenda cobra por agendamento ou por profissional?</summary><p>Não. Você paga só a mensalidade do plano, com quantos barbeiros quiser. O valor dos atendimentos é todo seu.</p></details>
+      <details class="reveal"><summary>O lembrete é enviado sozinho?</summary><p>O lembrete sai do WhatsApp da própria barbearia: a agenda mostra quem tem horário hoje e amanhã e, com um toque, abre a conversa com a mensagem pronta. Assim o cliente recebe do número que ele já conhece, sem custo extra.</p></details>
+      <details class="reveal"><summary>E se o cliente faltar?</summary><p>Marque "Faltou" e fica registrado no histórico dele. Na próxima vez você vê quantas vezes ele faltou. Para quem fura muito, você pode exigir sinal no Pix para garantir o horário.</p></details>
+      <details class="reveal"><summary>O cliente consegue cancelar sozinho?</summary><p>Consegue, pelo link do agendamento, até o prazo que você escolher (por exemplo, até 2 horas antes). Também dá para não permitir o cancelamento pelo link.</p></details>
+      <details class="reveal"><summary>Cada barbeiro tem um horário diferente. Funciona?</summary><p>Funciona. Cada profissional tem o seu expediente por dia da semana, intervalo de almoço, folgas e os serviços que faz. A agenda só oferece horários em que ele está livre.</p></details>
+      <details class="reveal"><summary>Serve para salão de beleza, esmalteria ou estética?</summary><p>Serve. Qualquer negócio que atende com hora marcada e profissional: salão, manicure, sobrancelha, estética, massagem, tatuagem.</p></details>
+      <details class="reveal"><summary>Meu cliente precisa baixar aplicativo?</summary><p>Não. A agenda abre no navegador, a partir do seu link. Quem quiser pode instalar o atalho da barbearia na tela do celular.</p></details>
+      <details class="reveal"><summary>Também vendo produtos ou tenho outro ramo. Posso usar?</summary><p>Pode. A WebTenda também atende delivery, lojas de roupa e encomendas. <a href="../" style="text-decoration:underline">Veja todos os ramos</a>.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final">
+  <div class="wrap final-in reveal">
+    <h2>Cadeira ocupada e cliente que aparece.</h2>
+    <p>Crie sua agenda online agora e receba o primeiro agendamento ainda hoje.</p>
+    <a href="https://app.webtenda.com.br/cadastro?tipo=barbearia" class="btn btn-light btn-lg">Testar grátis por 14 dias</a>
+  </div>
+</section>
+</main>
+<footer class="foot">
+  <div class="wrap foot-in">
+    <a href="#topo" class="logo logo-sm"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#ea580c"/><path d="M14 18h36l3 9H11z" fill="#fff"/><path d="M11 27a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0z" fill="#fff"/><path d="M23.25 18 21.5 27M40.75 18l1.75 9M32 18v9" stroke="#ea580c" stroke-width="2"/><path d="M15 34v12a3 3 0 0 0 3 3h28a3 3 0 0 0 3-3V34" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round"/><rect x="27" y="38" width="10" height="11" rx="2" fill="#fff"/></svg><span>Web<b>Tenda</b></span></a>
+    <nav aria-label="Rodapé">
+      <a href="#planos">Planos</a>
+      <a href="#duvidas">Dúvidas</a>
+      <a href="../">Outros ramos</a>
+      <a href="https://app.webtenda.com.br/entrar">Entrar</a>
+      <a href="https://app.webtenda.com.br/cadastro?tipo=barbearia">Criar minha agenda</a>
+    </nav>
+    <p>© <span id="ano">2026</span> WebTenda. Agenda online para barbearias e salões.</p>
+  </div>
+</footer>
+
+<a href="https://app.webtenda.com.br/cadastro?tipo=barbearia" class="sticky-cta">Testar grátis por 14 dias</a>
+
+<script src="../main.js" defer></script>
+</body>
+</html>
+
