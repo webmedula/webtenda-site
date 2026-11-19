@@ -26,7 +26,7 @@ O rsync não apaga arquivos no servidor (o `.well-known` do SSL fica intacto); p
 - Preços e limites dos planos: seção "PLANOS" no `index.html` (iguais aos planos do sistema).
 - Valor da calculadora de comissão: `PLANO` em `main.js`.
 - Número do botão de WhatsApp (todas as páginas): `WHATSAPP` no topo do `main.js`, só números com 55 + DDD. Vazio esconde o botão.
-- Páginas por nicho: `loja/` (lojas de roupa, `?tipo=loja`), `delivery/` (pedido direto para delivery e retirada, `?tipo=delivery`) e `encomendas/` (bolos, doces, salgados e marmitas com data marcada e sinal, `?tipo=encomendas`). Os subdomínios loja. e delivery.webtenda.com.br redirecionam (301) para elas no CyberPanel.
+- Páginas por nicho: `loja/` (lojas de roupa, `?tipo=loja`), `delivery/` (pedido direto para delivery e retirada, `?tipo=delivery`), `encomendas/` (bolos, doces, salgados e marmitas com data marcada e sinal, `?tipo=encomendas`) e `barbearia/` (agenda online para barbearias e salões, `?tipo=barbearia`). Os subdomínios loja. e delivery.webtenda.com.br redirecionam (301) para elas no CyberPanel.
 - Pedido na mesa: `mesa/` (bares e restaurantes, `?tipo=mesa`). As capturas ficam em `assets/mesa/`.
 - Página nova em subpasta: inclua o caminho na etapa "Versionar CSS e JS" do `deploy.yml`.
 - Botões apontam para https://app.webtenda.com.br/cadastro e /entrar.
