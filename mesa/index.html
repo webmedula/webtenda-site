@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WebTenda para bares e restaurantes: pedido na mesa pelo QR code</title>
+<meta name="description" content="QR code em cada mesa: o cliente vê o cardápio no celular e pede sem esperar o garçom. O pedido chega na cozinha com o número da mesa, a conta vai somando sozinha e o cliente chama o garçom ou pede a conta pelo celular. Sem aplicativo, sem comissão. Teste grátis por 14 dias.">
+<meta property="og:title" content="Pedido na mesa pelo QR code, sem esperar o garçom">
+<meta property="og:description" content="O cliente aponta a câmera, pede pelo celular e o pedido chega na cozinha com o número da mesa. Conta da mesa automática. Mensalidade fixa.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://webtenda.com.br/mesa/">
+<meta property="og:image" content="https://webtenda.com.br/assets/og.png">
+<meta name="theme-color" content="#ea580c">
+<link rel="canonical" href="https://webtenda.com.br/mesa/">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<style>
+  /* Página de pedido na mesa: mesma base do site, com verde de "mesa" nos destaques. */
+  :root{--mesa:#059669;--mesa-l:#d1fae5}
+
+  /* Três passos */
+  .steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:s}
+  .step3{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:28px;box-shadow:var(--shadow);position:relative}
+  .step3::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:var(--brand);color:#fff;font-family:var(--display);font-weight:800;font-size:1.2rem;margin-bottom:16px}
+  .step3 h3{font-size:1.15rem;margin-bottom:6px}
+  .step3 p{color:var(--ink-2);font-size:.95rem}
+  @media (max-width:860px){.steps3{grid-template-columns:1fr}}
+
+  /* Garçom x QR */
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .vs-card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:28px;box-shadow:var(--shadow)}
+  .vs-card h3{font-size:1.2rem;margin-bottom:14px}
+  .vs-card ul{list-style:none;display:grid;gap:10px}
+  .vs-card li{position:relative;padding-left:26px;font-size:.96rem;color:var(--ink-2)}
+  .vs-card li::before{content:"•";position:absolute;left:8px;color:var(--mute);font-weight:700}
+  .vs-card.mine{border:2px solid var(--brand);background:linear-gradient(180deg,var(--brand-50),#fff 60%)}
+  .vs-card.mine li::before{content:"✓";left:4px;color:var(--brand)}
+  @media (max-width:760px){.vs{grid-template-columns:1fr}}
+
+  /* Blocos com imagem ao lado */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .split.rev > :first-child{order:2}
+  .shot{border-radius:20px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(28,25,23,.45);border:1px solid var(--line);background:#fff}
+  .shot img{width:100%;height:auto;display:block}
+  .qr-shot{max-width:340px;justify-self:center;transform:rotate(-2deg)}
+  .mini-phone{width:250px;height:520px;border-radius:38px;background:#1c1917;padding:9px;box-shadow:0 30px 60px -28px rgba(124,45,18,.55),inset 0 0 0 2px #44403c;justify-self:center}
+  .mini-phone div{height:100%;border-radius:30px;overflow:hidden;background:#fafaf9}
+  .mini-phone img{width:100%}
+  @media (max-width:900px){.split{grid-template-columns:1fr;gap:36px}.split.rev > :first-child{order:0}}
+
+  .call{display:flex;align-items:center;gap:12px;border:2px solid var(--mesa);background:#ecfdf5;border-radius:16px;padding:12px 16px;font-size:.95rem;color:#064e3b;margin-top:10px}
+  .call b{font-family:var(--display);font-size:1.1rem}
+  .call span:last-child{margin-left:auto;background:var(--brand);color:#fff;font-weight:600;border-radius:9px;padding:6px 12px;font-size:.85rem}
+  .browser img{aspect-ratio:1600/1200}
+  .hero .phone-screen img{animation:scrollmenu 18s ease-in-out infinite}
+  @media (prefers-reduced-motion:reduce){.hero .phone-screen img{animation:none}}
+</style>
+</head>
+<body>
+
+<header class="nav" id="topo">
+  <div class="wrap nav-in">
+    <a href="../" class="logo" aria-label="WebTenda, início">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#ea580c"/><path d="M14 18h36l3 9H11z" fill="#fff"/><path d="M11 27a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0z" fill="#fff"/><path d="M23.25 18 21.5 27M40.75 18l1.75 9M32 18v9" stroke="#ea580c" stroke-width="2"/><path d="M15 34v12a3 3 0 0 0 3 3h28a3 3 0 0 0 3-3V34" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round"/><rect x="27" y="38" width="10" height="11" rx="2" fill="#fff"/></svg>
+      <span>Web<b>Tenda</b></span>
+    </a>
+    <nav class="nav-links" aria-label="Seções">
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#cozinha">Cozinha</a>
+      <a href="#conta">Conta da mesa</a>
+      <a href="#demo">Ver demo</a>
+      <a href="#planos">Planos</a>
+      <a href="#duvidas">Dúvidas</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="https://app.webtenda.com.br/entrar" class="btn btn-ghost">Entrar</a>
+      <a href="https://app.webtenda.com.br/cadastro?tipo=mesa" class="btn">Criar minhas mesas</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-in">
+    <div class="hero-copy">
+      <p class="eyebrow reveal">Para bares, lanchonetes, pizzarias e restaurantes</p>
+      <h1 class="reveal">Sentou, apontou a câmera, pediu. <em>Sem esperar o garçom.</em></h1>
+      <p class="lead reveal">Cada mesa ganha um QR code. O cliente abre o seu cardápio no celular, pede quando quiser e o pedido chega na cozinha com o número da mesa. A conta vai somando sozinha, e pelo celular ele chama o garçom ou pede a conta.</p>
+      <div class="hero-actions reveal">
+        <a href="https://app.webtenda.com.br/cadastro?tipo=mesa" class="btn btn-lg">Testar grátis por 14 dias</a>
+        <a href="#demo" class="btn btn-ghost btn-lg">Pedir numa mesa de teste</a>
+      </div>
+      <ul class="hero-proof reveal">
+        <li>Cliente não baixa aplicativo</li>
+        <li>Sem comissão por pedido</li>
+        <li>QR codes prontos para imprimir</li>
+      </ul>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="blob"></div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen"><img src="../assets/mesa/cardapio.webp" alt="" width="585" height="4548"></div>
+      </div>
+      <div class="toast t1">
+        <span class="toast-ico">🍺</span>
+        <div><strong>Mesa 5 pediu 2 chopps</strong><small>Direto na cozinha</small></div>
+        <b>R$ 29,80</b>
+      </div>
+      <div class="toast t2">
+        <span class="toast-ico ok">🧾</span>
+        <div><strong>Mesa 3 pediu a conta</strong><small>R$ 72,80 · 2 pedidos</small></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ticker" aria-label="Tipos de negócio atendidos">
+    <div class="ticker-track">
+      <span>Bares</span><span>Botecos</span><span>Pizzarias</span><span>Lanchonetes</span><span>Restaurantes</span><span>Hamburguerias</span><span>Choperias</span><span>Pastelarias</span><span>Espetinhos</span><span>Food parks</span><span>Praças de alimentação</span><span>Quiosques de praia</span><span aria-hidden="true">Bares</span><span aria-hidden="true">Botecos</span><span aria-hidden="true">Pizzarias</span><span aria-hidden="true">Lanchonetes</span><span aria-hidden="true">Restaurantes</span><span aria-hidden="true">Hamburguerias</span><span aria-hidden="true">Choperias</span><span aria-hidden="true">Pastelarias</span><span aria-hidden="true">Espetinhos</span><span aria-hidden="true">Food parks</span><span aria-hidden="true">Praças de alimentação</span><span aria-hidden="true">Quiosques de praia</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="sec" id="como-funciona">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Como funciona</p>
+      <h2>Do QR code na mesa à conta fechada</h2>
+      <p>Você cria as mesas no painel, imprime os QR codes e coloca um em cada mesa. Pronto: o salão já pode pedir pelo celular.</p>
+    </div>
+    <div class="steps3">
+      <article class="step3 reveal"><h3>O cliente aponta a câmera</h3><p>O QR da mesa abre o seu cardápio com fotos e preços, já sabendo em que mesa ele está. Sem baixar nada e sem cadastro: só o nome.</p></article>
+      <article class="step3 reveal"><h3>O pedido cai na cozinha</h3><p>Aparece no quadro de pedidos com o número da mesa e um aviso sonoro. A cozinha marca "pronto para servir" e o garçom leva.</p></article>
+      <article class="step3 reveal"><h3>A conta fecha sozinha</h3><p>Cada rodada soma na conta da mesa. Quando o cliente pede a conta pelo celular, você vê o total, divide por pessoa e libera a mesa.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- GARÇOM X QR -->
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Por que vale a pena</p>
+      <h2>Seu garçom para de anotar e passa a atender</h2>
+    </div>
+    <div class="vs">
+      <article class="vs-card reveal">
+        <h3>📝 Só com bloquinho</h3>
+        <ul>
+          <li>Cliente levanta a mão e espera alguém ver</li>
+          <li>Pedido anotado errado ou com letra que a cozinha não entende</li>
+          <li>Na hora cheia, a segunda rodada demora e o cliente desiste</li>
+          <li>Conta somada na calculadora, item por item</li>
+        </ul>
+      </article>
+      <article class="vs-card mine reveal">
+        <h3>📱 Com o QR na mesa</h3>
+        <ul>
+          <li>O cliente pede a próxima rodada na hora em que deu vontade</li>
+          <li>O pedido chega escrito, com observação e número da mesa</li>
+          <li>Foto no cardápio vende mais porção e sobremesa</li>
+          <li>Conta pronta, com tudo que a mesa pediu, a qualquer momento</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTE -->
+<section class="sec" id="cliente">
+  <div class="wrap split">
+    <div class="mini-phone reveal" aria-hidden="true"><div><img src="../assets/mesa/sacola.webp" alt="" width="585" height="1266" loading="lazy"></div></div>
+    <div class="reveal">
+      <p class="eyebrow">No celular do cliente</p>
+      <h2>Pede só com o nome. Paga no final, como sempre.</h2>
+      <p class="lead" style="margin-top:16px">Na mesa ninguém precisa digitar endereço nem telefone. O pedido vai para a conta da mesa e ele paga quando for embora. Se preferir, paga na hora por Pix ou cartão, direto na sua conta.</p>
+      <ul class="checks" style="margin-top:22px">
+        <li>Vê a conta da mesa até agora e tudo o que já foi pedido</li>
+        <li>Botões de "Chamar garçom" e "Pedir a conta"</li>
+        <li>Acompanha o pedido: recebido, em preparo, indo para a mesa</li>
+        <li>Quem informa o WhatsApp ganha selo no cartão fidelidade</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- COZINHA -->
+<section class="sec showcase sec-alt" id="cozinha">
+  <div class="wrap show-in">
+    <div class="show-copy reveal">
+      <p class="eyebrow">Na cozinha e no caixa</p>
+      <h2>Todos os pedidos num quadro, com o número da mesa em destaque</h2>
+      <ul class="checks">
+        <li>Novos, em preparo e prontos para servir</li>
+        <li>Som de aviso a cada pedido e a cada chamado</li>
+        <li>"Mesa 3 pediu a conta" e "Mesa 10 chamou o garçom" no topo da tela</li>
+        <li>Delivery e retirada no mesmo quadro, se você também entrega</li>
+        <li>Funciona no computador do caixa, no tablet da cozinha e no celular</li>
+      </ul>
+      <div class="call" aria-hidden="true"><span>🧾</span><span><b>Mesa 3</b> pediu a conta</span><span>Atendido</span></div>
+    </div>
+    <div class="browser reveal">
+      <div class="browser-bar"><i></i><i></i><i></i><span>app.webtenda.com.br/painel</span></div>
+      <img src="../assets/mesa/quadro.webp" alt="Quadro de pedidos com pedidos da Mesa 1, Mesa 5, Mesa 8 e Mesa 11 e avisos de mesa pedindo a conta e chamando o garçom" width="1600" height="1200" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- CONTA DA MESA -->
+<section class="sec" id="conta">
+  <div class="wrap split rev">
+    <div class="shot reveal"><img src="../assets/mesa/mesas.webp" alt="Tela de mesas com a conta da Mesa 3, itens pedidos, total e divisão por pessoas" width="1400" height="767" loading="lazy"></div>
+    <div class="reveal">
+      <p class="eyebrow">Conta da mesa</p>
+      <h2>Mesa livre, ocupada ou pedindo a conta, num relance</h2>
+      <p class="lead" style="margin-top:16px">A tela de Mesas mostra quem está ocupado, desde que horas e quanto já consumiu. Abra a conta, veja os itens somados e divida por 2, 3 ou 4 pessoas. Recebeu? Um toque libera a mesa para o próximo cliente.</p>
+      <ul class="checks" style="margin-top:22px">
+        <li>Desconta o que já foi pago pelo celular</li>
+        <li>Pausar o pedido pelo celular numa mesa específica</li>
+        <li>Trocar o QR de uma mesa se alguém levar o cartão embora</li>
+        <li>O histórico do dia mostra a mesa de cada pedido</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- QR PARA IMPRIMIR -->
+<section class="sec sec-alt" id="qr">
+  <div class="wrap split">
+    <div class="shot qr-shot reveal"><img src="../assets/mesa/qr.webp" alt="Cartão de mesa com o logo do bar, o nome Mesa 5 e o QR code" width="700" height="965" loading="lazy"></div>
+    <div class="reveal">
+      <p class="eyebrow">Pronto para imprimir</p>
+      <h2>Os QR codes saem prontos, com a sua marca</h2>
+      <p class="lead" style="margin-top:16px">Crie as mesas de uma vez (Mesa 1 a 20, Varanda 1 a 6, Balcão) e imprima uma folha com 4 cartões por página, com o seu logo, a cor da loja e o nome de cada mesa. Coloque num display de acrílico ou plastifique e cole na mesa.</p>
+      <ul class="checks" style="margin-top:22px">
+        <li>Cria várias mesas de uma vez, com o nome que quiser</li>
+        <li>Imprime em qualquer impressora, em papel A4</li>
+        <li>Mudou o cardápio? O QR continua o mesmo</li>
+      </ul>
+      <a href="https://app.webtenda.com.br/cadastro?tipo=mesa" class="btn" style="margin-top:26px">Criar minhas mesas grátis</a>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO -->
+<section class="sec" id="demo">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Veja funcionando</p>
+      <h2>Sente na Mesa 5 do nosso boteco de teste</h2>
+      <p>Abra no celular como se tivesse acabado de ler o QR code. Peça um chopp, chame o garçom e peça a conta. Nada é cobrado.</p>
+    </div>
+    <div class="demos" style="grid-template-columns:minmax(0,420px);justify-content:center">
+      <a class="demo reveal" href="https://app.webtenda.com.br/loja/boteco-da-esquina/mesa/bar-5" target="_blank" rel="noopener">
+        <div class="demo-top" style="--c:#92400e;--img:url('https://images.unsplash.com/photo-1765662120818-26dd0d6e6230?auto=format&fit=crop&w=800&h=400&q=70')"><img src="../assets/demo/boteco-da-esquina.svg" alt="" width="84" height="84"></div>
+        <div class="demo-body">
+          <small>Bar com pedido na mesa</small>
+          <h3>Boteco da Esquina · Mesa 5</h3>
+          <p>Chopp, petiscos, porções e drinks. 12 mesas, algumas já ocupadas.</p>
+          <ul><li>Chamar garçom</li><li>Conta da mesa</li></ul>
+          <span class="demo-go">Sentar na Mesa 5 <b>→</b></span>
+        </div>
+      </a>
+    </div>
+    <div class="demo-panel reveal">
+      <div>
+        <h3>Depois, veja do lado da cozinha</h3>
+        <p>Entre no painel do boteco para ver o seu pedido chegar com o número da mesa, os chamados e a conta de cada mesa.</p>
+      </div>
+      <dl>
+        <div><dt>E-mail</dt><dd><code>bar@demo.webtenda.com.br</code></dd></div>
+        <div><dt>Senha</dt><dd><code>demo1234</code></dd></div>
+      </dl>
+      <a href="https://app.webtenda.com.br/entrar" target="_blank" rel="noopener" class="btn">Entrar no painel demo</a>
+    </div>
+  </div>
+</section>
+
+<!-- PLANOS -->
+<section class="sec sec-alt" id="planos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Planos</p>
+      <h2>Mensalidade fixa. Nenhuma comissão por pedido.</h2>
+      <p>Todos os recursos em todos os planos: o que muda é o tamanho do cardápio e o volume de pedidos. Todos começam com 14 dias grátis.</p>
+    </div>
+    <div class="plans">
+      <article class="plan reveal">
+        <h3>Básico</h3>
+        <p class="plan-desc">Para o bar ou lanchonete pequena.</p>
+        <p class="price"><span>R$</span>49<small>,90</small><em>/mês</em></p>
+        <ul>
+          <li>Até 50 produtos no cardápio</li>
+          <li>Até 300 pedidos por mês</li>
+          <li>Mesas ilimitadas com QR code</li>
+          <li>Conta da mesa e chamar garçom</li>
+          <li>Pix e cartão online</li>
+          <li>Cupons, fidelidade e promoções</li>
+        </ul>
+        <a href="https://app.webtenda.com.br/cadastro?tipo=mesa" class="btn btn-ghost btn-block">Começar grátis</a>
+      </article>
+      <article class="plan plan-pop reveal">
+        <span class="badge">Mais escolhido</span>
+        <h3>Profissional</h3>
+        <p class="plan-desc">Para o negócio que já tem movimento.</p>
+        <p class="price"><span>R$</span>89<small>,90</small><em>/mês</em></p>
+        <ul>
+          <li>Até 200 produtos no cardápio</li>
+          <li><strong>Pedidos ilimitados</strong></li>
+          <li>Mesas ilimitadas com QR code</li>
+          <li>Conta da mesa e chamar garçom</li>
+          <li>Pix e cartão online</li>
+          <li>Cupons, fidelidade e promoções</li>
+        </ul>
+        <a href="https://app.webtenda.com.br/cadastro?tipo=mesa" class="btn btn-block">Começar grátis</a>
+      </article>
+      <article class="plan reveal">
+        <h3>Completo</h3>
+        <p class="plan-desc">Para restaurantes com cardápio grande.</p>
+        <p class="price"><span>R$</span>149<small>,90</small><em>/mês</em></p>
+        <ul>
+          <li><strong>Produtos ilimitados</strong></li>
+          <li><strong>Pedidos ilimitados</strong></li>
+          <li>Mesas ilimitadas com QR code</li>
+          <li>Conta da mesa e chamar garçom</li>
+          <li>Pix e cartão online</li>
+          <li>Cupons, fidelidade e promoções</li>
+        </ul>
+        <a href="https://app.webtenda.com.br/cadastro?tipo=mesa" class="btn btn-ghost btn-block">Começar grátis</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- FAQ -->
+<section class="sec" id="duvidas">
+  <div class="wrap faq-in">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Dúvidas</p>
+      <h2>Perguntas frequentes</h2>
+    </div>
+    <div class="faq">
+      <details class="reveal"><summary>O cliente precisa baixar aplicativo?</summary><p>Não. O QR code abre o cardápio no navegador do celular, na hora. Ele só informa o nome para a cozinha saber de quem é o pedido.</p></details>
+      <details class="reveal"><summary>Vou precisar dispensar o garçom?</summary><p>Não. O garçom continua servindo, tirando dúvidas e levando os pratos. Ele só para de anotar pedido e correr até a cozinha. Quem não quiser usar o celular pede com ele normalmente.</p></details>
+      <details class="reveal"><summary>E se alguém pedir de casa pelo QR da mesa?</summary><p>Cada mesa tem um código diferente e difícil de adivinhar. Se um cartão sumir, você troca o QR daquela mesa no painel e o antigo para de funcionar. Também dá para pausar o pedido pelo celular em qualquer mesa.</p></details>
+      <details class="reveal"><summary>Como o cliente paga?</summary><p>Do jeito de sempre: no final, no caixa ou com o garçom, em dinheiro, cartão ou Pix. Se você ligar o pagamento online, ele também pode pagar cada pedido na hora por Pix ou cartão, e esse valor já aparece descontado na conta da mesa.</p></details>
+      <details class="reveal"><summary>Também faço delivery. Preciso de outro sistema?</summary><p>Não. A mesma loja recebe pedidos da mesa, de retirada no balcão e de entrega, tudo no mesmo quadro. Veja a <a href="../delivery/" style="text-decoration:underline">WebTenda para delivery</a>.</p></details>
+      <details class="reveal"><summary>Funciona no tablet da cozinha?</summary><p>Funciona. O painel abre em qualquer navegador e atualiza sozinho, com som a cada pedido novo. Muita gente deixa um tablet na cozinha e o computador no caixa.</p></details>
+      <details class="reveal"><summary>A WebTenda cobra porcentagem dos pedidos?</summary><p>Não. Você paga apenas a mensalidade do plano. O valor dos pedidos é todo seu.</p></details>
+      <details class="reveal"><summary>Posso trocar de plano ou cancelar?</summary><p>Pode. Você muda de plano pelo painel quando quiser, e não existe fidelidade nem multa de cancelamento.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final">
+  <div class="wrap final-in reveal">
+    <h2>Hoje à noite, a sua mesa já pode pedir pelo celular.</h2>
+    <p>Crie a conta, cadastre o cardápio, imprima os QR codes e coloque nas mesas. Dá para deixar tudo pronto numa tarde.</p>
+    <a href="https://app.webtenda.com.br/cadastro?tipo=mesa" class="btn btn-light btn-lg">Testar grátis por 14 dias</a>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <a href="#topo" class="logo logo-sm"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#ea580c"/><path d="M14 18h36l3 9H11z" fill="#fff"/><path d="M11 27a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0z" fill="#fff"/><path d="M23.25 18 21.5 27M40.75 18l1.75 9M32 18v9" stroke="#ea580c" stroke-width="2"/><path d="M15 34v12a3 3 0 0 0 3 3h28a3 3 0 0 0 3-3V34" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round"/><rect x="27" y="38" width="10" height="11" rx="2" fill="#fff"/></svg><span>Web<b>Tenda</b></span></a>
+    <nav aria-label="Rodapé">
+      <a href="#planos">Planos</a>
+      <a href="#duvidas">Dúvidas</a>
+      <a href="../">Início</a>
+      <a href="../delivery/">Para delivery</a>
+      <a href="../loja/">Para lojas de roupa</a>
+      <a href="https://app.webtenda.com.br/entrar">Entrar</a>
+      <a href="https://app.webtenda.com.br/cadastro?tipo=mesa">Criar minhas mesas</a>
+    </nav>
+    <p>© <span id="ano">2026</span> WebTenda. Pedido na mesa pelo QR code, sem comissão.</p>
+  </div>
+</footer>
+
+<a href="https://app.webtenda.com.br/cadastro?tipo=mesa" class="sticky-cta">Testar grátis por 14 dias</a>
+
+<script src="../main.js" defer></script>
+</body>
+</html>
