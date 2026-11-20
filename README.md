@@ -30,3 +30,4 @@ O rsync não apaga arquivos no servidor (o `.well-known` do SSL fica intacto); p
 - Pedido na mesa: `mesa/` (bares e restaurantes, `?tipo=mesa`). As capturas ficam em `assets/mesa/`.
 - Página nova em subpasta: inclua o caminho na etapa "Versionar CSS e JS" do `deploy.yml`.
 - Botões apontam para https://app.webtenda.com.br/cadastro e /entrar.
+- Política de privacidade (LGPD e dados do Google, exigida pelo Google para o Login com Google e o Google Agenda): `privacidade/`. Link no rodapé de todas as páginas.
