@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Política de privacidade | WebTenda</title>
-<meta name="description" content="Como a WebTenda coleta, usa, guarda e protege os dados de lojistas e clientes, incluindo os dados recebidos do Google (Entrar com Google e Google Agenda).">
+<meta name="description" content="Como a WebTenda coleta, usa, guarda e protege os dados de lojistas e clientes, incluindo os dados do usuário do Google (Entrar com Google e Google Agenda).">
 <link rel="canonical" href="https://webtenda.com.br/privacidade/">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
@@ -42,9 +42,10 @@
 
 <main class="doc">
   <h1>Política de privacidade</h1>
-  <p class="upd">Última atualização: 19 de novembro de 2026</p>
+  <p class="upd">Última atualização: 20 de novembro de 2026</p>
 
-  <p>A WebTenda (webtenda.com.br e app.webtenda.com.br) é um sistema por assinatura para pequenos negócios venderem e agendarem pela internet: cardápio e vitrine online, pedidos, agenda de horários, painel do lojista. Esta página explica quais dados tratamos, para quê, com quem compartilhamos e como você pode pedir acesso, correção ou exclusão, conforme a Lei Geral de Proteção de Dados (Lei 13.709/2018, LGPD). As regras de uso do sistema, como planos, cobrança e cancelamento, estão nos <a href="../termos/">Termos de uso</a>.</p>
+  <p>A WebTenda (webtenda.com.br e app.webtenda.com.br) é um sistema por assinatura para pequenos negócios venderem e agendarem pela internet: cardápio e vitrine online, pedidos, agenda de horários, painel do lojista. Esta página explica quais dados tratamos, para quê, com quem compartilhamos e como você pode pedir acesso, correção ou exclusão, conforme a Lei Geral de Proteção de Dados (Lei 13.709/2018, LGPD).</p>
+  <p>A WebTenda é operada pela <strong>WebMedula</strong>, CNPJ 39.505.168/0001-94, com sede em Goiânia, Goiás. Contato sobre privacidade: <a href="mailto:contato@webmedula.com.br">contato@webmedula.com.br</a>. As regras de uso do sistema, como planos, cobrança e cancelamento, estão nos <a href="../termos/">Termos de uso</a>.</p>
 
   <h2>1. Quem usa a WebTenda</h2>
   <ul>
@@ -80,24 +81,60 @@
   </ul>
   <p>Não vendemos dados pessoais. Não usamos dados de clientes das lojas para publicidade da WebTenda.</p>
 
-  <h2 id="google">4. Dados recebidos do Google</h2>
-  <p>A WebTenda oferece duas funções opcionais com contas Google. Elas só são usadas por quem escolhe conectar.</p>
+  <h2 id="google">4. Dados do usuário do Google</h2>
+  <p>A WebTenda tem duas funções opcionais que usam contas Google. Elas só funcionam para quem escolhe conectar a própria conta, e cada uma pede só a permissão necessária. Abaixo está, para cada uma, quais dados do Google acessamos, como usamos, onde guardamos, com quem compartilhamos, por quanto tempo ficam e como apagar.</p>
 
-  <h3>Entrar com Google (lojistas)</h3>
-  <p>Recebemos o nome, o e-mail e o identificador da conta Google (escopos <code>openid</code>, <code>email</code> e <code>profile</code>). Usamos só para criar a conta do lojista e permitir o login. Não recebemos a senha do Google.</p>
-
-  <h3>Google Agenda (barbearias, salões e seus profissionais)</h3>
-  <p>Quando a loja ou um profissional conecta o Google Agenda, pedimos a permissão <code>https://www.googleapis.com/auth/calendar.app.created</code>, que permite à WebTenda criar uma agenda própria na conta Google (com o nome da loja e "WebTenda") e criar, alterar e apagar eventos <strong>somente nessa agenda</strong>. A WebTenda não lê, não altera e não apaga as outras agendas e compromissos da pessoa.</p>
+  <h3>4.1. Quais dados do Google acessamos</h3>
   <ul>
-    <li><strong>O que fazemos:</strong> cada agendamento feito na WebTenda vira um evento nessa agenda (cliente, serviços, horário, telefone e recado), atualizado quando muda e apagado quando é cancelado ou o cliente falta.</li>
-    <li><strong>O que guardamos:</strong> o e-mail da conta conectada, a chave de acesso fornecida pelo Google (guardada cifrada) e os identificadores da agenda e dos eventos criados.</li>
-    <li><strong>Com quem compartilhamos:</strong> com ninguém. Os dados recebidos do Google não são vendidos, não são usados para publicidade e não são usados para treinar modelos de inteligência artificial.</li>
-    <li><strong>Como desligar:</strong> pelo painel da WebTenda (Profissionais &gt; Google Agenda &gt; Desconectar) ou na sua conta Google, em <a href="https://myaccount.google.com/permissions" rel="noopener">myaccount.google.com/permissions</a>. Ao desconectar, apagamos a chave de acesso. A agenda criada continua na sua conta Google e pode ser apagada por você a qualquer momento.</li>
+    <li><strong>Entrar com Google (lojistas)</strong>, escopos <code>openid</code>, <code>email</code> e <code>profile</code>: o identificador da conta Google, o endereço de e-mail (e se ele é verificado) e o nome. Não recebemos a senha do Google, a foto, contatos, e-mails ou qualquer outro dado da conta.</li>
+    <li><strong>Google Agenda (barbearias, salões e seus profissionais)</strong>, escopos <code>openid</code>, <code>email</code> e <code>https://www.googleapis.com/auth/calendar.app.created</code>: o e-mail da conta conectada e uma chave de acesso (token de atualização) emitida pelo Google. Com essa permissão a WebTenda cria <strong>uma agenda secundária própria</strong> na conta Google, chamada "&lt;nome da loja&gt; · WebTenda", e cria, altera e apaga eventos <strong>somente nessa agenda</strong>. A WebTenda não tem acesso, não lê, não altera e não apaga a agenda principal nem as outras agendas e compromissos da pessoa.</li>
   </ul>
+
+  <h3>4.2. Como usamos esses dados</h3>
+  <ul>
+    <li><strong>Entrar com Google:</strong> o identificador e o e-mail servem só para criar a conta do lojista, reconhecer a mesma pessoa nos próximos acessos e vincular a uma conta já cadastrada com o mesmo e-mail. O nome preenche o cadastro. Nada mais é feito com esses dados.</li>
+    <li><strong>Google Agenda:</strong> o e-mail é mostrado no painel para a loja saber qual conta está conectada. A chave de acesso é usada só para criar a agenda da WebTenda e manter nela os agendamentos feitos na WebTenda: cada agendamento vira um evento (nome do cliente, serviços, profissional, horário, telefone, recado e endereço da loja), atualizado quando muda e apagado quando é cancelado ou o cliente falta. É um envio de dados da WebTenda para a agenda da própria pessoa; não lemos eventos que não foram criados pela WebTenda.</li>
+    <li>Os dados do Google <strong>não</strong> são usados para publicidade, perfis de marketing, venda, avaliação de crédito, nem para treinar ou melhorar modelos de inteligência artificial ou aprendizado de máquina.</li>
+    <li>Ninguém da equipe da WebTenda lê esses dados, exceto com o seu consentimento expresso (por exemplo, num pedido de suporte), quando for necessário para segurança (como investigar abuso), para cumprir a lei, ou de forma agregada e anônima para a operação interna.</li>
+  </ul>
+
+  <h3>4.3. Com quem compartilhamos</h3>
+  <p>Não vendemos, não alugamos e não transferimos dados recebidos do Google a terceiros. Eles só ficam nos servidores contratados pela WebTenda para hospedar o sistema e as cópias de segurança, que atuam em nosso nome e não podem usar os dados para fins próprios, ou são entregues a autoridades quando a lei exigir. Os eventos criados na agenda ficam na conta Google da própria pessoa que conectou.</p>
+
+  <h3>4.4. Onde e como guardamos</h3>
+  <ul>
+    <li><strong>Entrar com Google:</strong> guardamos o identificador da conta Google, o e-mail e o nome no cadastro do lojista. A chave de acesso do login é usada uma única vez para confirmar a identidade e não é guardada.</li>
+    <li><strong>Google Agenda:</strong> guardamos o e-mail da conta conectada, a chave de acesso (cifrada no banco de dados), o identificador da agenda criada e os identificadores dos eventos criados, para poder atualizar e apagar depois.</li>
+    <li>Tudo fica no banco de dados da WebTenda, com acesso por HTTPS, chaves de acesso cifradas, separação por loja e acesso restrito.</li>
+  </ul>
+
+  <h3>4.5. Por quanto tempo ficam e como apagar</h3>
+  <ul>
+    <li><strong>Google Agenda:</strong> os dados ficam enquanto a conexão estiver ativa. Para desligar, use o painel da WebTenda (Profissionais &gt; Google Agenda &gt; Desconectar) ou remova o acesso na sua conta Google em <a href="https://myaccount.google.com/permissions" rel="noopener">myaccount.google.com/permissions</a>. Ao desconectar pelo painel, revogamos a chave junto ao Google e apagamos na hora a chave, o e-mail e os identificadores da agenda e dos eventos. Se a loja ou o profissional for excluído, a conexão é apagada junto. A agenda criada fica na sua conta Google, sob seu controle, e você pode apagá-la quando quiser.</li>
+    <li><strong>Entrar com Google:</strong> o vínculo fica enquanto a conta do lojista existir. Você pode remover o acesso em <a href="https://myaccount.google.com/permissions" rel="noopener">myaccount.google.com/permissions</a> e continuar entrando com e-mail e senha.</li>
+    <li><strong>Exclusão a pedido:</strong> para apagar sua conta e todos os dados recebidos do Google, escreva para <a href="mailto:contato@webmedula.com.br">contato@webmedula.com.br</a> pelo e-mail da conta. Apagamos em até 30 dias, guardando só o que a lei obrigar (por exemplo, registros fiscais da assinatura). Cópias de segurança são substituídas em ciclos regulares.</li>
+  </ul>
+
+  <h3>4.6. Uso Limitado</h3>
   <div class="box">
-    <p>O uso e a transferência, pela WebTenda, de informações recebidas das APIs do Google obedecem à <a href="https://developers.google.com/terms/api-services-user-data-policy" rel="noopener">Política de Dados do Usuário dos Serviços de API do Google</a>, incluindo os requisitos de Uso Limitado.</p>
-    <p lang="en"><em>WebTenda's use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" rel="noopener">Google API Services User Data Policy</a>, including the Limited Use requirements.</em></p>
+    <p>O uso e a transferência, pela WebTenda, de informações recebidas das APIs do Google para qualquer outro aplicativo obedecem à <a href="https://developers.google.com/terms/api-services-user-data-policy" rel="noopener">Política de Dados do Usuário dos Serviços de API do Google</a>, incluindo os requisitos de Uso Limitado.</p>
   </div>
+
+  <section lang="en" id="google-user-data">
+    <h3>4.7. Google user data (English)</h3>
+    <p>WebTenda (operated by WebMedula, CNPJ 39.505.168/0001-94, Goiânia, Brazil) offers two optional features that use Google accounts.</p>
+    <ul>
+      <li><strong>Data accessed.</strong> "Sign in with Google" (merchants), scopes <code>openid</code>, <code>email</code>, <code>profile</code>: Google account ID, email address and name. Google Calendar sync (barbershops, salons and their staff), scopes <code>openid</code>, <code>email</code> and <code>https://www.googleapis.com/auth/calendar.app.created</code>: the connected account's email and a refresh token. With this scope WebTenda creates one secondary calendar of its own ("&lt;store name&gt; · WebTenda") and creates, updates and deletes events only in that calendar. WebTenda cannot see, read, change or delete the user's primary calendar or any other calendar or event.</li>
+      <li><strong>How we use it.</strong> Sign-in data is used only to create the merchant account and log the merchant in. Calendar access is used only to write the appointments booked in WebTenda (customer name, services, staff member, time, phone, notes, store address) into the WebTenda calendar, and to update or delete them when they change or are cancelled. We do not read events we did not create.</li>
+      <li><strong>Sharing.</strong> Google user data is not sold, rented or transferred to third parties. It is only processed by the hosting and backup providers that run WebTenda on our behalf, or disclosed when required by law.</li>
+      <li><strong>Storage and protection.</strong> Stored in WebTenda's database: Google account ID, email and name (sign-in; the sign-in access token is used once and not stored); connected email, encrypted refresh token, calendar ID and event IDs (calendar). Data is protected with HTTPS, encryption of tokens, per-store separation and restricted access.</li>
+      <li><strong>Retention and deletion.</strong> Calendar data is kept while the connection is active. Disconnecting in the WebTenda panel revokes the token with Google and immediately deletes the token, email, calendar ID and event IDs. Users can also revoke access at <a href="https://myaccount.google.com/permissions" rel="noopener">myaccount.google.com/permissions</a>. To delete the account and all Google user data, email <a href="mailto:contato@webmedula.com.br">contato@webmedula.com.br</a>; we delete it within 30 days, except records the law requires us to keep.</li>
+      <li><strong>No ads, no AI training.</strong> Google user data is never used for advertising, never sold, and never used to develop, improve or train generalized AI or machine-learning models. Humans do not read it except with the user's consent, for security, to comply with law, or in aggregated anonymized form for internal operations.</li>
+    </ul>
+    <div class="box">
+      <p><em>WebTenda's use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" rel="noopener">Google API Services User Data Policy</a>, including the Limited Use requirements.</em></p>
+    </div>
+  </section>
 
   <h2>5. Com quem compartilhamos</h2>
   <ul>
@@ -118,7 +155,7 @@
   <p>Você pode pedir a confirmação de que tratamos seus dados, acesso, correção, anonimização, portabilidade, exclusão e informações sobre compartilhamento, e pode revogar consentimentos. Se você é cliente de uma loja, pode falar direto com a loja ou com a gente, e encaminharemos à loja.</p>
 
   <h2>9. Contato</h2>
-  <p>Fale com a WebTenda pelo WhatsApp <a href="https://wa.me/5562982908000" rel="noopener">(62) 98290-8000</a>.</p>
+  <p>WebMedula (WebTenda), CNPJ 39.505.168/0001-94, Goiânia, Goiás.<br>E-mail: <a href="mailto:contato@webmedula.com.br">contato@webmedula.com.br</a><br>WhatsApp: <a href="https://wa.me/5562982908000" rel="noopener">(62) 98290-8000</a></p>
 
   <h2>10. Mudanças</h2>
   <p>Podemos atualizar esta política. A data da última atualização fica no topo da página.</p>
@@ -131,7 +168,7 @@
       <a href="../">Início</a>
       <a href="https://app.webtenda.com.br/entrar">Entrar</a>
       <a href="https://app.webtenda.com.br/cadastro">Criar minha loja</a>
-      <a href="../privacidade/">Privacidade</a>
+      <a href="../privacidade/">Política de privacidade</a>
       <a href="../termos/">Termos de uso</a>
     </nav>
     <p>© <span id="ano">2026</span> WebTenda. Vendas online para pequenos negócios locais.</p>
