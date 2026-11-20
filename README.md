@@ -31,3 +31,4 @@ O rsync não apaga arquivos no servidor (o `.well-known` do SSL fica intacto); p
 - Página nova em subpasta: inclua o caminho na etapa "Versionar CSS e JS" do `deploy.yml`.
 - Botões apontam para https://app.webtenda.com.br/cadastro e /entrar.
 - Política de privacidade (LGPD e dados do Google, exigida pelo Google para o Login com Google e o Google Agenda): `privacidade/`. Link no rodapé de todas as páginas.
+- Termos de uso (planos, teste grátis, cobrança, cancelamento, pagamentos online das lojas): `termos/`. Link no rodapé de todas as páginas, ao lado da privacidade. Se mudar preço, teste grátis, tolerância de atraso ou regra de cancelamento no sistema, atualize também aqui.
