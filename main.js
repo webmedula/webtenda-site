@@ -82,6 +82,14 @@ calc();
 const ano = document.getElementById("ano");
 if (ano) ano.textContent = new Date().getFullYear();
 
+// "Quero a loja pronta": abre o WhatsApp com a mensagem pronta do botão (data-wa).
+// Sem número configurado, o botão continua indo para o e-mail.
+if (WHATSAPP) {
+  document.querySelectorAll("a[data-wa]").forEach((a) => {
+    a.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(a.dataset.wa)}`;
+  });
+}
+
 // Botão flutuante do WhatsApp (mesmo número em todas as páginas)
 if (WHATSAPP) {
   const p = location.pathname;
