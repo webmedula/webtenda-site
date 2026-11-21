@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seja parceiro WebTenda: ganhe todo mês indicando o sistema</title>
+<meta name="description" content="Programa de parceiros da WebTenda para social media, designers, agências e técnicos que atendem pequenos negócios. Você monta a loja do cliente e fica com o valor da montagem, e recebe 30% da mensalidade todo mês enquanto a loja pagar.">
+<meta property="og:title" content="Seja parceiro WebTenda: ganhe todo mês com os clientes que você já atende">
+<meta property="og:description" content="Fique com a montagem da loja e receba 30% da mensalidade enquanto o cliente pagar. Sem custo para entrar.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://webtenda.com.br/parceiros/">
+<meta property="og:image" content="https://webtenda.com.br/assets/og.png">
+<meta name="theme-color" content="#ea580c">
+<link rel="canonical" href="https://webtenda.com.br/parceiros/">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<style>
+  /* Página de parceiros: mesma base laranja do site, com blocos próprios. */
+  .btn-wa{background:#16a34a;border-color:#16a34a}
+  .btn-wa:hover{background:#15803d;border-color:#15803d;box-shadow:0 8px 20px -8px rgba(22,163,74,.6)}
+  .btn-wa svg{width:20px;height:20px}
+
+  /* Quatro cartões por linha (para quem é / o que recebe) */
+  .features.four{grid-template-columns:repeat(4,1fr)}
+  @media (max-width:1060px){.features.four{grid-template-columns:1fr 1fr}}
+  @media (max-width:560px){.features.four{grid-template-columns:1fr}}
+
+  .hero h1 em{white-space:normal}
+  .hero h1 em::after{display:none}
+
+  /* Cartão de exemplo no topo */
+  .pvis{width:100%;min-width:0;position:relative;display:flex;justify-content:center;padding:20px 0 110px}
+  .pcard{position:relative;z-index:1;flex:1 1 auto;width:100%;max-width:400px;background:#fff;border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:0 30px 60px -28px rgba(124,45,18,.45)}
+  .pcard small{color:var(--mute);font-size:.8rem}
+  .pcard .big{font-family:var(--display);font-size:2.4rem;font-weight:800;line-height:1.1;color:var(--brand-d);margin:4px 0 2px}
+  .pcard ul{list-style:none;margin-top:16px;border-top:1px solid var(--line)}
+  .pcard li{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--line);font-size:.9rem}
+  .pcard li span{flex:1;color:var(--ink-2)}
+  .pcard li b{font-family:var(--display)}
+  .pcard .st{font-style:normal;font-size:.7rem;font-weight:600;padding:2px 8px;border-radius:7px;background:#dcfce7;color:#15803d}
+  .pcard .st.t{background:#e0f2fe;color:#0369a1}
+  .pcard .ex{position:absolute;top:-12px;right:18px;background:var(--ink);color:#fff;font-size:.72rem;font-weight:600;border-radius:8px;padding:3px 9px}
+  .pvis .toast{position:absolute;z-index:2;bottom:20px;left:0}
+  @media (max-width:900px){.pvis .toast{left:50%;transform:translateX(-50%);white-space:nowrap}}
+
+  /* Dois jeitos de ganhar */
+  .earn{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .earn-card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:30px;box-shadow:var(--shadow)}
+  .earn-card.hl{border:2px solid var(--brand);background:linear-gradient(180deg,var(--brand-50),#fff 60%)}
+  .earn-card .n{font-family:var(--display);font-size:2.6rem;font-weight:800;color:var(--brand-d);line-height:1}
+  .earn-card .n small{font-size:1rem;font-weight:600;color:var(--mute);margin-left:6px}
+  .earn-card h3{font-size:1.25rem;margin:12px 0 8px}
+  .earn-card p{color:var(--ink-2)}
+  @media (max-width:760px){.earn{grid-template-columns:1fr}}
+
+  /* Calculadora */
+  .seg{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 22px}
+  .calc-box .seg label{display:block;flex:1;min-width:96px;margin:0;cursor:pointer;color:#fff}
+  .seg input{position:absolute;opacity:0}
+  .seg span{display:block;text-align:center;border:1.5px solid #47301f;border-radius:12px;padding:9px 6px;font-size:.9rem;font-weight:600;background:#1f140d}
+  .seg span small{display:block;font-weight:500;color:#b8ada4}
+  .seg input:checked+span{border-color:var(--brand);background:var(--brand);color:#fff}
+  .seg input:checked+span small{color:#ffedd5}
+  .seg input:focus-visible+span{outline:2px solid var(--brand);outline-offset:2px}
+  .seg-label{font-size:.92rem;color:#e7dfd8;margin-top:22px}
+
+  /* Regras */
+  .rules{max-width:760px;margin:28px auto 0;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:24px 28px;box-shadow:var(--shadow)}
+  .rules h3{font-size:1.15rem;margin-bottom:10px}
+  .rules ul{margin-left:20px;list-style:disc;display:grid;gap:6px;color:var(--ink-2);font-size:.95rem}
+</style>
+</head>
+<body>
+
+<header class="nav" id="topo">
+  <div class="wrap nav-in">
+    <a href="../" class="logo" aria-label="WebTenda, início">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#ea580c"/><path d="M14 18h36l3 9H11z" fill="#fff"/><path d="M11 27a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0z" fill="#fff"/><path d="M23.25 18 21.5 27M40.75 18l1.75 9M32 18v9" stroke="#ea580c" stroke-width="2"/><path d="M15 34v12a3 3 0 0 0 3 3h28a3 3 0 0 0 3-3V34" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round"/><rect x="27" y="38" width="10" height="11" rx="2" fill="#fff"/></svg>
+      <span>Web<b>Tenda</b></span>
+    </a>
+    <button class="nav-burger" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    <div class="nav-menu" id="menu">
+      <nav class="nav-links" aria-label="Menu principal">
+        <div class="nav-drop">
+          <button type="button" class="nav-drop-btn" aria-expanded="false" aria-controls="solucoes">Soluções <svg viewBox="0 0 12 12" aria-hidden="true"><path d="m3 4.5 3 3 3-3"/></svg></button>
+          <div class="nav-panel" id="solucoes">
+          <a href="../delivery/" class="sol sol-delivery"><span class="sol-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 17a2 2 0 1 0 4 0a2 2 0 1 0-4 0M15 17a2 2 0 1 0 4 0a2 2 0 1 0-4 0"/><path d="M9 17h6M17 15V9h-3M3 13V7h8v6M14 9l3 6M3 13h8"/></svg></span><span><strong>Delivery</strong><small>Cardápio no seu link, sem comissão por pedido</small></span></a>
+          <a href="../mesa/" class="sol sol-mesa"><span class="sol-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><path d="M14 14h2v2h-2zM18 18h2v2h-2zM14 18h2M18 14h2"/></svg></span><span><strong>Pedido na mesa</strong><small>O cliente pede pelo QR code, sem esperar o garçom</small></span></a>
+          <a href="../encomendas/" class="sol sol-encomendas"><span class="sol-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16M5 20v-7h14v7M5 16c2 1 3-1 4.7 0s3 1 4.6 0s3-1 4.7 0M12 13V9M12 6.5c-.8-1 0-2.5 0-2.5s.8 1.5 0 2.5z"/></svg></span><span><strong>Encomendas</strong><small>Bolos, doces e marmitas com dia marcado e sinal</small></span></a>
+          <a href="../barbearia/" class="sol sol-barbearia"><span class="sol-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><path d="M8 7.5 20 17M8 16.5 20 7"/></svg></span><span><strong>Barbearias e salões</strong><small>Agenda online com lembrete e menos furos</small></span></a>
+          <a href="../loja/" class="sol sol-loja"><span class="sol-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4 4 6.5 5.5 10 7 9.3V20h10V9.3l1.5.7L20 6.5 16 4c-.5 1.5-2 2.5-4 2.5S8.5 5.5 8 4z"/></svg></span><span><strong>Lojas de roupa</strong><small>Catálogo com o pedido chegando no WhatsApp</small></span></a>
+          </div>
+        </div>
+        <a href="../#demo">Ver demo</a>
+        <a href="../#planos">Planos</a>
+        <a href="../#duvidas">Dúvidas</a>
+      </nav>
+      <div class="nav-cta">
+        <a href="https://app.webtenda.com.br/entrar" class="nav-login">Entrar</a>
+        <a href="#quero" class="btn">Quero ser parceiro</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-in">
+    <div class="hero-copy">
+      <p class="eyebrow reveal">Programa de parceiros</p>
+      <h1 class="reveal">Seus clientes vendendo online. <em>Você ganhando todo mês.</em></h1>
+      <p class="lead reveal">Você já cuida do Instagram, da arte ou do computador de lanchonetes, lojas e salões. Ofereça também a loja online deles: você monta e cobra a montagem, e recebe 30% da mensalidade enquanto o cliente continuar assinando.</p>
+      <div class="hero-actions reveal">
+        <a href="https://wa.me/5562982908000?text=Ol%C3%A1!%20Quero%20ser%20parceiro%20da%20WebTenda." target="_blank" rel="noopener" class="btn btn-lg btn-wa"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#fff" d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.4.7 4.7 1.9 6.6L3 29l7-2.2c1.8 1 3.9 1.6 6 1.6 7 0 12.7-5.6 12.7-12.6S23 3 16 3zm0 23c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.1 1.3 1.3-4-.3-.4c-1.1-1.7-1.7-3.6-1.7-5.6C5.4 9.8 10.2 5.2 16 5.2s10.6 4.6 10.6 10.4S21.8 26 16 26zm5.8-7.8c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.6-.9-.8-1.6-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2.1-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.4c.2.2 2.4 3.6 5.8 5 .8.4 1.4.6 1.9.7.8.3 1.6.2 2.2.1.7-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg>Quero ser parceiro</a>
+        <a href="#ganhos" class="btn btn-ghost btn-lg">Ver quanto dá para ganhar</a>
+      </div>
+      <ul class="hero-proof reveal">
+        <li>Sem custo para entrar</li>
+        <li>Sem meta mínima</li>
+        <li>Não precisa de CNPJ</li>
+      </ul>
+    </div>
+
+    <div class="pvis reveal" aria-label="Exemplo de resumo mensal de um parceiro">
+      <div class="pcard">
+        <span class="ex">Exemplo</span>
+        <small>Sua comissão de novembro</small>
+        <p class="big">R$ 137,82</p>
+        <small>6 lojas pagando · pago por Pix até o dia 10</small>
+        <ul>
+          <li><span>Brasa Burger</span><em class="st">Pagando</em><b>R$ 26,97</b></li>
+          <li><span>Açaí da Praça</span><em class="st">Pagando</em><b>R$ 14,97</b></li>
+          <li><span>Studio Corte Fino</span><em class="st">Pagando</em><b>R$ 26,97</b></li>
+          <li><span>Doce Encanto</span><em class="st t">Em teste</em><b>—</b></li>
+        </ul>
+      </div>
+      <div class="toast">
+        <span class="toast-ico">🎉</span>
+        <div><strong>Loja nova com o seu código</strong><small>Pizzaria Vila · montagem R$ 199</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUEM -->
+<section class="sec sec-alt" id="para-quem">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Para quem é</p>
+      <h2>Para quem já está perto do pequeno negócio</h2>
+      <p>Você não precisa ser vendedor de sistema. Precisa ter clientes que vendem pelo WhatsApp e confiam em você.</p>
+    </div>
+    <div class="features four">
+      <article class="feat reveal"><span class="feat-ico">📱</span><h3>Social media</h3><p>Você já posta o cardápio e as promoções. Agora o post leva para uma loja onde o cliente compra de verdade, e o resultado aparece para o seu cliente.</p></article>
+      <article class="feat reveal"><span class="feat-ico">🎨</span><h3>Designers e agências pequenas</h3><p>Logo, cores e fotos já são com você. Monte a loja com a cara do cliente e entregue um serviço completo, com uma renda que se repete todo mês.</p></article>
+      <article class="feat reveal"><span class="feat-ico">🖥️</span><h3>Técnicos de informática</h3><p>Você instala o computador e a impressora do caixa. Deixe também o cardápio digital e o quadro de pedidos funcionando.</p></article>
+      <article class="feat reveal"><span class="feat-ico">🤝</span><h3>Consultores e quem visita lojistas</h3><p>Contador, consultor, vendedor de maquininha ou de embalagem: você conversa com o dono toda semana. Indique e ganhe junto.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- COMO GANHA -->
+<section class="sec" id="ganhos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Como você ganha</p>
+      <h2>Um valor na entrada e uma renda todo mês</h2>
+      <p>O lojista paga a mensalidade direto para a WebTenda, no mesmo preço do site. Você não precisa cobrar nem dar recibo da assinatura.</p>
+    </div>
+    <div class="earn">
+      <article class="earn-card reveal">
+        <p class="n">R$ 199<small>sugestão</small></p>
+        <h3>A montagem é sua</h3>
+        <p>Você cadastra os produtos, as fotos, o logo e as formas de entrega, e cobra a montagem direto do cliente. O valor é seu, inteiro. Sugerimos R$ 199, mas quem define o preço é você.</p>
+      </article>
+      <article class="earn-card hl reveal">
+        <p class="n">30%<small>da mensalidade</small></p>
+        <h3>Todo mês, enquanto a loja pagar</h3>
+        <p>De cada loja que entrar com o seu código, você recebe 30% da mensalidade paga, todos os meses, enquanto ela continuar assinando. Uma loja no plano Profissional rende R$ 26,97 por mês para você.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULADORA -->
+<section class="calc-sec" id="calculadora">
+  <div class="wrap calc">
+    <div class="calc-copy reveal">
+      <p class="eyebrow">Faça a conta</p>
+      <h2>Quanto você ganha com os clientes que já tem?</h2>
+      <p>Pense em quantos dos seus clientes vendem pelo WhatsApp hoje. Cada um que assinar soma na sua renda do mês.</p>
+    </div>
+    <div class="calc-box reveal">
+      <label for="lojas">Lojas assinando com o seu código <output id="lojasOut">10 lojas</output></label>
+      <input type="range" id="lojas" min="1" max="50" step="1" value="10">
+      <p class="seg-label">Plano mais comum entre elas</p>
+      <div class="seg" role="radiogroup" aria-label="Plano">
+        <label><input type="radio" name="plano" value="49.9"><span>Básico<small>R$ 49,90</small></span></label>
+        <label><input type="radio" name="plano" value="89.9" checked><span>Profissional<small>R$ 89,90</small></span></label>
+        <label><input type="radio" name="plano" value="149.9"><span>Completo<small>R$ 149,90</small></span></label>
+      </div>
+      <div class="calc-res">
+        <div><small>Montagens (uma vez)</small><strong id="resSetup">R$ 1.990</strong></div>
+        <div class="hl"><small>Comissão todo mês</small><strong id="resMes">R$ 269,70</strong></div>
+      </div>
+      <p class="calc-save">Em 12 meses: <strong id="resAno">R$ 5.226</strong></p>
+      <p class="fine">Simulação com montagem de R$ 199 por loja e 30% da mensalidade, sem contar cancelamentos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="sec" id="como-funciona">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Como funciona</p>
+      <h2>Três passos, sem burocracia</h2>
+    </div>
+    <ol class="steps">
+      <li class="reveal">
+        <span class="step-n">1</span>
+        <h3>Chame a gente no WhatsApp</h3>
+        <p>Conte com quem você trabalha. Você recebe o seu código de parceiro e o seu link, que já levam o código junto.</p>
+      </li>
+      <li class="reveal">
+        <span class="step-n">2</span>
+        <h3>Apresente e monte a loja</h3>
+        <p>Mostre as lojas demo no celular do cliente. Depois cadastre a loja dele pelo seu link, ou mande o link para ele mesmo criar. O cliente tem 14 dias grátis para testar.</p>
+      </li>
+      <li class="reveal">
+        <span class="step-n">3</span>
+        <h3>Receba todo mês</h3>
+        <p>Quando o cliente começa a pagar, a loja entra na sua conta. Até o dia 10 você recebe por Pix a comissão do mês anterior, com a lista das lojas.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- O QUE RECEBE -->
+<section class="sec sec-alt" id="apoio">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">O que você recebe</p>
+      <h2>Tudo para vender sem complicação</h2>
+    </div>
+    <div class="features four">
+      <article class="feat reveal"><span class="feat-ico">🔗</span><h3>Seu código e seu link</h3><p>Quem se cadastra pelo seu link já fica ligado a você. Se o cliente esquecer, ele digita o código no cadastro ou você avisa a gente.</p></article>
+      <article class="feat reveal"><span class="feat-ico">🍔</span><h3>Lojas demo para mostrar</h3><p>Delivery, pedido na mesa, encomendas, barbearia e loja de roupa, prontas para o cliente fazer um pedido de teste na hora.</p></article>
+      <article class="feat reveal"><span class="feat-ico">💬</span><h3>Suporte direto</h3><p>Dúvida sua ou do seu cliente vai direto para a equipe da WebTenda pelo WhatsApp. Você não fica sozinho com o suporte.</p></article>
+      <article class="feat reveal"><span class="feat-ico">🏷️</span><h3>Um produto fácil de explicar</h3><p>Mensalidade fixa e nenhuma comissão por pedido. O dono entende em um minuto o quanto deixa de pagar para os aplicativos.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- REGRAS E DÚVIDAS -->
+<section class="sec" id="duvidas">
+  <div class="wrap faq-in">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Dúvidas</p>
+      <h2>Perguntas frequentes</h2>
+    </div>
+    <div class="faq">
+      <details class="reveal"><summary>Quanto custa para ser parceiro?</summary><p>Nada. Não tem taxa de entrada, mensalidade nem meta mínima de lojas.</p></details>
+      <details class="reveal"><summary>Preciso ter CNPJ?</summary><p>Não. Pagamos a comissão por Pix, na chave que você informar.</p></details>
+      <details class="reveal"><summary>Quando e como recebo a comissão?</summary><p>Até o dia 10 de cada mês, por Pix, você recebe 30% das mensalidades que as suas lojas pagaram no mês anterior, junto com a lista das lojas e dos valores.</p></details>
+      <details class="reveal"><summary>Por quanto tempo recebo de cada loja?</summary><p>Enquanto a loja continuar pagando a assinatura e você continuar no programa. Se a loja cancelar ou parar de pagar, a comissão dela para.</p></details>
+      <details class="reveal"><summary>E se a loja atrasar o pagamento?</summary><p>A comissão é sobre a mensalidade que de fato foi paga. Quando a loja acerta o atraso, aquela mensalidade entra na comissão do mês em que foi paga.</p></details>
+      <details class="reveal"><summary>Posso cobrar a mensalidade mais cara do meu cliente?</summary><p>Não. A assinatura é cobrada pela WebTenda direto do lojista, no mesmo preço do site. O que você define é o preço da montagem e de outros serviços seus, como fotos, artes e gestão das redes.</p></details>
+      <details class="reveal"><summary>Meu cliente se cadastrou sem o meu código. E agora?</summary><p>Chame a gente no WhatsApp com o nome da loja. Conferimos e ligamos a loja ao seu código.</p></details>
+      <details class="reveal"><summary>Quem dá suporte ao lojista?</summary><p>A WebTenda. Você pode ajudar o seu cliente no dia a dia, mas dúvidas e problemas do sistema podem vir direto para o nosso WhatsApp.</p></details>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="rules reveal">
+      <h3>Regras do programa</h3>
+      <ul>
+        <li>A comissão vale para lojas novas que se cadastram com o seu link ou código, ou que a WebTenda liga a você.</li>
+        <li>Comissão de 30% sobre as mensalidades pagas. Loja em teste grátis, cancelada ou com pagamento em aberto não gera comissão.</li>
+        <li>Você não é funcionário nem representante legal da WebTenda, e não pode prometer em nome dela preço, recurso ou prazo que não estejam no site.</li>
+        <li>Não vale divulgar com spam, anúncio usando a marca WebTenda como se fosse a própria empresa, ou informação falsa.</li>
+        <li>A WebTenda pode mudar estas regras avisando com 30 dias de antecedência. Comissões de mensalidades já pagas não mudam.</li>
+        <li>Valem também os <a href="../termos/" style="text-decoration:underline">Termos de uso</a> da WebTenda.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final" id="quero">
+  <div class="wrap final-in reveal">
+    <h2>Seus clientes já precisam disso. Comece a ganhar com eles.</h2>
+    <p>Chame a gente no WhatsApp, receba o seu código hoje e apresente a WebTenda para o primeiro cliente ainda esta semana.</p>
+    <a href="https://wa.me/5562982908000?text=Ol%C3%A1!%20Quero%20ser%20parceiro%20da%20WebTenda." target="_blank" rel="noopener" class="btn btn-light btn-lg">Quero ser parceiro</a>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <a href="#topo" class="logo logo-sm"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#ea580c"/><path d="M14 18h36l3 9H11z" fill="#fff"/><path d="M11 27a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0z" fill="#fff"/><path d="M23.25 18 21.5 27M40.75 18l1.75 9M32 18v9" stroke="#ea580c" stroke-width="2"/><path d="M15 34v12a3 3 0 0 0 3 3h28a3 3 0 0 0 3-3V34" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round"/><rect x="27" y="38" width="10" height="11" rx="2" fill="#fff"/></svg><span>Web<b>Tenda</b></span></a>
+    <nav aria-label="Rodapé">
+      <a href="../">Início</a>
+      <a href="../delivery/">Para delivery</a>
+      <a href="../mesa/">Pedido na mesa</a>
+      <a href="../loja/">Para lojas de roupa</a>
+      <a href="../encomendas/">Encomendas</a>
+      <a href="../barbearia/">Barbearias</a>
+      <a href="../parceiros/" aria-current="page">Seja parceiro</a>
+      <a href="../privacidade/">Política de privacidade</a>
+      <a href="../termos/">Termos de uso</a>
+    </nav>
+    <p>© <span id="ano">2026</span> WebTenda. Vendas online para pequenos negócios locais.</p>
+  </div>
+</footer>
+
+<a href="https://wa.me/5562982908000?text=Ol%C3%A1!%20Quero%20ser%20parceiro%20da%20WebTenda." target="_blank" rel="noopener" class="sticky-cta">Quero ser parceiro</a>
+
+<script src="../main.js" defer></script>
+</body>
+</html>

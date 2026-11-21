@@ -79,6 +79,48 @@ if (fat && com) {
 }
 calc();
 
+// Calculadora do parceiro (/parceiros/): montagem + 30% da mensalidade.
+// Se mudar a comissão ou a montagem sugerida, troque aqui e nos textos de parceiros/index.html.
+const COMISSAO = 0.30;
+const MONTAGEM = 199;
+const lojas = document.getElementById("lojas");
+const brl2 = (v) => "R$ " + v.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const calcParceiro = () => {
+  if (!lojas) return;
+  const n = +lojas.value;
+  const plano = +(document.querySelector('input[name="plano"]:checked') || { value: 89.9 }).value;
+  const mes = Math.floor(n * plano * COMISSAO * 100) / 100;
+  document.getElementById("lojasOut").textContent = n + (n === 1 ? " loja" : " lojas");
+  document.getElementById("resSetup").textContent = brl(n * MONTAGEM);
+  document.getElementById("resMes").textContent = brl2(mes);
+  document.getElementById("resAno").textContent = brl(n * MONTAGEM + mes * 12);
+};
+if (lojas) {
+  lojas.addEventListener("input", calcParceiro);
+  document.querySelectorAll('input[name="plano"]').forEach((r) => r.addEventListener("change", calcParceiro));
+  calcParceiro();
+}
+
+// Link de parceiro: webtenda.com.br/?parceiro=MARIA. O código fica guardado por 90 dias neste navegador
+// e vai junto em todos os botões de cadastro, para a loja nascer ligada ao parceiro.
+(() => {
+  const KEY = "wt_parceiro";
+  let code = (new URLSearchParams(location.search).get("parceiro") || "").replace(/[^0-9a-z]/gi, "").toUpperCase().slice(0, 20);
+  try {
+    if (code) localStorage.setItem(KEY, JSON.stringify({ code, at: Date.now() }));
+    else {
+      const saved = JSON.parse(localStorage.getItem(KEY) || "null");
+      if (saved && Date.now() - saved.at < 90 * 864e5) code = saved.code;
+    }
+  } catch (e) { /* navegador sem armazenamento: vale só nesta página */ }
+  if (!code) return;
+  document.querySelectorAll('a[href^="https://app.webtenda.com.br/cadastro"]').forEach((a) => {
+    const url = new URL(a.href);
+    url.searchParams.set("parceiro", code);
+    a.href = url.toString();
+  });
+})();
+
 const ano = document.getElementById("ano");
 if (ano) ano.textContent = new Date().getFullYear();
 
@@ -86,7 +128,9 @@ if (ano) ano.textContent = new Date().getFullYear();
 if (WHATSAPP) {
   const p = location.pathname;
   const assunto = p.includes("/loja") ? " para loja de roupas" : p.includes("/delivery") ? " para delivery" : "";
-  const msg = `Olá! Vim pelo site e tenho uma dúvida sobre a WebTenda${assunto}.`;
+  const msg = p.includes("/parceiros")
+    ? "Olá! Vim pelo site e tenho uma dúvida sobre o programa de parceiros da WebTenda."
+    : `Olá! Vim pelo site e tenho uma dúvida sobre a WebTenda${assunto}.`;
   const a = document.createElement("a");
   a.className = "wa-float";
   a.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
