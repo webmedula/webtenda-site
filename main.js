@@ -32,6 +32,33 @@ const onScroll = () => {
 window.addEventListener("scroll", onScroll, { passive: true });
 onScroll();
 
+// Menu do topo: "Soluções" abre ao clicar (e ao passar o mouse no computador);
+// no celular, os três risquinhos abrem o menu inteiro.
+if (nav) {
+  const drop = nav.querySelector(".nav-drop");
+  const dropBtn = nav.querySelector(".nav-drop-btn");
+  const burger = nav.querySelector(".nav-burger");
+  const setDrop = (open) => {
+    if (!drop) return;
+    drop.classList.toggle("open", open);
+    dropBtn.setAttribute("aria-expanded", open);
+  };
+  const setMenu = (open) => {
+    nav.classList.toggle("menu-open", open);
+    burger.setAttribute("aria-expanded", open);
+    burger.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+  };
+  if (dropBtn) dropBtn.addEventListener("click", (e) => { e.stopPropagation(); setDrop(!drop.classList.contains("open")); });
+  if (burger) burger.addEventListener("click", () => setMenu(!nav.classList.contains("menu-open")));
+  nav.querySelectorAll(".nav-menu a").forEach((a) => a.addEventListener("click", () => { setMenu(false); setDrop(false); }));
+  document.addEventListener("click", (e) => { if (drop && !drop.contains(e.target)) setDrop(false); });
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    if (drop && drop.classList.contains("open")) { setDrop(false); dropBtn.focus(); }
+    if (nav.classList.contains("menu-open")) { setMenu(false); burger.focus(); }
+  });
+}
+
 // Calculadora de comissão
 const brl = (v) => "R$ " + Math.round(v).toLocaleString("pt-BR");
 const fat = document.getElementById("fat");
