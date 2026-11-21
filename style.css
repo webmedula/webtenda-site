@@ -304,3 +304,21 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
   .wa-tip{display:none}
   body.sticky-on .wa-float{bottom:84px}
 }
+
+/* Duas formas de começar: Monte você mesmo / Loja pronta */
+.start{margin-top:64px}
+.start-title{text-align:center;font-size:1.6rem;margin-bottom:26px}
+.start-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:900px;margin:0 auto}
+.start-card{position:relative;display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:30px}
+.start-card h4{font-family:var(--display);font-size:1.3rem;font-weight:800;letter-spacing:-.02em}
+.start-price{font-family:var(--display);font-weight:800;font-size:1.5rem;color:var(--brand-d);margin:8px 0 4px;letter-spacing:-.02em}
+.start-price span{font-size:1rem}
+.start-price em{font-style:normal;font-family:var(--sans);font-weight:500;font-size:.9rem;color:var(--mute);letter-spacing:0;margin-left:4px}
+.start-inc{display:inline-block;align-self:flex-start;background:var(--brand-l);color:var(--brand-d);font-weight:600;font-size:.85rem;padding:4px 11px;border-radius:999px}
+.start-card ul{list-style:none;display:grid;align-content:start;gap:10px;margin:20px 0 26px;flex:1;font-size:.95rem;color:var(--ink-2)}
+.start-card li{padding-left:24px;position:relative}
+.start-card li::before{content:"✓";position:absolute;left:0;color:var(--brand);font-weight:700}
+.start-pro{border:2px solid var(--brand);box-shadow:0 24px 50px -30px rgba(234,88,12,.55)}
+.start-note{text-align:center;font-size:.85rem;color:var(--mute);margin-top:16px}
+.start-note a{text-decoration:underline}
+@media (max-width:760px){.start{margin-top:48px}.start-grid{grid-template-columns:1fr;max-width:460px}.start-card{padding:26px}}
