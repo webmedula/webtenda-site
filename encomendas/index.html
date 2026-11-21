@@ -90,20 +90,31 @@
 <body>
 <header class="nav" id="topo">
   <div class="wrap nav-in">
-    <a href="#topo" class="logo" aria-label="WebTenda, início">
+    <a href="../" class="logo" aria-label="WebTenda, início">
       <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#ea580c"/><path d="M14 18h36l3 9H11z" fill="#fff"/><path d="M11 27a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0a5.25 5.25 0 0 0 10.5 0z" fill="#fff"/><path d="M23.25 18 21.5 27M40.75 18l1.75 9M32 18v9" stroke="#ea580c" stroke-width="2"/><path d="M15 34v12a3 3 0 0 0 3 3h28a3 3 0 0 0 3-3V34" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round"/><rect x="27" y="38" width="10" height="11" rx="2" fill="#fff"/></svg>
       <span>Web<b>Tenda</b></span>
     </a>
-    <nav class="nav-links" aria-label="Seções">
-      <a href="#como-chega">Como funciona</a>
-      <a href="#demo">Ver demo</a>
-      <a href="#planos">Planos</a>
-      <a href="#duvidas">Dúvidas</a>
-      <a href="../">Outros ramos</a>
-    </nav>
-    <div class="nav-cta">
-      <a href="https://app.webtenda.com.br/entrar" class="btn btn-ghost">Entrar</a>
-      <a href="https://app.webtenda.com.br/cadastro?tipo=encomendas" class="btn">Criar meu cardápio</a>
+    <button class="nav-burger" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    <div class="nav-menu" id="menu">
+      <nav class="nav-links" aria-label="Menu principal">
+        <div class="nav-drop">
+          <button type="button" class="nav-drop-btn" aria-expanded="false" aria-controls="solucoes">Soluções <svg viewBox="0 0 12 12" aria-hidden="true"><path d="m3 4.5 3 3 3-3"/></svg></button>
+          <div class="nav-panel" id="solucoes">
+          <a href="../delivery/" class="sol sol-delivery"><span class="sol-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 17a2 2 0 1 0 4 0a2 2 0 1 0-4 0M15 17a2 2 0 1 0 4 0a2 2 0 1 0-4 0"/><path d="M9 17h6M17 15V9h-3M3 13V7h8v6M14 9l3 6M3 13h8"/></svg></span><span><strong>Delivery</strong><small>Cardápio no seu link, sem comissão por pedido</small></span></a>
+          <a href="../mesa/" class="sol sol-mesa"><span class="sol-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><path d="M14 14h2v2h-2zM18 18h2v2h-2zM14 18h2M18 14h2"/></svg></span><span><strong>Pedido na mesa</strong><small>O cliente pede pelo QR code, sem esperar o garçom</small></span></a>
+          <a href="../encomendas/" class="sol sol-encomendas" aria-current="page"><span class="sol-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16M5 20v-7h14v7M5 16c2 1 3-1 4.7 0s3 1 4.6 0s3-1 4.7 0M12 13V9M12 6.5c-.8-1 0-2.5 0-2.5s.8 1.5 0 2.5z"/></svg></span><span><strong>Encomendas</strong><small>Bolos, doces e marmitas com dia marcado e sinal</small></span></a>
+          <a href="../barbearia/" class="sol sol-barbearia"><span class="sol-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><path d="M8 7.5 20 17M8 16.5 20 7"/></svg></span><span><strong>Barbearias e salões</strong><small>Agenda online com lembrete e menos furos</small></span></a>
+          <a href="../loja/" class="sol sol-loja"><span class="sol-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4 4 6.5 5.5 10 7 9.3V20h10V9.3l1.5.7L20 6.5 16 4c-.5 1.5-2 2.5-4 2.5S8.5 5.5 8 4z"/></svg></span><span><strong>Lojas de roupa</strong><small>Catálogo com o pedido chegando no WhatsApp</small></span></a>
+          </div>
+        </div>
+        <a href="#demo">Ver demo</a>
+        <a href="#planos">Planos</a>
+        <a href="#duvidas">Dúvidas</a>
+      </nav>
+      <div class="nav-cta">
+        <a href="https://app.webtenda.com.br/entrar" class="nav-login">Entrar</a>
+        <a href="https://app.webtenda.com.br/cadastro?tipo=encomendas" class="btn">Criar meu cardápio</a>
+      </div>
     </div>
   </div>
 </header>
